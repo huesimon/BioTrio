@@ -7,7 +7,7 @@ package biotrio;
 
 /**
  *
- * @author jibba_000
+ * @author jibba_000 simon
  */
 public class Biotrio {
     
