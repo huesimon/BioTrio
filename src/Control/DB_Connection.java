@@ -34,7 +34,7 @@ public class DB_Connection {
 //    declaring the ResultSet
     ResultSet rs = null;
 */
-    private DB_Connection(){}
+    public DB_Connection(){}
     
     public static DB_Connection getInstace(){
         if(instance == null){

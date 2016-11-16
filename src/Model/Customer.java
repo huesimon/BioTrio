@@ -14,6 +14,12 @@ public class Customer {
     private String name;
     private String phone;
     private int tickets;
+    
+    public Customer(String name, String phone,int tickets){
+        this.name = name;
+        this.phone = phone;
+        this.tickets = tickets;
+    }
 
     public String getName() {
         return name;
