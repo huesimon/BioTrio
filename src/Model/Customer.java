@@ -13,7 +13,7 @@ public class Customer {
 
     private String name;
     private String phone;
-    private int tickets;
+    private Ticket tickets; // Skal ikke være en int, skal bruge Ticket class!!
     
     public Customer(String name, String phone,int tickets){
         this.name = name;

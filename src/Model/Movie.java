@@ -11,20 +11,20 @@ package Model;
  */
 public class Movie {
 
-    private String name;
+    private String titel;
     private String time;
 
     public Movie(String name, String time) {
-        this.name = name;
+        this.titel = name;
         this.time = time;
     }
 
-    public String getName() {
-        return name;
+    public String getTitel() {
+        return titel;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitel(String name) {
+        this.titel = name;
     }
 
     public String getTime() {

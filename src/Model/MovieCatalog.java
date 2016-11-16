@@ -37,6 +37,6 @@ public class MovieCatalog {
         private void init(){
             movies.add(new Movie("Film 1", "1:30"));
              movies.add(new Movie("Film 2", "1:30"));
-              movies.add(new Movie("Film 3", "1:30"));
+              movies.add(new Movie("Film 3 ", "1:30"));
         }
 }
