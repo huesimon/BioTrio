@@ -20,7 +20,8 @@ public class DB_Connection {
 //     Declare a Connection
     private static Connection con = null;
 //    The url
-    private static final String url = "jdbc:postgresql://localhost:5432/SQL_1";
+    //private static final String url = "jdbc:postgresql://localhost:5432/SQL_1";
+    private static final String url = "jdbc:postgresql://";
 //    The username
 //    private static final String user = "postgres";
 //    driver
@@ -34,7 +35,7 @@ public class DB_Connection {
 //    declaring the ResultSet
     ResultSet rs = null;
 */
-    public DB_Connection(){}
+    private DB_Connection(){}
     
     public static DB_Connection getInstace(){
         if(instance == null){
@@ -43,7 +44,7 @@ public class DB_Connection {
         return instance;
     }
     
-    public static Connection connect(String user, String password) {
+    public static Connection connect(String user, String password, String host, String port, String DBname) {
         System.out.println("--PostgreSQÆ connection test--");
 
         try {
@@ -57,7 +58,7 @@ public class DB_Connection {
         System.out.println("PostgreSQL JDBC driver is registerd");
 
         try {
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url + host + ":" + port + "/" + DBname ,user, password);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
