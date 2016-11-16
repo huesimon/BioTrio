@@ -19,26 +19,31 @@ public class DB_Connection {
 
 //     Declare a Connection
     private static Connection con = null;
-    private static String port;
-    private static String hostName;
-    private static String databaseName;
 //    The url
-    private static String url = "jdbc:postgresql://" + hostName + ":" + port + "/" + databaseName;
-
+    private static final String url = "jdbc:postgresql://localhost:5432/SQL_1";
 //    The username
-    private static String user = "postgres";
+//    private static final String user = "postgres";
 //    driver
     private static final String DRIVER = "org.postgresql.Driver";
+    private static DB_Connection instance = null;
 //    The password
-    private static String psswrd = "root";
-
-    /*
+//    private static final String psswrd = "root";
+/*
 //    declaring the Statement
     Statement stmt = null;
 //    declaring the ResultSet
     ResultSet rs = null;
-     */
-    public static Connection connect() {
+*/
+    private DB_Connection(){}
+    
+    public static DB_Connection getInstace(){
+        if(instance == null){
+            instance = new DB_Connection();
+        }
+        return instance;
+    }
+    
+    public static Connection connect(String user, String password) {
         System.out.println("--PostgreSQÆ connection test--");
 
         try {
@@ -52,7 +57,7 @@ public class DB_Connection {
         System.out.println("PostgreSQL JDBC driver is registerd");
 
         try {
-            con = DriverManager.getConnection(url, user, psswrd);
+            con = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -64,7 +69,7 @@ public class DB_Connection {
         return con;
     }
 
-    public void closeConnection() {
+    public static void closeConnection() {
         if (con != null) {
             try {
                 con.close();
@@ -74,53 +79,6 @@ public class DB_Connection {
             System.out.println("The connection is now closed");
         }
     }
-
-    public static String getPort() {
-        return port;
+     
     }
 
-    public static void setPort(String port) {
-        DB_Connection.port = port;
-    }
-
-    public static String getHostName() {
-        return hostName;
-    }
-
-    public static void setHostName(String hostName) {
-        DB_Connection.hostName = hostName;
-    }
-
-    public static String getDatabaseName() {
-        return databaseName;
-    }
-
-    public static void setDatabaseName(String databaseName) {
-        DB_Connection.databaseName = databaseName;
-    }
-
-    public static String getUrl() {
-        return url;
-    }
-
-    public static void setUrl(String url) {
-        DB_Connection.url = url;
-    }
-
-    public static String getUser() {
-        return user;
-    }
-
-    public static void setUser(String user) {
-        DB_Connection.user = user;
-    }
-
-    public static String getPsswrd() {
-        return psswrd;
-    }
-
-    public static void setPsswrd(String psswrd) {
-        DB_Connection.psswrd = psswrd;
-    }
-
-}
