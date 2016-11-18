@@ -6,6 +6,7 @@
 package View;
 
 import Control.DB_Connection;
+import Control.SeatHandler;
 import javafx.scene.control.PasswordField;
 import javax.swing.JOptionPane;
 import sun.security.util.Password;
@@ -15,7 +16,7 @@ import sun.security.util.Password;
  * @author Simon_
  */
 public class NewJFrame extends javax.swing.JFrame {
-
+DB_Connection jens = DB_Connection.getInstace();
     /**
      * Creates new form NewJFrame
      */
@@ -182,13 +183,20 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         // TODO add your handling code here:
+        
         String user = usrTxt.getText();
         String password = new String(passwordField.getText());
         String hostName = hostTF.getText();
         String port = portTF.getText();
         String DBname = dbNameTF.getText();
+        jens.setDBname(DBname);
+        jens.setHostName(hostName);
+        jens.setPassword(password);
+        jens.setPort(port);
+        jens.setUser(user);
         if(DB_Connection.connect(user, password, hostName, port, DBname) != null){
             JOptionPane.showMessageDialog(null,"User found");
+            jens.queryPerson();
             setVisible(false);
         }
         else{

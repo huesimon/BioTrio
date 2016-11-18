@@ -15,7 +15,7 @@ public class Customer {
     private String phone;
     private Ticket tickets; // Skal ikke være en int, skal bruge Ticket class!!
     
-    public Customer(String name, String phone,int tickets){
+    public Customer(String name, String phone,Ticket tickets){
         this.name = name;
         this.phone = phone;
         this.tickets = tickets;
@@ -37,7 +37,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public int getTickets() {
+    public Ticket getTickets() {
         return tickets;
     }
 

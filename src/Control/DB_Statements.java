@@ -22,19 +22,19 @@ public class DB_Statements {
     
 
     public void queryPerson() {
-        con = DB_Connection.connect();
+        //con = DB_Connection.connect();
         String query = "select * from person";
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(query);
 
             System.out.println("\nname\taddress\ttelephone\n__________________");
-            /*while (rs.next()) {
+            while (rs.next()) {
                 String name = rs.getString("name");
                 String address = rs.getString("address");
                 String telefon = rs.getString("telefon");
                 System.out.println(name + "\t\t" + address + "\t" + telefon);
-            }*/
+        }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

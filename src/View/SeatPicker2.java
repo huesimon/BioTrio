@@ -13,6 +13,7 @@ import java.awt.Color;
  */
 public class SeatPicker2 extends javax.swing.JFrame {
 String seatNo;
+int counter = 0;
     /**
      * Creates new form SeatPicker2
      */
@@ -46,16 +47,21 @@ String seatNo;
 
         jTextField1.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.setText("0");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
-        jToggleButton2.setText("jToggleButton2");
+        jToggleButton2.setText("0");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
             }
         });
 
-        jToggleButton3.setText("jToggleButton3");
+        jToggleButton3.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,7 +81,7 @@ String seatNo;
                         .addComponent(jToggleButton2)
                         .addGap(39, 39, 39)
                         .addComponent(jToggleButton3)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,16 +104,30 @@ String seatNo;
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
         jToggleButton2.setBackground(Color.red);
-        jToggleButton2.disable();
+        jToggleButton2.setEnabled(false);
+        jToggleButton2.setText("✓");
         seatNo = "('1', '2',";
+        counter++;
+        upDate();
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        jTextField1.setText(seatNo);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    public void upDate(){
+        if(counter >1){
+            jToggleButton1.disable();
+            jToggleButton2.disable();
+            jToggleButton3.disable();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -141,8 +161,9 @@ String seatNo;
                 new SeatPicker2().setVisible(true);
             }
         });
-    }
 
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
     private javax.swing.JTextField jTextField1;
