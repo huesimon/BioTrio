@@ -6,6 +6,8 @@
 package View;
 
 import Control.DB_Connection;
+import Control.MovieCatalog;
+import Control.ShowingCatalog;
 //import Control.SeatHandler;
 //import Model.Seats;
 import javafx.scene.control.PasswordField;
@@ -212,6 +214,8 @@ DB_Connection jens = DB_Connection.getInstace();
         if(DB_Connection.connect(user, password, hostName, port, DBname) != null){
             JOptionPane.showMessageDialog(null,"User found");
             jens.queryPerson();
+            MovieCatalog.queryMovie();
+            ShowingCatalog.queryHall();
             setVisible(false);
         }
         else{

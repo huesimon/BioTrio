@@ -8,6 +8,7 @@ package Control;
 import Model.Hall;
 import Model.Movie;
 import Model.Showing;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,5 +39,22 @@ public class ShowingCatalog {
         Movie movie1 = new Movie("Film 11", "1:45");
         Date date = new Date(System.currentTimeMillis());
         showings.add(new Showing(hall1, movie1, date));
+    }
+    public static void queryHall(){
+        String query = "select * from hall";
+        try {
+            DB_Connection.getCon();
+            DB_Connection.setStmt(DB_Connection.getCon().createStatement());
+            DB_Connection.setRs(DB_Connection.getStmt().executeQuery(query));
+            System.out.println("title\n __________________");
+            while (DB_Connection.getRs().next()) {
+                int rowNo = DB_Connection.getRs().getInt("rowNo");
+                String seatNo = DB_Connection.getRs().getString("SeatNo"); //STRING 
+                System.out.print(rowNo + "\t");
+                System.out.println(seatNo);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

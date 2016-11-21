@@ -132,9 +132,7 @@ public class DB_Connection {
             }
             System.out.println("The connection is now closed");
         }
-    }
-
-    public void queryPerson() {
+    }public void queryPerson() {
 
         String query = "SELECT * FROM customer, ticket WHERE customer_id = ticket.orders";
         try {
@@ -159,4 +157,30 @@ public class DB_Connection {
             System.out.println("connection un-succesful");
         }
     }
+
+    public static Connection getCon() {
+        return con;
+    }
+
+    public static void setCon(Connection con) {
+        DB_Connection.con = con;
+    }
+
+    public static Statement getStmt() {
+        return stmt;
+    }
+
+    public static void setStmt(Statement stmt) {
+        DB_Connection.stmt = stmt;
+    }
+
+    public static ResultSet getRs() {
+        return rs;
+    }
+
+    public static void setRs(ResultSet rs) {
+        DB_Connection.rs = rs;
+    }
+
+    
 }
