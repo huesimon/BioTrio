@@ -6,7 +6,8 @@
 package View;
 
 import Control.DB_Connection;
-import Control.SeatHandler;
+//import Control.SeatHandler;
+//import Model.Seats;
 import javafx.scene.control.PasswordField;
 import javax.swing.JOptionPane;
 import sun.security.util.Password;
@@ -17,6 +18,7 @@ import sun.security.util.Password;
  */
 public class NewJFrame extends javax.swing.JFrame {
 DB_Connection jens = DB_Connection.getInstace();
+//Seats seat = new Seats();
     /**
      * Creates new form NewJFrame
      */
@@ -37,6 +39,7 @@ DB_Connection jens = DB_Connection.getInstace();
         btnPnl = new javax.swing.JPanel();
         okBtn = new javax.swing.JButton();
         cnclBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         pnlE = new javax.swing.JPanel();
         pnlW = new javax.swing.JPanel();
         pnlC = new javax.swing.JPanel();
@@ -81,6 +84,14 @@ DB_Connection jens = DB_Connection.getInstace();
         cnclBtn.setText("Cancel");
         btnPnl.add(cnclBtn);
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        btnPnl.add(jButton1);
+
         getContentPane().add(btnPnl, java.awt.BorderLayout.PAGE_END);
 
         pnlE.setPreferredSize(new java.awt.Dimension(75, 251));
@@ -100,6 +111,7 @@ DB_Connection jens = DB_Connection.getInstace();
 
         userTxtPnl.setPreferredSize(new java.awt.Dimension(155, 36));
 
+        usrTxt.setText("postgres");
         usrTxt.setPreferredSize(new java.awt.Dimension(155, 26));
         usrTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +131,7 @@ DB_Connection jens = DB_Connection.getInstace();
 
         psswrdTxtPnl.setPreferredSize(new java.awt.Dimension(155, 36));
 
+        passwordField.setText("root");
         passwordField.setPreferredSize(new java.awt.Dimension(155, 26));
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +149,7 @@ DB_Connection jens = DB_Connection.getInstace();
 
         pnlC.add(hostLbl);
 
+        hostTF.setText("localhost");
         hostTF.setPreferredSize(new java.awt.Dimension(155, 26));
         hostTxtPnl.add(hostTF);
 
@@ -148,6 +162,7 @@ DB_Connection jens = DB_Connection.getInstace();
 
         pnlC.add(portPnl);
 
+        portTF.setText("5432");
         portTF.setPreferredSize(new java.awt.Dimension(155, 26));
         jPanel1.add(portTF);
 
@@ -212,6 +227,16 @@ DB_Connection jens = DB_Connection.getInstace();
         // TODO add your handling code here:
     }//GEN-LAST:event_dbNameTFActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+      
+      //  System.out.println(seat.testa());
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +279,7 @@ DB_Connection jens = DB_Connection.getInstace();
     private javax.swing.JPanel hostLbl;
     private javax.swing.JTextField hostTF;
     private javax.swing.JPanel hostTxtPnl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

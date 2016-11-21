@@ -10,5 +10,11 @@ package Model;
  * @author Simon_
  */
 public class Ticket {
+    private int rowNo;
+    private int seatNo;
     
+    public Ticket(int rowNo, int seatNo){
+        this.rowNo = rowNo;
+        this.seatNo = seatNo;
+    }
 }

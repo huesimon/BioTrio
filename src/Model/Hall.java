@@ -12,9 +12,10 @@ package Model;
 public class Hall {
     private String hallName;
     private int hallNumber;
-    private int takenSeats;
+    private int rows;
+    private int cols;
     private int totalSeats;
-
+    
     public String getHallName() {
         return hallName;
     }
@@ -31,19 +32,40 @@ public class Hall {
         this.hallNumber = hallNumber;
     }
 
-    public int getTakenSeats() {
-        return takenSeats;
+    public int getRows() {
+        return rows;
     }
 
-    public void setTakenSeats(int takenSeats) {
-        this.takenSeats = takenSeats;
+    public void setRows(int rows) {
+        this.rows = rows;
     }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
+ 
 
     public int getTotalSeats() {
         return totalSeats;
+    }
+    public int[][] getSeatingArray(){
+        return new int[rows][cols];
     }
 
     public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
     }
-}
+
+    public Hall(String hallName, int hallNumber, int rows, int cols) {
+        this.hallName = hallName;
+        this.hallNumber = hallNumber;
+        this.rows = rows;
+        this.cols = cols;
+    }
+    
+    }

@@ -5,10 +5,18 @@
  */
 package biotrio;
 
+import Control.ShowingCatalog;
+import View.SeatBookingGUI;
+
 /**
  *
  * @author jibba_000 simon
  */
 public class Biotrio {
+    public static void main(String[] args) {
+        ShowingCatalog showingCatalog = new ShowingCatalog();
+        
+        SeatBookingGUI gui = new SeatBookingGUI(showingCatalog.getShowings().get(0));
+    }
     
 }

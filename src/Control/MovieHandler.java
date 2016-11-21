@@ -6,7 +6,6 @@
 package Control;
 
 import Model.Movie;
-import Model.MovieCatalog;
 
 /**
  *

@@ -6,7 +6,7 @@
 package View;
 import Control.MovieHandler;
 import Model.Movie;
-import Model.MovieCatalog;
+import Control.MovieCatalog;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 

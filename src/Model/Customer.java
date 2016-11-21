@@ -13,12 +13,12 @@ public class Customer {
 
     private String name;
     private String phone;
-    private Ticket tickets; // Skal ikke være en int, skal bruge Ticket class!!
     
-    public Customer(String name, String phone,Ticket tickets){
+    
+    public Customer(String name, String phone){
         this.name = name;
         this.phone = phone;
-        this.tickets = tickets;
+       
     }
 
     public String getName() {
@@ -36,13 +36,4 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public Ticket getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(int tickets) {
-        this.tickets = tickets;
-    }
-
 }

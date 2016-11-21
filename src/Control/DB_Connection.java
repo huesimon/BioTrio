@@ -136,17 +136,19 @@ public class DB_Connection {
 
     public void queryPerson() {
 
-        String query = "select * from ticket";
+        String query = "SELECT * FROM customer, ticket WHERE customer_id = ticket.orders";
         try {
             con = DriverManager.getConnection(url + hostName + ":" + port + "/" + DBname, user, password);
             stmt = con.createStatement();
             rs = stmt.executeQuery(query);
 
-            System.out.println("\nname\taddress\ttelephone\n__________________");
+            System.out.println("\nRow\tSeat Number\n__________________");
             while (rs.next()) {
-                String name = rs.getString("rowNo");
-                
-                System.out.println(name);
+                String rowNo = rs.getString("rowNo");
+                String seatNo = rs.getString("seatNo");
+
+                System.out.print(rowNo + "\t");
+                System.out.println(seatNo);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
