@@ -5,7 +5,14 @@
  */
 package View;
 
+import Control.MovieCatalog;
+import Control.ShowingCatalog;
 import Model.Showing;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import Model.Hall;
+import Model.Movie;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,18 +24,61 @@ public class SeatBookingGUI extends javax.swing.JFrame {
      * Creates new form SeatBookingGUI
      */
     public SeatBookingGUI(Showing showing) {
+
         initComponents();
-        int[][] intarray;
-        intarray = showing.getHall().getSeatingArray();
-        
-        for (int i = 0; i < intarray.length; i++) {
-            for (int j = 0; j < intarray[i].length; j++) {
-                System.out.println(i+" "+j);
-            }
+        updateSeatTable(showing);
+
+        setVisible(true);
+
+    }
+
+    public void updateSeatTable(Showing showing) {
+        String[] colNames = new String[showing.getHall().getCols()];
+        for (int i = 0; i < showing.getHall().getCols(); i++) {
+            
+            colNames[i] = "" +i;
         }
         
-        setVisible(true);
+        TableModel model = new DefaultTableModel(new Object[showing.getHall().getRows()][showing.getHall().getCols()],colNames);
+        jTable1.setModel(model);
+        jTable1.repaint();
         
+        
+        
+        
+
+        /*while (jTable1.getRowCount() != 0) {
+            ((DefaultTableModel) model).removeRow(0);
+            
+        }
+
+        for (int i = 0; i < showing.getHall().getRows(); i++) {
+            ((DefaultTableModel) model).addRow(new Object[jTable1.getColumnCount() - 1]);
+            jTable1.setValueAt(0, jTable1.getRowCount() - 1, 0);
+
+
+            {for (int j = 0; j < showing.getHall().getCols(); j++) {
+                    ((DefaultTableModel) model).addColumn(new Object[jTable1.getRowCount() -1]);
+                    jTable1.setValueAt(1, jTable1.getRowCount() - 1, j);
+                }
+
+            }}
+
+            
+        
+        for (int j = 0; j < showing.getHall().getRows(); j++) {
+                ((DefaultTableModel) model).addRow(new Object[jTable1.getColumnCount()- 1]);
+                jTable1.setValueAt(j, jTable1.getRowCount()- 1, 0);
+                {
+        for (int i = 0; i < showing.getHall().getCols(); i++) {
+                ((DefaultTableModel) model).addColumn(new Object[jTable1.getRowCount()- 1]);
+                jTable1.setValueAt(i, jTable1.getColumnCount()- 1, 1);
+        }
+                
+            }
+            }
+         */
+
     }
 
     /**
@@ -55,22 +105,27 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         getContentPane().add(jEast, java.awt.BorderLayout.LINE_END);
         getContentPane().add(jWest, java.awt.BorderLayout.LINE_START);
 
-        jCenter.add(jPanel1);
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        }
 
-        jCenter.add(jScrollPane1);
+        jPanel1.add(jScrollPane1);
+
+        jCenter.add(jPanel1);
 
         getContentPane().add(jCenter, java.awt.BorderLayout.CENTER);
 

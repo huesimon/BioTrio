@@ -10,17 +10,23 @@ import Control.MovieCatalog;
 import Control.ShowingCatalog;
 //import Control.SeatHandler;
 //import Model.Seats;
-import javafx.scene.control.PasswordField;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import sun.security.util.Password;
+
 
 /**
  *
  * @author Simon_
  */
+
 public class NewJFrame extends javax.swing.JFrame {
-DB_Connection jens = DB_Connection.getInstace();
+
+    DB_Connection jens = DB_Connection.getInstace();
+    //MovieCatalog movieCatalog = MovieCatalog.getInstance();
+    //MovieCatalog movieCatalog = new MovieCatalog();
 //Seats seat = new Seats();
+
     /**
      * Creates new form NewJFrame
      */
@@ -133,13 +139,7 @@ DB_Connection jens = DB_Connection.getInstace();
 
         psswrdTxtPnl.setPreferredSize(new java.awt.Dimension(155, 36));
 
-        passwordField.setText("root");
         passwordField.setPreferredSize(new java.awt.Dimension(155, 26));
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
         psswrdTxtPnl.add(passwordField);
 
         pnlC.add(psswrdTxtPnl);
@@ -179,6 +179,7 @@ DB_Connection jens = DB_Connection.getInstace();
 
         jPanel3.setPreferredSize(new java.awt.Dimension(155, 26));
 
+        dbNameTF.setText("BioTrio");
         dbNameTF.setPreferredSize(new java.awt.Dimension(155, 26));
         dbNameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +201,7 @@ DB_Connection jens = DB_Connection.getInstace();
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         // TODO add your handling code here:
-        
+
         String user = usrTxt.getText();
         String password = new String(passwordField.getText());
         String hostName = hostTF.getText();
@@ -211,34 +212,44 @@ DB_Connection jens = DB_Connection.getInstace();
         jens.setPassword(password);
         jens.setPort(port);
         jens.setUser(user);
-        if(DB_Connection.connect(user, password, hostName, port, DBname) != null){
-            JOptionPane.showMessageDialog(null,"User found");
+        if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
+            JOptionPane.showMessageDialog(null, "User found");
             jens.queryPerson();
-            MovieCatalog.queryMovie();
+           // movieCatalog.queryMovie();
             ShowingCatalog.queryHall();
             setVisible(false);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "User not found");
         }
     }//GEN-LAST:event_okBtnActionPerformed
-
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void dbNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dbNameTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dbNameTFActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-      
-      //  System.out.println(seat.testa());
-        
-        
-        
+        String user = usrTxt.getText();
+        String password = new String(passwordField.getText());
+        String hostName = hostTF.getText();
+        String port = portTF.getText();
+        String DBname = dbNameTF.getText();
+        jens.setDBname(DBname);
+        jens.setHostName(hostName);
+        jens.setPassword(password);
+        jens.setPort(port);
+        jens.setUser(user);
+        if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
+            
+            //jens.queryPerson();
+            //movieCatalog.queryMovie();
+            ShowingCatalog.queryHall();
+            //setVisible(false); lukker DB login frame 
+        }
+        SelectMovieGUI gui = new SelectMovieGUI();
+        gui.setVisible(true);
+
+        //  System.out.println(seat.testa());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -8,7 +8,9 @@ package Control;
 import Model.Movie;
 import java.util.ArrayList;
 import Control.DB_Connection;
+import java.awt.AWTEventMulticaster;
 import java.sql.*;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 
 /**
  *
@@ -18,13 +20,17 @@ public class MovieCatalog {
 
     private static MovieCatalog movieCatalog = new MovieCatalog();
     ArrayList<Movie> movies;
-
-    private MovieCatalog() {
+    private static  String title;
+    private static  String length;
+    private Movie movie = new Movie(title, length);
+    
+    public MovieCatalog() {
         movies = new ArrayList<>();
-        init();
+        //queryMovie();
+        //init();
     }
 
-    public static MovieCatalog getInstance() {
+    public MovieCatalog getInstance() {
         return movieCatalog;
     }
 
@@ -50,7 +56,7 @@ public class MovieCatalog {
         movies.add(new Movie("Film 3 ", "1:30"));
     }
 
-    public static void queryMovie() {
+    public void queryMovie() {
         String query = "select * from movie";
         try {
             DB_Connection.getCon();
@@ -58,13 +64,22 @@ public class MovieCatalog {
             DB_Connection.setRs(DB_Connection.getStmt().executeQuery(query));
             System.out.println("title\n __________________");
             while (DB_Connection.getRs().next()) {
-                String title = DB_Connection.getRs().getString("title");
-                String length = DB_Connection.getRs().getString("length");
+                title = DB_Connection.getRs().getString("title");
+                
+                length = DB_Connection.getRs().getString("length");
                 System.out.print(title + "\t");
                 System.out.println(length);
-            }
+                movies.add(new Movie(title, length));
+                
+                        
+                
+           }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

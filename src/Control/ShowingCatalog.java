@@ -35,7 +35,7 @@ public class ShowingCatalog {
         return showings;
     }
     public void init(){
-        Hall hall1 = new Hall("hal 1", 1, 8, 12);
+        Hall hall1 = new Hall("hal 1", 1, 12, 20);
         Movie movie1 = new Movie("Film 11", "1:45");
         Date date = new Date(System.currentTimeMillis());
         showings.add(new Showing(hall1, movie1, date));

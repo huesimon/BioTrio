@@ -5,8 +5,11 @@
  */
 package biotrio;
 
+import Control.MovieCatalog;
 import Control.ShowingCatalog;
+import Model.Movie;
 import View.SeatBookingGUI;
+import View.SelectMovieGUI;
 
 /**
  *
@@ -15,7 +18,8 @@ import View.SeatBookingGUI;
 public class Biotrio {
     public static void main(String[] args) {
         ShowingCatalog showingCatalog = new ShowingCatalog();
-        
+        //MovieCatalog movieCatalog = new MovieCatalog();
+        //SelectMovieGUI guiM = new SelectMovieGUI(movieCatalog);
         SeatBookingGUI gui = new SeatBookingGUI(showingCatalog.getShowings().get(0));
     }
     
