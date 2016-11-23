@@ -6,6 +6,7 @@
 package View;
 
 import Control.DB_Connection;
+import Control.DB_Statements;
 import Control.MovieCatalog;
 import Control.ShowingCatalog;
 //import Control.SeatHandler;
@@ -14,12 +15,10 @@ import Control.ShowingCatalog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Simon_
  */
-
 public class NewJFrame extends javax.swing.JFrame {
 
     DB_Connection jens = DB_Connection.getInstace();
@@ -48,6 +47,7 @@ public class NewJFrame extends javax.swing.JFrame {
         okBtn = new javax.swing.JButton();
         cnclBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         pnlE = new javax.swing.JPanel();
         pnlW = new javax.swing.JPanel();
         pnlC = new javax.swing.JPanel();
@@ -99,6 +99,14 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         btnPnl.add(jButton1);
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        btnPnl.add(jButton2);
 
         getContentPane().add(btnPnl, java.awt.BorderLayout.PAGE_END);
 
@@ -215,7 +223,7 @@ public class NewJFrame extends javax.swing.JFrame {
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
             JOptionPane.showMessageDialog(null, "User found");
             jens.queryPerson();
-           // movieCatalog.queryMovie();
+            // movieCatalog.queryMovie();
             ShowingCatalog.queryHall();
             setVisible(false);
         } else {
@@ -239,10 +247,10 @@ public class NewJFrame extends javax.swing.JFrame {
         jens.setPort(port);
         jens.setUser(user);
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
-            
+
             //jens.queryPerson();
             //movieCatalog.queryMovie();
-            ShowingCatalog.queryHall();
+            //ShowingCatalog.queryHall();
             //setVisible(false); lukker DB login frame 
         }
         SelectMovieGUI gui = new SelectMovieGUI();
@@ -251,6 +259,12 @@ public class NewJFrame extends javax.swing.JFrame {
         //  System.out.println(seat.testa());
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DB_Statements stmt = new DB_Statements();
+        //stmt.queryMovie();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,6 +309,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField hostTF;
     private javax.swing.JPanel hostTxtPnl;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

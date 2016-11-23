@@ -5,7 +5,17 @@
  */
 package Control;
 
+import Model.Movie;
+import View.NewJFrame;
 import java.sql.*;
+import java.util.ArrayList;
+import javax.management.remote.JMXConnectorFactory;
+import javax.swing.JTable;
+import javax.swing.JTree;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.StyledEditorKit;
+import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 
 /**
  *
@@ -19,7 +29,10 @@ public class DB_Statements {
     private static Statement stmt = null;
 //    declare the result
     private static ResultSet rs = null;
-    
+    private static String title;
+    private static String length;
+    private Movie movie = new Movie(title, length);
+    private MovieCatalog movieCatalog = new MovieCatalog();
 
     public void queryPerson() {
         //con = DB_Connection.connect();
@@ -34,14 +47,16 @@ public class DB_Statements {
                 String address = rs.getString("address");
                 String telefon = rs.getString("telefon");
                 System.out.println(name + "\t\t" + address + "\t" + telefon);
-        }
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
     }
+
+   /*
     public void createOderTable(){
-        con = DB_Connection.connect(user, password);
+        con = DB_Connection.connect();
         String tabel = "oder1";
         String query = "create table if not exists " + table + " (0_Id serial, OderNo Integer);";
         try {
@@ -91,5 +106,5 @@ public class DB_Statements {
             ex.printStackTrace();
         }
         System.out.println("TABLE CREATED");
-    }
+    }*/
 }

@@ -6,6 +6,7 @@
 package View;
 
 import Control.DB_Connection;
+import Control.DB_Statements;
 import Control.MovieCatalog;
 import Model.Movie;
 import java.awt.Dimension;
@@ -19,17 +20,19 @@ import javax.swing.table.TableModel;
  * @author Simon_
  */
 public class SelectMovieGUI extends javax.swing.JFrame {
+
     MovieCatalog movieCatalog = new MovieCatalog();
 //private MovieCatalog movieCatalog = new MovieCatalog();
+
     /**
      * Creates new form SelectMovieGUI
      */
     public SelectMovieGUI(MovieCatalog movieCatalog) {
         initComponents();
-        updateMovieTable();
+        //updateMovieTable();
 
         setVisible(true);
-   
+
     }
 
     public SelectMovieGUI() {
@@ -39,21 +42,20 @@ public class SelectMovieGUI extends javax.swing.JFrame {
 
     public void updateMovieTable() {
         TableModel model = jTable1.getModel();
-        movieCatalog.queryMovie();
+        //movieCatalog.queryMovie2();
 
         while (jTable1.getRowCount() != 0) {
             ((DefaultTableModel) model).removeRow(0);
         }
 
-        for (int i = 0; i < movieCatalog.size(); i++) {
-            
+        for (int i = 0; i < movieCatalog.getSize(); i++) {
+
             ((DefaultTableModel) model).addRow(new Object[jTable1.getColumnCount() - 1]);
             Movie movie = movieCatalog.getMovies().get(i);
             jTable1.setValueAt(movieCatalog.getTitle(), jTable1.getRowCount() - 1, 0);
 
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,10 +74,7 @@ public class SelectMovieGUI extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -116,11 +115,14 @@ public class SelectMovieGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(DB_Connection.getCon() != null){
-            movieCatalog.queryMovie();
-            updateMovieTable();
+        if (DB_Connection.getCon() != null) {
+            //movieCatalog.queryMovie();
+            //updateMovieTable();
+            DB_Statements stmt = new DB_Statements();
+            movieCatalog.queryMovie2(jTable1);
+            
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
