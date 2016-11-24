@@ -22,6 +22,7 @@ import javax.swing.table.TableModel;
 public class SelectMovieGUI extends javax.swing.JFrame {
 
     MovieCatalog movieCatalog = new MovieCatalog();
+    boolean pressingCTRL=false;
 //private MovieCatalog movieCatalog = new MovieCatalog();
 
     /**
@@ -29,7 +30,6 @@ public class SelectMovieGUI extends javax.swing.JFrame {
      */
     public SelectMovieGUI(MovieCatalog movieCatalog) {
         initComponents();
-        //updateMovieTable();
 
         setVisible(true);
 
@@ -41,20 +41,32 @@ public class SelectMovieGUI extends javax.swing.JFrame {
     }
 
     public void updateMovieTable() {
-        TableModel model = jTable1.getModel();
-        //movieCatalog.queryMovie2();
+        movieCatalog.queryMovie2();
 
-        while (jTable1.getRowCount() != 0) {
-            ((DefaultTableModel) model).removeRow(0);
+//        while (jTable1.getRowCount() != 0) {
+//            ((DefaultTableModel) jTable1).removeRow(0);
+//        }
+//            System.out.println("ASDASDASDASDASDASDASD");
+//            ((DefaultTableModel) model).addRow(new Object[jTable1.getColumnCount() - 1]);
+//            Movie movie = movieCatalog.getMovies().get(i);
+//            jTable1.setValueAt(movieCatalog.getTitle(), jTable1.getRowCount() - 1, 0);
+//            
+        //table.setValueAt(title, i, 0);
+        Object[][] data = new Object[movieCatalog.getSize()][2];
+
+//        for (Movie r : movieCatalog.getMovies()) {
+//            data[i] = new Object[]{r.getTitel(), r.getTime()};
+//        }  x
+
+        for (int i = 0; i < movieCatalog.getMovies().size(); i++) {
+            data[i] = new Object[]{movieCatalog.getMovies().get(i).getTitel(), movieCatalog.getMovies().get(i).getTime()};
+           
         }
+        
+        TableModel model = new DefaultTableModel(data, new String[]{"Title", "length"});
+        jTable1.setModel(model);
+        jTable1.repaint();
 
-        for (int i = 0; i < movieCatalog.getSize(); i++) {
-
-            ((DefaultTableModel) model).addRow(new Object[jTable1.getColumnCount() - 1]);
-            Movie movie = movieCatalog.getMovies().get(i);
-            jTable1.setValueAt(movieCatalog.getTitle(), jTable1.getRowCount() - 1, 0);
-
-        }
     }
 
     /**
@@ -69,6 +81,7 @@ public class SelectMovieGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,10 +95,17 @@ public class SelectMovieGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Update ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Select movie");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -100,6 +120,8 @@ public class SelectMovieGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(158, 158, 158)
                 .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,23 +129,26 @@ public class SelectMovieGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if (DB_Connection.getCon() != null) {
-            //movieCatalog.queryMovie();
-            //updateMovieTable();
-            DB_Statements stmt = new DB_Statements();
-            movieCatalog.queryMovie2(jTable1);
-            
-        }
+        updateMovieTable();
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int rowNumber = jTable1.getSelectedRow();
+        
+        Car car = carHandler.removeCarAt(rowNumber);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,6 +187,7 @@ public class SelectMovieGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

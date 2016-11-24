@@ -90,7 +90,7 @@ public class DB_Connection {
         this.DBname = DBname;
     }
 
-    public static DB_Connection getInstace() {
+    public static DB_Connection getInstance() {
         if (instance == null) {
             instance = new DB_Connection();
         }

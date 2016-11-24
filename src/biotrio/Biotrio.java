@@ -8,6 +8,7 @@ package biotrio;
 import Control.MovieCatalog;
 import Control.ShowingCatalog;
 import Model.Movie;
+import View.NewJFrame;
 import View.SeatBookingGUI;
 import View.SelectMovieGUI;
 
@@ -18,9 +19,12 @@ import View.SelectMovieGUI;
 public class Biotrio {
     public static void main(String[] args) {
         ShowingCatalog showingCatalog = new ShowingCatalog();
-        //MovieCatalog movieCatalog = new MovieCatalog();
+        MovieCatalog movieCatalog = new MovieCatalog();
+        NewJFrame dbGui = new NewJFrame();
         //SelectMovieGUI guiM = new SelectMovieGUI(movieCatalog);
+        SelectMovieGUI selectMovieGUI = new SelectMovieGUI(movieCatalog);
         SeatBookingGUI gui = new SeatBookingGUI(showingCatalog.getShowings().get(0));
+        
     }
     
 }

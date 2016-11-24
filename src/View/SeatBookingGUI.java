@@ -32,6 +32,14 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         setVisible(true);
 
     }
+      public SeatBookingGUI() {
+
+        initComponents();
+
+        setVisible(true);
+
+    }
+    
 
     public void updateSeatTable(Showing showing) {
         String[] colNames = new String[showing.getHall().getCols()];

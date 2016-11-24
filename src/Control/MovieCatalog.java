@@ -1,5 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+
+* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -22,7 +23,6 @@ import jdk.nashorn.internal.codegen.CompilerConstants;
  */
 public class MovieCatalog {
 
-    private static MovieCatalog movieCatalog = new MovieCatalog();
     private ArrayList<Movie> movies;
     //private ArrayList movies =  new ArrayList();
     private static String title;
@@ -35,9 +35,6 @@ public class MovieCatalog {
         //init();
     }
 
-    public MovieCatalog getInstance() {
-        return movieCatalog;
-    }
 
     public void addMovie(Movie movie) {
         movies.add(movie);
@@ -61,7 +58,7 @@ public class MovieCatalog {
         movies.add(new Movie("Film 3 ", "1:30"));
     }
 
-    public void queryMovie2(JTable table) {
+    public void queryMovie2() {
         String query = "SELECT * FROM movie";
         try {
             DB_Connection.getCon();
@@ -83,7 +80,7 @@ public class MovieCatalog {
                 Movie movieItem = new Movie(title, length);
                 dataList.add(movieItem);
             }
-
+/*
             int i = 0;
             System.out.println("ADD TO ARRAY" + i);
             //table.setValueAt(title, i, 0);
@@ -98,11 +95,43 @@ public class MovieCatalog {
 
             TableModel model = new DefaultTableModel(data, columnNames);
             table.setModel(model);
-            table.repaint();
+            table.repaint();*/
+            movies = dataList;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+    public void queryShowing(){
+        String query = "SELECT * FROM showing";
+        try {
+            DB_Connection.getCon();
+            DB_Connection.setStmt(DB_Connection.getCon().createStatement());
+            DB_Connection.setRs(DB_Connection.getStmt().executeQuery(query));
+            //System.out.println("title\n __________________");
+
+            ArrayList<Movie> dataList = new ArrayList<>();
+            String[] columnNames = {"Title", "length"};
+
+            //((DefaultTableModel) model).removeRow(0);
+            while (DB_Connection.getRs().next()) {
+
+                title = DB_Connection.getRs().getString("title");
+                title = DB_Connection.getRs().getString("title");
+                title = DB_Connection.getRs().getString("title");
+                length = DB_Connection.getRs().getString("length");
+                System.out.print(title + "\t");
+                System.out.println(length);
+
+                Movie movieItem = new Movie(title, length);
+                dataList.add(movieItem);
+            }
+            movies = dataList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+        
+    
 
     /*
     public void queryMovie() {

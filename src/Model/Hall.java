@@ -54,6 +54,8 @@ public class Hall {
         return totalSeats;
     }
     public int[][] getSeatingArray(){
+        //int rowsi = Integer.parseInt(rows);
+        //int colsi = Integer.parseInt(cols);
         return new int[rows][cols];
     }
 

@@ -22,6 +22,7 @@ public class ShowingCatalog {
 
     public ShowingCatalog() {
         showings = new ArrayList<>();
+        
         init();
     }
 
@@ -40,19 +41,28 @@ public class ShowingCatalog {
         Date date = new Date(System.currentTimeMillis());
         showings.add(new Showing(hall1, movie1, date));
     }
-    public static void queryHall(){
-        String query = "select * from hall";
+    public void queryShowings(){
+        String query = "SELECT * FROM showing, movie WHERE showing.movie = movie_id";
         try {
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());
             DB_Connection.setRs(DB_Connection.getStmt().executeQuery(query));
-            System.out.println("title\n __________________");
+            
+            
+            ArrayList<Showing> dataList = new ArrayList<>();
+            
             while (DB_Connection.getRs().next()) {
+                int hallNum = DB_Connection.getRs().getInt("hall");
                 int rowNo = DB_Connection.getRs().getInt("rowNo");
-                String seatNo = DB_Connection.getRs().getString("SeatNo"); //STRING 
+                int seatNo = DB_Connection.getRs().getInt("SeatNo");
+                
+                Hall hallItem = new Hall(hallName, hallNum, rowNo, seatNo);
+                dataList.add(hallItem);
                 System.out.print(rowNo + "\t");
                 System.out.println(seatNo);
+                //
             }
+            showings = dataList;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
