@@ -14,21 +14,24 @@ import java.util.ArrayList;
  * @author Simon_
  */
 public class HallCatalog {
+
     private ArrayList<Hall> halls;
-    
-    public HallCatalog(){
+
+    public HallCatalog() {
         halls = new ArrayList<>();
+        queryHall();
     }
-    public void queryHall(){
+
+    public void queryHall() {
         String query = "select * from hall";
-         try {
+        try {
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());
             DB_Connection.setRs(DB_Connection.getStmt().executeQuery(query));
             //System.out.println("title\n __________________");
 
             ArrayList<Hall> dataList = new ArrayList<>();
-           // String[] columnNames = {"Hall", "rows", "cols", "total seats"};
+            // String[] columnNames = {"Hall", "rows", "cols", "total seats"};
 
             //((DefaultTableModel) model).removeRow(0);
             while (DB_Connection.getRs().next()) {
@@ -37,9 +40,9 @@ public class HallCatalog {
                 int rowcount = DB_Connection.getRs().getInt("rowcount");
                 int rowlength = DB_Connection.getRs().getInt("rowlength");
                 int totalseats = DB_Connection.getRs().getInt("totalseats");
-                
+                int hall_id = DB_Connection.getRs().getInt("hall_id");
 
-                Hall hallItem = new Hall(name, rowlength, rowcount, totalseats);
+                Hall hallItem = new Hall(name, rowlength, rowcount, totalseats,hall_id);
                 dataList.add(hallItem);
             }
             halls = dataList;
@@ -55,6 +58,16 @@ public class HallCatalog {
     public void setHalls(ArrayList<Hall> halls) {
         this.halls = halls;
     }
-    
+
+    public Hall getHallById(int id) {
+        Hall result = null;
+        for (Hall hall : halls) {
+            if (id == hall.getHallNumber()) {
+                result = hall;
+            }
+
+        }
+        return result;
     }
-    
+
+}

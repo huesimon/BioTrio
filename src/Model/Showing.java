@@ -15,22 +15,23 @@ import java.util.ArrayList;
 public class Showing {
     private Hall hall;
     private Movie movie;
-    private ArrayList<Order> orderList;
-    private Date date;
+    private ArrayList<Ticket> ticketList;
+    private String date;
     
     
-    public Showing(Hall hall, Movie movie, Date date){
+    public Showing(Hall hall, Movie movie, String date){
         this.hall = hall;
         this.movie = movie;
         this.date = date;
-        orderList = new ArrayList<>();
+        ticketList = new ArrayList<>();
     } 
 
-    public Showing(Hall hall, Movie movie, ArrayList<Order> orderList, Date date) {
+    public Showing(Hall hall, Movie movie, ArrayList<Ticket> ticketList, String date) {
         this.hall = hall;
         this.movie = movie;
-        this.orderList = orderList;
+        this.ticketList = ticketList;
         this.date = date;
+        
     }
 
     public Hall getHall() {
@@ -49,21 +50,23 @@ public class Showing {
         this.movie = movie;
     }
 
-    public ArrayList<Order> getOrderList() {
-        return orderList;
+    public ArrayList<Ticket> getTicketList() {
+        return ticketList;
     }
 
-    public void setOrderList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
+    public void setTicketList(ArrayList<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
-    
+    public String toString(){
+        return movie.getTitel()+", "+ hall.getHallName()+", "+ticketList.size();
+    }
     
 }

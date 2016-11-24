@@ -17,13 +17,18 @@ import java.util.Date;
  * @author Simon_
  */
 public class ShowingCatalog {
-
+    private HallCatalog hallCatalog;
+    private MovieCatalog movieCatalog;
+    private TicketCatalog ticketCatalog;
     private ArrayList<Showing> showings;
 
-    public ShowingCatalog() {
+    public ShowingCatalog(HallCatalog hallCatalog, MovieCatalog movieCatalog, TicketCatalog ticketCatalog) {
         showings = new ArrayList<>();
+        this.hallCatalog = hallCatalog;
+        this.movieCatalog = movieCatalog;
+        this.ticketCatalog = ticketCatalog;
+        queryShowings();
         
-        init();
     }
 
     public void addShowing(Showing showing) {
@@ -36,13 +41,13 @@ public class ShowingCatalog {
         return showings;
     }
     public void init(){
-        Hall hall1 = new Hall("hal 1", 1, 12, 20);
-        Movie movie1 = new Movie("Film 11", "1:45");
-        Date date = new Date(System.currentTimeMillis());
-        showings.add(new Showing(hall1, movie1, date));
+        //Hall hall1 = new Hall("hal 1", 1, 14, 20);
+        //Movie movie1 = new Movie("Film 11", "1:45");
+        //Date date = new Date(System.currentTimeMillis());
+        //showings.add(new Showing(hall1, movie1, date));
     }
     public void queryShowings(){
-        String query = "SELECT * FROM showing, movie WHERE showing.movie = movie_id";
+        String query = "SELECT * FROM showing";
         try {
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());
@@ -53,14 +58,14 @@ public class ShowingCatalog {
             
             while (DB_Connection.getRs().next()) {
                 int hallNum = DB_Connection.getRs().getInt("hall");
-                int rowNo = DB_Connection.getRs().getInt("rowNo");
-                int seatNo = DB_Connection.getRs().getInt("SeatNo");
+                int movie = DB_Connection.getRs().getInt("movie");
+                int showing_id = DB_Connection.getRs().getInt("showing_id");
                 
-                Hall hallItem = new Hall(hallName, hallNum, rowNo, seatNo);
-                dataList.add(hallItem);
-                System.out.print(rowNo + "\t");
-                System.out.println(seatNo);
-                //
+                String date = DB_Connection.getRs().getString("date");
+                
+                
+                Showing showing = new Showing(hallCatalog.getHallById(hallNum), movieCatalog.getMovieById(movie), ticketCatalog.getTicketByShowingId(showing_id) , date);
+                    dataList.add(showing);
             }
             showings = dataList;
         } catch (SQLException ex) {

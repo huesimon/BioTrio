@@ -31,10 +31,9 @@ public class MovieCatalog {
 
     public MovieCatalog() {
         movies = new ArrayList<>();
-        //queryMovie();
+        queryMovie();
         //init();
     }
-
 
     public void addMovie(Movie movie) {
         movies.add(movie);
@@ -53,12 +52,12 @@ public class MovieCatalog {
     }
 
     private void init() {
-        movies.add(new Movie("Film 1", "1:30"));
-        movies.add(new Movie("Film 2", "1:30"));
-        movies.add(new Movie("Film 3 ", "1:30"));
+//        movies.add(new Movie("Film 1", "1:30"));
+//        movies.add(new Movie("Film 2", "1:30"));
+//        movies.add(new Movie("Film 3 ", "1:30"));
     }
 
-    public void queryMovie2() {
+    public void queryMovie() {
         String query = "SELECT * FROM movie";
         try {
             DB_Connection.getCon();
@@ -67,20 +66,20 @@ public class MovieCatalog {
             //System.out.println("title\n __________________");
 
             ArrayList<Movie> dataList = new ArrayList<>();
-            String[] columnNames = {"Title", "length"};
+//            DB_Connection.getRs().getString("length");
 
             //((DefaultTableModel) model).removeRow(0);
             while (DB_Connection.getRs().next()) {
 
                 title = DB_Connection.getRs().getString("title");
                 length = DB_Connection.getRs().getString("length");
+                int id = DB_Connection.getRs().getInt("movie_id");
                 System.out.print(title + "\t");
                 System.out.println(length);
-
-                Movie movieItem = new Movie(title, length);
+                Movie movieItem = new Movie(title, length, id);
                 dataList.add(movieItem);
             }
-/*
+            /*
             int i = 0;
             System.out.println("ADD TO ARRAY" + i);
             //table.setValueAt(title, i, 0);
@@ -101,7 +100,8 @@ public class MovieCatalog {
             ex.printStackTrace();
         }
     }
-    public void queryShowing(){
+
+    public void queryShowing() {
         String query = "SELECT * FROM showing";
         try {
             DB_Connection.getCon();
@@ -122,7 +122,7 @@ public class MovieCatalog {
                 System.out.print(title + "\t");
                 System.out.println(length);
 
-                Movie movieItem = new Movie(title, length);
+                Movie movieItem = new Movie(title, length, 0);
                 dataList.add(movieItem);
             }
             movies = dataList;
@@ -130,8 +130,6 @@ public class MovieCatalog {
             ex.printStackTrace();
         }
     }
-        
-    
 
     /*
     public void queryMovie() {
@@ -158,5 +156,15 @@ public class MovieCatalog {
     }*/
     public String getTitle() {
         return title;
+    }
+
+    public Movie getMovieById(int id) {
+        Movie result = null;
+        for (Movie movie : movies) {
+            if (id == movie.getMovie_id()) {
+                result = movie;
+            }
+        }
+        return result;
     }
 }

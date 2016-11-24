@@ -29,10 +29,7 @@ public class DB_Statements {
     private static Statement stmt = null;
 //    declare the result
     private static ResultSet rs = null;
-    private static String title;
-    private static String length;
-    private Movie movie = new Movie(title, length);
-    private MovieCatalog movieCatalog = new MovieCatalog();
+  
 
     public void queryPerson() {
         //con = DB_Connection.connect();

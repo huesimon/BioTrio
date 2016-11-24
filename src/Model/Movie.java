@@ -13,10 +13,12 @@ public class Movie {
 
     private String titel;
     private String time;
+    private int movie_id;
 
-    public Movie(String name, String time) {
+    public Movie(String name, String time, int movie_id) {
         this.titel = name;
         this.time = time;
+        this.movie_id = movie_id;
     }
 
     public String getTitel() {
@@ -33,5 +35,13 @@ public class Movie {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getMovie_id() {
+        return movie_id;
+    }
+
+    public void setMovie_id(int movie_id) {
+        this.movie_id = movie_id;
     }
 }

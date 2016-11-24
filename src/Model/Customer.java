@@ -13,11 +13,13 @@ public class Customer {
 
     private String name;
     private String phone;
+    private int id;
     
     
-    public Customer(String name, String phone){
+    public Customer(String name, String phone, int id){
         this.name = name;
         this.phone = phone;
+        this.id = id;
        
     }
 
@@ -35,5 +37,13 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

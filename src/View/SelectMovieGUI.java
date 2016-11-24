@@ -41,7 +41,7 @@ public class SelectMovieGUI extends javax.swing.JFrame {
     }
 
     public void updateMovieTable() {
-        movieCatalog.queryMovie2();
+//        movieCatalog.queryMovie2();
 
 //        while (jTable1.getRowCount() != 0) {
 //            ((DefaultTableModel) jTable1).removeRow(0);
@@ -146,7 +146,7 @@ public class SelectMovieGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         int rowNumber = jTable1.getSelectedRow();
         
-        Car car = carHandler.removeCarAt(rowNumber);
+//        Car car = carHandler.removeCarAt(rowNumber);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

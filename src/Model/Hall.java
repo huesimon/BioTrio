@@ -15,6 +15,7 @@ public class Hall {
     private int rows;
     private int cols;
     private int totalSeats;
+    private int hall_id;
     
     public String getHallName() {
         return hallName;
@@ -63,11 +64,12 @@ public class Hall {
         this.totalSeats = totalSeats;
     }
 
-    public Hall(String hallName, int hallNumber, int rows, int cols) {
+    public Hall(String hallName, int hallNumber, int rows, int cols, int hall_id) {
         this.hallName = hallName;
         this.hallNumber = hallNumber;
         this.rows = rows;
         this.cols = cols;
+        this.hall_id = hall_id;
     }
     
     }

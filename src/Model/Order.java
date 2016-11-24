@@ -14,10 +14,9 @@ public class Order {
     private Ticket[] tickets;
     private Customer customer;
 
-    public Order(Customer customer) {
-        tickets = new Ticket[4];
+    public Order(Customer customer, Ticket[] tickets) {
+        this.tickets = tickets;
         this.customer = customer;
-
     }
 
     public Ticket[] getTickets() {
