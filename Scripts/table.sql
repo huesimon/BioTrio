@@ -29,6 +29,7 @@ CREATE TABLE customer
  (showing_id SERIAL,
   movie integer REFERENCES movie(movie_id) NOT NULL,
   hall integer REFERENCES hall(hall_id) NOT NULL,
+  date varchar(50),
   PRIMARY KEY(showing_id)
  );
   CREATE TABLE ticket
@@ -64,8 +65,11 @@ INSERT INTO customer(name, phoneNr) VALUES
 INSERT INTO orders(customer) VALUES
 ('1'),
 ('2');
-INSERT INTO showing(movie, hall) VALUES
-('1','1');
+INSERT INTO showing(movie, hall, date) VALUES
+('1','1','1/12/16 - 19:00'),
+('1','1','2/12/16 - 19:00'),
+('1','2','6/12/16 - 20:00'),
+('2','1','6/12/16 - 19:00');
 INSERT INTO ticket(rowNo, seatNo, orders, showing) VALUES
 ('3', '2','1','1'),
 ('3', '3','1','1'),
@@ -74,4 +78,4 @@ INSERT INTO ticket(rowNo, seatNo, orders, showing) VALUES
 ('3','6','2','1');
 
 
-SELECT * FROM customer, ticket WHERE customer_id = ticket.orders
+SELECT * FROM showing
