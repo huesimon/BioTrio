@@ -18,7 +18,7 @@ public class Showing {
     private Movie movie;
     private ArrayList<Ticket> ticketList;
     private String date;
-
+    
     public Showing(Hall hall, Movie movie, String date) {
         this.hall = hall;
         this.movie = movie;
@@ -67,7 +67,7 @@ public class Showing {
     }
     @Override
     public String toString() {
-        return movie.getTitel()+", "+ hall.getHallId()+", "+ticketList.size();
+        return movie.getTitel();
     }
 
 }

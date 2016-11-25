@@ -70,5 +70,10 @@ public class Hall {
         this.cols = cols;
         this.hall_id = hall_id;
     }
+
+    @Override
+    public String toString() {
+        return hallName;
+    }
     
     }

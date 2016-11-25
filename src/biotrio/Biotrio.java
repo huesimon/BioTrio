@@ -17,6 +17,7 @@ import Model.Order;
 import View.NewJFrame;
 import View.SeatBookingGUI;
 import View.SelectMovieGUI;
+import View.ShowingGUI;
 import com.sun.javafx.animation.TickCalculation;
 import com.sun.javafx.scene.control.skin.CustomColorDialog;
 
@@ -32,7 +33,10 @@ public class Biotrio {
     private HallCatalog hallCatalog;
     private OrderCatalog orderCatalog;
     private TicketCatalog ticketCatalog;
-
+    
+    
+    
+            
     public Biotrio() {
         //selectMovieGUI = new SelectMovieGUI();
         movieCatalog = new MovieCatalog();
@@ -43,10 +47,35 @@ public class Biotrio {
         orderCatalog = new OrderCatalog(customerController, ticketCatalog);
         showingCatalog = new ShowingCatalog(hallCatalog, movieCatalog, ticketCatalog);
         System.out.println(showingCatalog.getShowings());
-        // dbGui = new NewJFrame();
-
+        //dbGui = new NewJFrame();
+        SelectMovieGUI selectMovieGUI = new SelectMovieGUI(this);
+        
         // seatBookingGUI = new SeatBookingGUI(showingCatalog.getShowings().get(0));
     }
     //public static void main(String[] args) {
+
+    public ShowingCatalog getShowingCatalog() {
+        return showingCatalog;
+    }
+
+    public MovieCatalog getMovieCatalog() {
+        return movieCatalog;
+    }
+
+    public CustomerController getCustomerController() {
+        return customerController;
+    }
+
+    public HallCatalog getHallCatalog() {
+        return hallCatalog;
+    }
+
+    public OrderCatalog getOrderCatalog() {
+        return orderCatalog;
+    }
+
+    public TicketCatalog getTicketCatalog() {
+        return ticketCatalog;
+    }
 
 }

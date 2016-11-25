@@ -50,6 +50,7 @@ public class NewJFrame extends javax.swing.JFrame {
         cnclBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         pnlE = new javax.swing.JPanel();
         pnlW = new javax.swing.JPanel();
         pnlC = new javax.swing.JPanel();
@@ -109,6 +110,14 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         btnPnl.add(jButton2);
+
+        jButton3.setText("Showings");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        btnPnl.add(jButton3);
 
         getContentPane().add(btnPnl, java.awt.BorderLayout.PAGE_END);
 
@@ -271,6 +280,12 @@ public class NewJFrame extends javax.swing.JFrame {
         //stmt.queryMovie();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ShowingGUI showingGUI = new  ShowingGUI();
+        showingGUI.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -315,6 +330,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel hostTxtPnl;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

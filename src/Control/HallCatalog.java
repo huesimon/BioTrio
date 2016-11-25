@@ -6,6 +6,7 @@
 package Control;
 
 import Model.Hall;
+import Model.Showing;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class HallCatalog {
 
     private ArrayList<Hall> halls;
-
+    private Hall hallItem;
     public HallCatalog() {
         halls = new ArrayList<>();
         queryHall();
@@ -39,10 +40,8 @@ public class HallCatalog {
                 String name = DB_Connection.getRs().getString("name");
                 int rowcount = DB_Connection.getRs().getInt("rowcount");
                 int rowlength = DB_Connection.getRs().getInt("rowlength");
-                int totalseats = DB_Connection.getRs().getInt("totalseats");
                 int hall_id = DB_Connection.getRs().getInt("hall_id");
-
-                Hall hallItem = new Hall(name, rowlength, rowcount,hall_id);
+                hallItem = new Hall(name, rowlength, rowcount, hall_id);
                 dataList.add(hallItem);
             }
             halls = dataList;
@@ -59,6 +58,22 @@ public class HallCatalog {
         this.halls = halls;
     }
 
+    public ArrayList<Hall> getHallByShowing(Showing showing) {
+        ArrayList<Hall> data = new ArrayList<>();
+        for (Hall hall : halls) { System.out.println("YOPASYOASD");
+            if (showing.getHall().getHallId() == hall.getHallId()) {
+                
+                data.add(hall);
+                System.out.println(data + "1_____");
+            }
+            else{System.out.println("FUCKED");
+            
+            }
+        }
+        System.out.println(data);
+        return data;
+    }
+
     public Hall getHallById(int id) {
         Hall result = null;
         for (Hall hall : halls) {
@@ -67,7 +82,13 @@ public class HallCatalog {
             }
 
         }
+
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return hallItem.getHallName();
     }
 
 }

@@ -44,4 +44,10 @@ public class Movie {
     public void setMovie_id(int movie_id) {
         this.movie_id = movie_id;
     }
+
+    @Override
+    public String toString() {
+        return titel;
+    }
+    
 }
