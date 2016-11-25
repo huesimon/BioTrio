@@ -2,7 +2,7 @@ DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 CREATE TABLE movie
 ( movie_id SERIAL,
- title varchar(50) NOT NULL,
+ title varchar(100) NOT NULL,
  length varchar(30),
  PRIMARY KEY (movie_id)
  );
@@ -48,16 +48,16 @@ CREATE TABLE customer
  ('8','6','48','Sal 3'
  );
 INSERT INTO movie(title, length) VALUES
-('film 1', '105 minutter'),
-('film 2', '105 minutter'),
-('film 3', '105 minutter'),
-('film 4', '105 minutter'),
-('film 5', '105 minutter'),
-('film 6', '105 minutter'),
-('film 7', '105 minutter'),
-('film 8', '105 minutter'),
-('film 9', '105 minutter'),
-('film 10', '105 minutter');
+('Bad Santa 2', '92 minutter'),
+('Trolls', '92 minutter'),
+('Allied', '124 minutter'),
+('Undercover', '95 minutter'),
+('Arrival', '116 minutter'),
+('Fantastiske Skabninger', '133 minutter'),
+('Office Christmas Party', '103 minutter'),
+('Storkene', '81 minutter'),
+('Hacksaw Ridge', '131 minutter'),
+('Pedersen og Findus: Den Bedste Jul Nogensinde - ', '80 minutter');
 INSERT INTO customer(name, phoneNr) VALUES
 ('Jensen','12342678'),
 ('Jens','12345678');
