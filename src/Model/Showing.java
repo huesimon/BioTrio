@@ -13,25 +13,25 @@ import java.util.ArrayList;
  * @author Simon_
  */
 public class Showing {
+
     private Hall hall;
     private Movie movie;
     private ArrayList<Ticket> ticketList;
     private String date;
-    
-    
-    public Showing(Hall hall, Movie movie, String date){
+
+    public Showing(Hall hall, Movie movie, String date) {
         this.hall = hall;
         this.movie = movie;
         this.date = date;
         ticketList = new ArrayList<>();
-    } 
+    }
 
     public Showing(Hall hall, Movie movie, ArrayList<Ticket> ticketList, String date) {
         this.hall = hall;
         this.movie = movie;
         this.ticketList = ticketList;
         this.date = date;
-        
+
     }
 
     public Hall getHall() {
@@ -65,8 +65,10 @@ public class Showing {
     public void setDate(String date) {
         this.date = date;
     }
-    public String toString(){
-        return movie.getTitel()+", "+ hall.getHallName()+", "+ticketList.size();
+    @Override
+    public String toString() {
+        return movie.getTitel()+", "+ hall.getHallId()+", "+ticketList.size();
     }
-    
+
 }
+

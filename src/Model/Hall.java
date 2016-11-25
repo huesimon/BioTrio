@@ -11,11 +11,11 @@ package Model;
  */
 public class Hall {
     private String hallName;
-    private int hallNumber;
+    private int hall_id;
     private int rows;
     private int cols;
     private int totalSeats;
-    private int hall_id;
+    
     
     public String getHallName() {
         return hallName;
@@ -25,12 +25,12 @@ public class Hall {
         this.hallName = hallName;
     }
 
-    public int getHallNumber() {
-        return hallNumber;
+    public int getHallId() {
+        return hall_id;
     }
 
-    public void setHallNumber(int hallNumber) {
-        this.hallNumber = hallNumber;
+    public void setHallNumber(int hall_id) {
+        this.hall_id = hall_id;
     }
 
     public int getRows() {
@@ -55,7 +55,7 @@ public class Hall {
         return totalSeats;
     }
     public int[][] getSeatingArray(){
-        //int rowsi = Integer.parseInt(rows);
+        //int rowsi = Integer.parseInt(rows);   
         //int colsi = Integer.parseInt(cols);
         return new int[rows][cols];
     }
@@ -64,9 +64,8 @@ public class Hall {
         this.totalSeats = totalSeats;
     }
 
-    public Hall(String hallName, int hallNumber, int rows, int cols, int hall_id) {
+    public Hall(String hallName, int rows, int cols, int hall_id) {
         this.hallName = hallName;
-        this.hallNumber = hallNumber;
         this.rows = rows;
         this.cols = cols;
         this.hall_id = hall_id;

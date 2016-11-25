@@ -42,7 +42,7 @@ public class HallCatalog {
                 int totalseats = DB_Connection.getRs().getInt("totalseats");
                 int hall_id = DB_Connection.getRs().getInt("hall_id");
 
-                Hall hallItem = new Hall(name, rowlength, rowcount, totalseats,hall_id);
+                Hall hallItem = new Hall(name, rowlength, rowcount,hall_id);
                 dataList.add(hallItem);
             }
             halls = dataList;
@@ -62,7 +62,7 @@ public class HallCatalog {
     public Hall getHallById(int id) {
         Hall result = null;
         for (Hall hall : halls) {
-            if (id == hall.getHallNumber()) {
+            if (id == hall.getHallId()) {
                 result = hall;
             }
 
