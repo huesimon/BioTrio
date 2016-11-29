@@ -64,11 +64,12 @@ public class Hall {
         this.totalSeats = totalSeats;
     }
 
-    public Hall(String hallName, int rows, int cols, int hall_id) {
+    public Hall(String hallName, int rows, int cols, int hall_id, int totalSeats) {
         this.hallName = hallName;
         this.rows = rows;
         this.cols = cols;
         this.hall_id = hall_id;
+        this.totalSeats = totalSeats;
     }
 
     @Override

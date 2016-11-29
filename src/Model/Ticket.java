@@ -53,4 +53,5 @@ public class Ticket {
     public void setShowing_id(int showing_id) {
         this.showing_id = showing_id;
     }
+    
 }

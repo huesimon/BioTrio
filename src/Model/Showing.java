@@ -69,6 +69,9 @@ public class Showing {
     public String toString() {
         return movie.getTitel();
     }
+    public String getRemainingSeats(){
+        return "" + (hall.getTotalSeats() - getTicketList().size());
+    }
 
 }
 

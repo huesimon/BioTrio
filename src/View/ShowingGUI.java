@@ -6,6 +6,7 @@
 package View;
 
 import Control.ShowingCatalog;
+import Control.TicketCatalog;
 import Model.Movie;
 import Model.Showing;
 import biotrio.Biotrio;
@@ -20,6 +21,7 @@ import javax.swing.table.TableModel;
 public class ShowingGUI extends javax.swing.JFrame {
     Movie movie;
     ShowingCatalog showingCatalog;
+    TicketCatalog ticketCatalog;
     Biotrio biotrio;
     Showing showing;
 
@@ -44,12 +46,12 @@ public class ShowingGUI extends javax.swing.JFrame {
       //ArrayList<Showings> = 
       for (int i = 0; i < showingCatalog.getShowingsByMovie(movie).size(); i++) {
           
-          data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i) , showingCatalog.getShowingsByMovie(movie).get(i).getHall(), showingCatalog.getShowingsByMovie(movie).get(i).getDate()};
+          data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i) , showingCatalog.getShowingsByMovie(movie).get(i).getHall(), showingCatalog.getShowingsByMovie(movie).get(i).getDate(), showingCatalog.getShowingsByMovie(movie).get(i).getRemainingSeats()};
           System.out.println(showingCatalog.getShowingsByMovie(movie).get(i).toString());
   }
       
 
-        TableModel model = new DefaultTableModel(data, new String[]{"Title", "Hall","Dato", "Taken seats"});
+        TableModel model = new DefaultTableModel(data, new String[]{"Title", "Hall","Dato", "Free seats"});
         jTable1.setModel(model);
         jTable1.repaint();
   }

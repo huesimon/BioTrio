@@ -41,7 +41,8 @@ public class HallCatalog {
                 int rowcount = DB_Connection.getRs().getInt("rowcount");
                 int rowlength = DB_Connection.getRs().getInt("rowlength");
                 int hall_id = DB_Connection.getRs().getInt("hall_id");
-                hallItem = new Hall(name, rowlength, rowcount, hall_id);
+                int totalSeats = DB_Connection.getRs().getInt("totalSeats");
+                hallItem = new Hall(name, rowlength, rowcount,hall_id, totalSeats);
                 dataList.add(hallItem);
             }
             halls = dataList;
