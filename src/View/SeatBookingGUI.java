@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import Model.Hall;
 import Model.Movie;
+import biotrio.Biotrio;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +25,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     /**
      * Creates new form SeatBookingGUI
      */
-    public SeatBookingGUI(Showing showing) {
+    public SeatBookingGUI(Biotrio biotrio, Showing showing) {
 
         initComponents();
         updateSeatTable(showing);

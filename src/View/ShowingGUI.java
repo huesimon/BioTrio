@@ -118,8 +118,11 @@ public class ShowingGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        System.out.println(showing);
         
-        showingCatalog.getShowingsByMovie(movie);
+        SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing);
+        //showingCatalog.getShowingsByMovie(movie);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
