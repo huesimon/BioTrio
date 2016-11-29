@@ -8,6 +8,7 @@ package View;
 import Control.DB_Statements;
 import Control.MovieCatalog;
 import Control.ShowingCatalog;
+import Control.TicketCatalog;
 import Model.Showing;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -25,38 +26,41 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     /**
      * Creates new form SeatBookingGUI
      */
-    public SeatBookingGUI(Biotrio biotrio, Showing showing) {
+    Biotrio biotrio;
 
+    public SeatBookingGUI(Biotrio biotrio, Showing showing) {
+        this.biotrio = biotrio;
         initComponents();
         updateSeatTable(showing);
+        setSeatsTest(3, 4);
+        setSeatsTest(4, 4);
+        setSeatsTest(5, 4);
+        setSeatsTest(6, 4);
 
         setVisible(true);
 
     }
-      public SeatBookingGUI() {
+
+    public SeatBookingGUI() {
 
         initComponents();
 
         setVisible(true);
 
     }
-    
 
     public void updateSeatTable(Showing showing) {
-        String[] colNames = new String[showing.getHall().getCols()];
-  for (int i = 0; i < showing.getHall().getCols(); i++) {
-             
-          colNames[i] = "" +i;
+        String[] colNames = new String[showing.getHall().getRows()];
+        for (int i = 0; i < showing.getHall().getRows(); i++) {
+
+            colNames[i] = "" + i;
         }
-        
-        TableModel model = new DefaultTableModel(new Object[showing.getHall().getRows()][showing.getHall().getCols()],colNames);
+
+        TableModel model = new DefaultTableModel(new Object[showing.getHall().getCols()][showing.getHall().getRows()], colNames);
+
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setModel(model);
         jTable1.repaint();
-        
-        
-        
-        
 
         /*while (jTable1.getRowCount() != 0) {
             ((DefaultTableModel) model).removeRow(0);
@@ -89,6 +93,11 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             }
             }
          */
+    }
+
+    public void setSeatsTest(int x, int y) {
+
+        jTable1.setValueAt("hey", x, y);
 
     }
 
@@ -155,7 +164,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
