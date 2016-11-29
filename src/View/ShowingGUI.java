@@ -44,7 +44,7 @@ public class ShowingGUI extends javax.swing.JFrame {
       //ArrayList<Showings> = 
       for (int i = 0; i < showingCatalog.getShowingsByMovie(movie).size(); i++) {
           
-          data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i) , showingCatalog.getShowingsByMovie(movie).get(i).getHall()};
+          data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i) , showingCatalog.getShowingsByMovie(movie).get(i).getHall(), showingCatalog.getShowingsByMovie(movie).get(i).getDate()};
           System.out.println(showingCatalog.getShowingsByMovie(movie).get(i).toString());
   }
       
