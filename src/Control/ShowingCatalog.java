@@ -64,7 +64,6 @@ public class ShowingCatalog {
                 int hallNum = DB_Connection.getRs().getInt("hall");
                 int movie = DB_Connection.getRs().getInt("movie");
                 int showing_id = DB_Connection.getRs().getInt("showing_id");
-
                 String date = DB_Connection.getRs().getString("date");
 //                String date = "1/1/16";
 

@@ -59,10 +59,11 @@ public class HallCatalog {
     }
 
     public ArrayList<Hall> getHallByShowing(Showing showing) {
+        //Hall result = null;getHallByShowing
         ArrayList<Hall> data = new ArrayList<>();
         for (Hall hall : halls) { System.out.println("YOPASYOASD");
             if (showing.getHall().getHallId() == hall.getHallId()) {
-                
+                //result = hall;
                 data.add(hall);
                 System.out.println(data + "1_____");
             }

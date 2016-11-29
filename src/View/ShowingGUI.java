@@ -41,9 +41,11 @@ public class ShowingGUI extends javax.swing.JFrame {
     }
   public void updateShowingByMovieTable(){  
       Object[][] data = new Object [showingCatalog.getShowingsByMovie(movie).size()][4];
-      
+      //ArrayList<Showings> = 
       for (int i = 0; i < showingCatalog.getShowingsByMovie(movie).size(); i++) {
-          data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i), biotrio.getHallCatalog().getHallByShowing(showing).get(i)};
+          
+          data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i) , showingCatalog.getShowingsByMovie(movie).get(i).getHall()};
+          System.out.println(showingCatalog.getShowingsByMovie(movie).get(i).toString());
   }
       
 
