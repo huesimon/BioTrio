@@ -74,7 +74,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         }
         for (Ticket ticket : showing.getTicketList()) {
-            model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo()); // TAKEN SEATS
+            model.setValueAt("1", ticket.getRowNo()-1, ticket.getSeatNo()); // TAKEN SEATS
         }
 
         jTable1.getTableHeader().setReorderingAllowed(false);
