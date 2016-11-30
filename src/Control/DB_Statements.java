@@ -10,6 +10,7 @@ import View.NewJFrame;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.management.remote.JMXConnectorFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.table.DefaultTableModel;
@@ -49,6 +50,21 @@ public class DB_Statements {
             ex.printStackTrace();
         }
 
+    }
+    public void editShowing(String date, int showing_id){
+        String table = "showing";
+        String sql =  "update showing set date = " + date + " where showing_id = " + showing_id+ ";";
+        try {
+            DB_Connection.getCon();
+            stmt = con.createStatement();
+            stmt.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data updated in " + table + " table");
+            System.out.println("\n--Data updated in " + table + " table--");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        //DB_Connection.closeConnection();
+    }
     }
 
    /*
@@ -104,4 +120,3 @@ public class DB_Statements {
         }
         System.out.println("TABLE CREATED");
     }*/
-}

@@ -11,6 +11,7 @@ import Model.Showing;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,12 +70,28 @@ public class ShowingCatalog {
 
                 Showing showing = new Showing(hallCatalog.getHallById(hallNum), movieCatalog.getMovieById(movie), ticketCatalog.getTicketByShowingId(showing_id), date);
                 dataList.add(showing);
+                System.out.println(showing);
             }
             showings = dataList;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+     public void editShowing(String date, int showing_id){
+        String table = "showing";
+        String sql =  "update showing set date = " + date + " where showing_id = " + showing_id+ ";";
+        try {
+            DB_Connection.getCon();
+            DB_Connection.setStmt(DB_Connection.getCon().createStatement());
+            DB_Connection.getStmt().executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data updated in " + table + " table");
+            System.out.println("\n--Data updated in " + table + " table--");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        //DB_Connection.closeConnection();
+    }
+    
 
     public ArrayList<Showing> getShowingsByMovie(Movie movie) {
         ArrayList<Showing> data = new ArrayList<>();

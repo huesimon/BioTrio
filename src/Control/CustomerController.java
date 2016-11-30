@@ -45,6 +45,22 @@ public class CustomerController {
         }
     }
 
+    public void insertCustomer(String name, String phone) {
+        String query = "insert into customer(name, phoneNr) VALUES "
+                + "('" + name + "','" + phone + "')";
+        try {
+            DB_Connection.getCon();
+            DB_Connection.getCon().createStatement();
+            DB_Connection.getStmt().executeUpdate(query);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    
+
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
@@ -59,7 +75,7 @@ public class CustomerController {
             if (id == customer.getId()) {
                 result = customer;
             }
-            
+
         }
         return result;
     }

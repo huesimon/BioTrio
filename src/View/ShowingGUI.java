@@ -5,12 +5,14 @@
  */
 package View;
 
+import Control.DB_Statements;
 import Control.ShowingCatalog;
 import Control.TicketCatalog;
 import Model.Movie;
 import Model.Showing;
 import biotrio.Biotrio;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -68,6 +70,7 @@ public class ShowingGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +94,13 @@ public class ShowingGUI extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("Edit");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +112,9 @@ public class ShowingGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(267, 267, 267))
+                .addGap(93, 93, 93)
+                .addComponent(jToggleButton1)
+                .addGap(159, 159, 159))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +122,9 @@ public class ShowingGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jToggleButton1))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -121,9 +135,23 @@ public class ShowingGUI extends javax.swing.JFrame {
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         System.out.println(showing);
         
-        SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing);
+        SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing, showingCatalog);
         //showingCatalog.getShowingsByMovie(movie);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        DB_Statements stmt = new DB_Statements();
+        try {
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String date = model.getValueAt(index, 2).toString();
+        showingCatalog.editShowing(date, index);
+        //stmt.editShowing(date, index);
+          } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Please select a row to update.");
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,5 +192,6 @@ public class ShowingGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
