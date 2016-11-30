@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import Model.Hall;
 import Model.Movie;
+import Model.Ticket;
 import biotrio.Biotrio;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -33,6 +34,8 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     public SeatBookingGUI(Biotrio biotrio, Showing showing) {
         this.biotrio = biotrio;
         this.showing = showing;
+        System.out.println(showing.getTicketList());
+        showing.getTicketList();
         initComponents();
         updateSeatTable(showing);
 
@@ -69,6 +72,9 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
             }
 
+        }
+        for (Ticket ticket : showing.getTicketList()) {
+            model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo()); // TAKEN SEATS
         }
 
         jTable1.getTableHeader().setReorderingAllowed(false);

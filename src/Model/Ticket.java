@@ -53,5 +53,11 @@ public class Ticket {
     public void setShowing_id(int showing_id) {
         this.showing_id = showing_id;
     }
+
+    @Override
+    public String toString() {
+        return "" + rowNo + ", " + seatNo;
+    }
+    
     
 }
