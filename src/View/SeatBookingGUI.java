@@ -223,11 +223,12 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String rowNo = rowNoTF.getText();
         String seatNo = seatNoTF.getText();
-        int lastestId = customerController.returnLatestCustomer().getId();
+        int latestId = customerController.returnLatestCustomer().getId();
+        orderCatalog.insertOrder(latestId);
+        orderCatalog.queryOrders();
         int id2 = orderCatalog.returnLatestOrder().getOrder_id();
         System.out.println(customerController.returnLatestCustomer());
         ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
-        orderCatalog.insertOrder(lastestId);
         System.out.println(id2);
         
         

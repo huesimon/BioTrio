@@ -30,7 +30,7 @@ public class OrderCatalog {
         queryOrders();
     }
 public  Order returnLatestOrder() {
-        Order order = orders.get(orders.size() - 1 );
+        Order order = orders.get(orders.size() -1);
         return order;
     }
 
