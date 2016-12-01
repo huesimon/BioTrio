@@ -68,7 +68,7 @@ public class ShowingCatalog {
                 String date = DB_Connection.getRs().getString("date");
 //                String date = "1/1/16";
 
-                Showing showing = new Showing(hallCatalog.getHallById(hallNum), movieCatalog.getMovieById(movie), ticketCatalog.getTicketByShowingId(showing_id), date);
+                Showing showing = new Showing(hallCatalog.getHallById(hallNum), movieCatalog.getMovieById(movie), ticketCatalog.getTicketByShowingId(showing_id), date, showing_id);
                 dataList.add(showing);
                 System.out.println(showing);
             }

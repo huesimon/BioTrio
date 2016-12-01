@@ -8,8 +8,10 @@ package View;
 import Control.CustomerController;
 import Control.DB_Statements;
 import Control.MovieCatalog;
+import Control.OrderCatalog;
 import Control.ShowingCatalog;
 import Control.TicketCatalog;
+import Model.Customer;
 import Model.Showing;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -33,7 +35,10 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     Biotrio biotrio;
     Showing showing;
     CustomerController customerController;
+    TicketCatalog ticketCatalog;
     ShowingCatalog showingCatalog;
+    OrderCatalog orderCatalog;
+    
     
 
     public SeatBookingGUI(Biotrio biotrio, Showing showing, ShowingCatalog showingCatalog) {
@@ -41,6 +46,9 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         this.showing = showing;
         this.showingCatalog = showingCatalog;
         customerController = new CustomerController();
+        ticketCatalog = new TicketCatalog();
+        orderCatalog = new OrderCatalog(customerController, ticketCatalog);
+        
         
         System.out.println(showing.getTicketList());
         showing.getTicketList();
@@ -105,11 +113,18 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nameTF = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         phoneTF = new javax.swing.JTextField();
         bookButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        rowNoTF = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        seatNoTF = new javax.swing.JTextField();
+        createTicketBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(jNorth, java.awt.BorderLayout.PAGE_START);
@@ -141,24 +156,49 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         jCenter.add(jPanel1);
 
         jLabel1.setText("Navn");
-        jCenter.add(jLabel1);
+        jPanel2.add(jLabel1);
 
         nameTF.setPreferredSize(new java.awt.Dimension(55, 20));
-        jCenter.add(nameTF);
+        jPanel2.add(nameTF);
 
         jLabel2.setText("telefon");
-        jCenter.add(jLabel2);
+        jPanel2.add(jLabel2);
 
         phoneTF.setPreferredSize(new java.awt.Dimension(55, 20));
-        jCenter.add(phoneTF);
+        jPanel2.add(phoneTF);
 
-        bookButton.setText("book");
+        bookButton.setText("Create Customer");
         bookButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookButtonActionPerformed(evt);
             }
         });
-        jCenter.add(bookButton);
+        jPanel2.add(bookButton);
+
+        jCenter.add(jPanel2);
+
+        jLabel3.setText("RowNo");
+        jPanel3.add(jLabel3);
+
+        rowNoTF.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel3.add(rowNoTF);
+
+        jLabel4.setText("SeatNo");
+        jLabel4.setPreferredSize(new java.awt.Dimension(45, 15));
+        jPanel3.add(jLabel4);
+
+        seatNoTF.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel3.add(seatNoTF);
+
+        createTicketBtn.setText("Create Ticket");
+        createTicketBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createTicketBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(createTicketBtn);
+
+        jCenter.add(jPanel3);
 
         getContentPane().add(jCenter, java.awt.BorderLayout.CENTER);
 
@@ -170,10 +210,28 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         String name = nameTF.getText();
         String phone = phoneTF.getText();
         customerController.insertCustomer(name, phone);
-        showingCatalog.queryShowings();
+        customerController.queryCustomers();
+        
+        
+        
+        
         
 
     }//GEN-LAST:event_bookButtonActionPerformed
+
+    private void createTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTicketBtnActionPerformed
+        // TODO add your handling code here:
+        String rowNo = rowNoTF.getText();
+        String seatNo = seatNoTF.getText();
+        int lastestId = customerController.returnLatestCustomer().getId();
+        int id2 = orderCatalog.returnLatestOrder().getOrder_id();
+        System.out.println(customerController.returnLatestCustomer());
+        ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
+        orderCatalog.insertOrder(lastestId);
+        System.out.println(id2);
+        
+        
+    }//GEN-LAST:event_createTicketBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,17 +270,24 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
+    private javax.swing.JButton createTicketBtn;
     private javax.swing.JPanel jCenter;
     private javax.swing.JPanel jEast;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jNorth;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jSouth;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jWest;
     private javax.swing.JTextField nameTF;
     private javax.swing.JTextField phoneTF;
+    private javax.swing.JTextField rowNoTF;
+    private javax.swing.JTextField seatNoTF;
     // End of variables declaration//GEN-END:variables
 }

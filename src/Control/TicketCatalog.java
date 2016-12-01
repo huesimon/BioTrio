@@ -45,6 +45,18 @@ public class TicketCatalog {
             ex.printStackTrace();
         }
     }
+     public void createTicket(String rowNo, String seatNo, int orders, int showing) {
+        String query = "insert into ticket(rowNo, seatNo, orders, showing) VALUES"
+                + "('" + rowNo + "','" + seatNo + "','" + orders + "','" + showing + "')";
+        try {
+            DB_Connection.getCon();
+            DB_Connection.getCon().createStatement();
+            DB_Connection.getStmt().executeUpdate(query);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public ArrayList<Ticket> getTickets() {
         return tickets;

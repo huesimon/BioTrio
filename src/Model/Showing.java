@@ -18,6 +18,7 @@ public class Showing {
     private Movie movie;
     private ArrayList<Ticket> ticketList;
     private String date;
+    private int showing_id;
     
     public Showing(Hall hall, Movie movie, String date) {
         this.hall = hall;
@@ -26,11 +27,12 @@ public class Showing {
         ticketList = new ArrayList<>();
     }
 
-    public Showing(Hall hall, Movie movie, ArrayList<Ticket> ticketList, String date) {
+    public Showing(Hall hall, Movie movie, ArrayList<Ticket> ticketList, String date, int showing_id) {
         this.hall = hall;
         this.movie = movie;
         this.ticketList = ticketList;
         this.date = date;
+        this.showing_id = showing_id;
 
     }
 
@@ -68,6 +70,14 @@ public class Showing {
     @Override
     public String toString() {
         return movie.getTitel();
+    }
+
+    public int getShowing_id() {
+        return showing_id;
+    }
+
+    public void setShowing_id(int showing_id) {
+        this.showing_id = showing_id;
     }
     public String getRemainingSeats(){
         return "" + (hall.getTotalSeats() - getTicketList().size());

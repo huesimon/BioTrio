@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Model.Customer;
 import Model.Order;
 import Model.Ticket;
 import java.sql.SQLException;
@@ -22,10 +23,15 @@ public class OrderCatalog {
     private TicketCatalog ticketCatalog;
 
     public OrderCatalog(CustomerController customerController, TicketCatalog ticketCatalog) {
-        orders = new ArrayList<>();
+        ArrayList<Order> orders = new ArrayList<>();
+       
         this.ticketCatalog = ticketCatalog;
         this.customerController = customerController;
         queryOrders();
+    }
+public  Order returnLatestOrder() {
+        Order order = orders.get(orders.size() - 1 );
+        return order;
     }
 
     public void queryOrders() {
@@ -41,10 +47,24 @@ public class OrderCatalog {
                 int order_id = DB_Connection.getRs().getInt("order_id");
                 int customer_id = DB_Connection.getRs().getInt("customer");
 
-                Order orderItem = new Order(customerController.getCustomerById(customer_id), ticketCatalog.getTicketByOrderId(order_id));
+                Order orderItem = new Order(customerController.getCustomerById(customer_id), ticketCatalog.getTicketByOrderId(order_id), order_id);
                         dataList.add(orderItem);
             }
             orders = dataList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void insertOrder(int customer_id) {
+        
+        String query = "insert into orders(customer) VALUES"
+                + "('" +customer_id + "')";
+        try {
+            DB_Connection.getCon();
+            DB_Connection.getCon().createStatement();
+            DB_Connection.getStmt().executeUpdate(query);
+            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

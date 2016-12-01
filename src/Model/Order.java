@@ -13,10 +13,12 @@ public class Order {
 
     private Ticket[] tickets;
     private Customer customer;
+    private int order_id;
 
-    public Order(Customer customer, Ticket[] tickets) {
+    public Order(Customer customer, Ticket[] tickets, int order_id) {
         this.tickets = tickets;
         this.customer = customer;
+        this.order_id = order_id;
     }
 
     public Ticket[] getTickets() {
@@ -33,6 +35,14 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
             
 }

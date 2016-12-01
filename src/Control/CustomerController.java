@@ -9,6 +9,7 @@ import Model.Customer;
 import Model.Ticket;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import static java.util.Collections.list;
 
 /**
  *
@@ -52,6 +53,7 @@ public class CustomerController {
             DB_Connection.getCon();
             DB_Connection.getCon().createStatement();
             DB_Connection.getStmt().executeUpdate(query);
+            
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -63,6 +65,10 @@ public class CustomerController {
 
     public ArrayList<Customer> getCustomers() {
         return customers;
+    }
+    public  Customer returnLatestCustomer() {
+        Customer customer = customers.get(customers.size() - 1);
+        return customer;
     }
 
     public void setCustomers(ArrayList<Customer> customers) {
@@ -79,4 +85,5 @@ public class CustomerController {
         }
         return result;
     }
+
 }
