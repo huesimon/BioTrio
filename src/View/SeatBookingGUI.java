@@ -38,8 +38,6 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     TicketCatalog ticketCatalog;
     ShowingCatalog showingCatalog;
     OrderCatalog orderCatalog;
-    
-    
 
     public SeatBookingGUI(Biotrio biotrio, Showing showing, ShowingCatalog showingCatalog) {
         this.biotrio = biotrio;
@@ -48,8 +46,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         customerController = new CustomerController();
         ticketCatalog = new TicketCatalog();
         orderCatalog = new OrderCatalog(customerController, ticketCatalog);
-        
-        
+
         System.out.println(showing.getTicketList());
         showing.getTicketList();
         initComponents();
@@ -71,7 +68,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         String[] colNames = new String[showing.getHall().getRows()];
         String[] rowNames = new String[showing.getHall().getCols()];
         for (int i = 0; i < showing.getHall().getCols(); i++) {
-            
+
             rowNames[i] = "" + i;
 
         }
@@ -91,7 +88,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         }
         for (Ticket ticket : showing.getTicketList()) {
-            model.setValueAt("1", ticket.getRowNo()-1, ticket.getSeatNo()); // TAKEN SEATS
+            model.setValueAt("1", ticket.getRowNo() - 1, ticket.getSeatNo()); // TAKEN SEATS
         }
 
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -100,7 +97,6 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,17 +116,37 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         phoneTF = new javax.swing.JTextField();
         bookButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         rowNoTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         seatNoTF = new javax.swing.JTextField();
         createTicketBtn = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        rowNoTF2 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        seatNoTF2 = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        rowNoTF3 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        seatNoTF3 = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        rowNoTF4 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        seatNoTF4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(557, 666));
         getContentPane().add(jNorth, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(jSouth, java.awt.BorderLayout.PAGE_END);
         getContentPane().add(jEast, java.awt.BorderLayout.LINE_END);
         getContentPane().add(jWest, java.awt.BorderLayout.LINE_START);
+
+        jCenter.setMaximumSize(new java.awt.Dimension(557, 666));
+        jCenter.setMinimumSize(new java.awt.Dimension(557, 666));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -177,6 +193,17 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         jCenter.add(jPanel2);
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setPreferredSize(new java.awt.Dimension(383, 40));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jComboBox1);
+
         jLabel3.setText("RowNo");
         jPanel3.add(jLabel3);
 
@@ -200,27 +227,109 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         jCenter.add(jPanel3);
 
+        jPanel4.setPreferredSize(new java.awt.Dimension(383, 40));
+
+        jLabel5.setText("RowNo");
+        jPanel4.add(jLabel5);
+
+        rowNoTF2.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel4.add(rowNoTF2);
+
+        jLabel6.setText("SeatNo");
+        jPanel4.add(jLabel6);
+
+        seatNoTF2.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel4.add(seatNoTF2);
+
+        jCenter.add(jPanel4);
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(383, 40));
+
+        jLabel7.setText("RowNo");
+        jPanel5.add(jLabel7);
+
+        rowNoTF3.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel5.add(rowNoTF3);
+
+        jLabel8.setText("SeatNo");
+        jPanel5.add(jLabel8);
+
+        seatNoTF3.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel5.add(seatNoTF3);
+
+        jCenter.add(jPanel5);
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(383, 40));
+
+        jLabel9.setText("RowNo");
+        jPanel6.add(jLabel9);
+
+        rowNoTF4.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel6.add(rowNoTF4);
+
+        jLabel10.setText("SeatNo");
+        jPanel6.add(jLabel10);
+
+        seatNoTF4.setPreferredSize(new java.awt.Dimension(55, 20));
+        jPanel6.add(seatNoTF4);
+
+        jCenter.add(jPanel6);
+
         getContentPane().add(jCenter, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookButtonActionPerformed
-        
+
         String name = nameTF.getText();
         String phone = phoneTF.getText();
         customerController.insertCustomer(name, phone);
         customerController.queryCustomers();
-        
-        
-        
-        
-        
+
 
     }//GEN-LAST:event_bookButtonActionPerformed
 
     private void createTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTicketBtnActionPerformed
         // TODO add your handling code here:
+        int ticketSelected = jComboBox1.getSelectedIndex();
+        if (ticketSelected == 0) {
+            String rowNo = rowNoTF.getText();
+            String seatNo = seatNoTF.getText();
+            int latestId = customerController.returnLatestCustomer().getId();
+            orderCatalog.insertOrder(latestId);
+            orderCatalog.queryOrders();
+            int id2 = orderCatalog.returnLatestOrder().getOrder_id();
+            System.out.println(customerController.returnLatestCustomer());
+            ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
+            System.out.println(id2);
+
+        } else if (ticketSelected == 1) { // Two tickets selected 
+            
+            String seatNo = seatNoTF.getText();
+            int intSeat = Integer.parseInt(seatNo);
+            intSeat++;
+            String strSeat = "" + intSeat;
+            rowNoTF2.setText(rowNoTF.getText());
+            seatNoTF2.setText(strSeat);
+            
+         
+        }
+        else if (ticketSelected == 2) { // Three tickets selected 
+            
+            String seatNo = seatNoTF.getText();
+            int intSeat = Integer.parseInt(seatNo);
+            intSeat++;
+            String strSeat = "" + intSeat;
+            rowNoTF2.setText(rowNoTF.getText());
+            seatNoTF2.setText(strSeat);
+            int seat3 = intSeat + 1;
+            String strSeat2 = "" + seat3;
+            rowNoTF3.setText(rowNoTF.getText());
+            seatNoTF3.setText(strSeat2);
+         
+        }
+        /*
         String rowNo = rowNoTF.getText();
         String seatNo = seatNoTF.getText();
         int latestId = customerController.returnLatestCustomer().getId();
@@ -230,9 +339,13 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         System.out.println(customerController.returnLatestCustomer());
         ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
         System.out.println(id2);
-        
-        
+         */
+
     }//GEN-LAST:event_createTicketBtnActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,15 +386,25 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private javax.swing.JButton bookButton;
     private javax.swing.JButton createTicketBtn;
     private javax.swing.JPanel jCenter;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jEast;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jNorth;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jSouth;
     private javax.swing.JTable jTable1;
@@ -289,6 +412,12 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private javax.swing.JTextField nameTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField rowNoTF;
+    private javax.swing.JTextField rowNoTF2;
+    private javax.swing.JTextField rowNoTF3;
+    private javax.swing.JTextField rowNoTF4;
     private javax.swing.JTextField seatNoTF;
+    private javax.swing.JTextField seatNoTF2;
+    private javax.swing.JTextField seatNoTF3;
+    private javax.swing.JTextField seatNoTF4;
     // End of variables declaration//GEN-END:variables
 }
