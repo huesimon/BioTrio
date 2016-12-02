@@ -45,6 +45,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlN = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         btnPnl = new javax.swing.JPanel();
         okBtn = new javax.swing.JButton();
         cnclBtn = new javax.swing.JButton();
@@ -79,6 +80,23 @@ public class NewJFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(244, 51, 55));
 
         pnlN.setPreferredSize(new java.awt.Dimension(400, 75));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Filmrulle.jpg"))); // NOI18N
+        jLabel5.setText("jLabel5");
+
+        javax.swing.GroupLayout pnlNLayout = new javax.swing.GroupLayout(pnlN);
+        pnlN.setLayout(pnlNLayout);
+        pnlNLayout.setHorizontalGroup(
+            pnlNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNLayout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnlNLayout.setVerticalGroup(
+            pnlNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         getContentPane().add(pnlN, java.awt.BorderLayout.PAGE_START);
 
         btnPnl.setPreferredSize(new java.awt.Dimension(400, 39));
@@ -334,6 +352,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
