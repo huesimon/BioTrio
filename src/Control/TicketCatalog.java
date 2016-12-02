@@ -41,6 +41,7 @@ public class TicketCatalog {
                 dataList.add(ticketItem);
             }
             tickets = dataList;
+            DB_Connection.getRs().close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -52,6 +53,7 @@ public class TicketCatalog {
             DB_Connection.getCon();
             DB_Connection.getCon().createStatement();
             DB_Connection.getStmt().executeUpdate(query);
+            
 
         } catch (SQLException ex) {
             ex.printStackTrace();

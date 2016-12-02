@@ -105,4 +105,14 @@ public class ShowingCatalog {
 
       
     }
+    public Showing getShowingById (int id) {
+           
+        Showing result = null;
+        for (Showing showing : showings) {
+            if (id == showing.getShowing_id()) {
+                result = showing;
+            }
+        }
+        return result;
+    }
 }

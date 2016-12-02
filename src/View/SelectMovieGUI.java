@@ -109,7 +109,7 @@ public class SelectMovieGUI extends javax.swing.JFrame {
 
         Movie movie = (Movie) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         System.out.println(movie);
-
+        
         ShowingGUI showingGUI = new ShowingGUI(biotrio, movie);
 
     }//GEN-LAST:event_jButton2ActionPerformed
