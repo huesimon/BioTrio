@@ -49,9 +49,7 @@ public class NewJFrame extends javax.swing.JFrame {
         btnPnl = new javax.swing.JPanel();
         okBtn = new javax.swing.JButton();
         cnclBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        findCustomerButton = new javax.swing.JButton();
         pnlE = new javax.swing.JPanel();
         pnlW = new javax.swing.JPanel();
         pnlC = new javax.swing.JPanel();
@@ -113,29 +111,13 @@ public class NewJFrame extends javax.swing.JFrame {
         cnclBtn.setText("Cancel");
         btnPnl.add(cnclBtn);
 
-        jButton1.setText("Movie list");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        findCustomerButton.setText("SearchCustomer");
+        findCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                findCustomerButtonActionPerformed(evt);
             }
         });
-        btnPnl.add(jButton1);
-
-        jButton2.setText("Book seat");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        btnPnl.add(jButton2);
-
-        jButton3.setText("Showings");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        btnPnl.add(jButton3);
+        btnPnl.add(findCustomerButton);
 
         getContentPane().add(btnPnl, java.awt.BorderLayout.PAGE_END);
 
@@ -251,10 +233,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jens.setUser(user);
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
             JOptionPane.showMessageDialog(null, "User found");
-//            jens.queryPerson();
-            // movieCatalog.queryMovie();
+            
             Biotrio bioTrio = new Biotrio();
-//            setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "User not found");
         }
@@ -264,7 +244,7 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dbNameTFActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void findCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCustomerButtonActionPerformed
         String user = usrTxt.getText();
         String password = new String(passwordField.getText());
         String hostName = hostTF.getText();
@@ -276,33 +256,15 @@ public class NewJFrame extends javax.swing.JFrame {
         jens.setPort(port);
         jens.setUser(user);
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
-            setVisible(false);
-            Biotrio biotrio = new Biotrio();
-            //jens.queryPerson();
-            //movieCatalog.queryMovie();
-            //ShowingCatalog.queryHall();
-            //setVisible(false); lukker DB login frame 
+            JOptionPane.showMessageDialog(null, "User found");
+            //Biotrio bioTrio = new Biotrio();
+        } else {
+            JOptionPane.showMessageDialog(null, "User not found");
         }
-        SelectMovieGUI gui = new SelectMovieGUI();
-        gui.setVisible(true);
-
-        //  System.out.println(seat.testa());
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        DB_Statements stmt = new DB_Statements();
-        SeatBookingGUI booking = new SeatBookingGUI();
         
-        //stmt.queryMovie();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        ShowingGUI showingGUI = new  ShowingGUI();
-        showingGUI.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        FindCustomerGui findCustomerGui = new FindCustomerGui();
+        findCustomerGui.setVisible(true);
+    }//GEN-LAST:event_findCustomerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,12 +305,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel btnPnl;
     private javax.swing.JButton cnclBtn;
     private javax.swing.JTextField dbNameTF;
+    private javax.swing.JButton findCustomerButton;
     private javax.swing.JPanel hostLbl;
     private javax.swing.JTextField hostTF;
     private javax.swing.JPanel hostTxtPnl;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

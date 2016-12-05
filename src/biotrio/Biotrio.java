@@ -14,6 +14,7 @@ import Control.TicketCatalog;
 import Model.Customer;
 import Model.Movie;
 import Model.Order;
+import View.FindCustomerGui;
 import View.NewJFrame;
 import View.SeatBookingGUI;
 import View.SelectMovieGUI;
@@ -49,6 +50,7 @@ public class Biotrio {
         System.out.println(showingCatalog.getShowings());
         //dbGui = new NewJFrame();
         SelectMovieGUI selectMovieGUI = new SelectMovieGUI(this);
+        //FindCustomerGui findCustomerGui = new FindCustomerGui();
         
         // seatBookingGUI = new SeatBookingGUI(showingCatalog.getShowings().get(0));
     }
