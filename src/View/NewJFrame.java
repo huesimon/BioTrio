@@ -238,7 +238,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         // TODO add your handling code here:
-
+        System.out.println();
         String user = usrTxt.getText();
         String password = new String(passwordField.getText());
         String hostName = hostTF.getText();

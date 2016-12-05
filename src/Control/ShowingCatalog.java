@@ -79,8 +79,9 @@ public class ShowingCatalog {
     }
      public void editShowing(String date, int showing_id){
         String table = "showing";
-        String sql =  "update showing set date = " + date + " where showing_id = " + showing_id+ ";";
+        String sql =  "update showing set date = '" + date + "' where showing_id = " + showing_id+ ";";
         try {
+            System.out.println(sql);
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());
             DB_Connection.getStmt().executeUpdate(sql);

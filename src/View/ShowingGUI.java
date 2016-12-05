@@ -21,6 +21,7 @@ import javax.swing.table.TableModel;
  * @author Simon_
  */
 public class ShowingGUI extends javax.swing.JFrame {
+
     Movie movie;
     ShowingCatalog showingCatalog;
     TicketCatalog ticketCatalog;
@@ -39,24 +40,25 @@ public class ShowingGUI extends javax.swing.JFrame {
 //        getSelectedMovie();
         setVisible(true);
     }
- public ShowingGUI() {
+
+    public ShowingGUI() {
         initComponents();
         setVisible(true);
     }
-  public void updateShowingByMovieTable(){  
-      Object[][] data = new Object [showingCatalog.getShowingsByMovie(movie).size()][4];
-      //ArrayList<Showings> = 
-      for (int i = 0; i < showingCatalog.getShowingsByMovie(movie).size(); i++) {
-          
-          data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i) , showingCatalog.getShowingsByMovie(movie).get(i).getHall(), showingCatalog.getShowingsByMovie(movie).get(i).getDate(), showingCatalog.getShowingsByMovie(movie).get(i).getRemainingSeats()};
-          System.out.println(showingCatalog.getShowingsByMovie(movie).get(i).toString());
-  }
-      
 
-        TableModel model = new DefaultTableModel(data, new String[]{"Title", "Hall","Dato", "Free seats"});
+    public void updateShowingByMovieTable() {
+        Object[][] data = new Object[showingCatalog.getShowingsByMovie(movie).size()][4];
+        //ArrayList<Showings> = 
+        for (int i = 0; i < showingCatalog.getShowingsByMovie(movie).size(); i++) {
+
+            data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i), showingCatalog.getShowingsByMovie(movie).get(i).getHall(), showingCatalog.getShowingsByMovie(movie).get(i).getDate(), showingCatalog.getShowingsByMovie(movie).get(i).getRemainingSeats()};
+            System.out.println(showingCatalog.getShowingsByMovie(movie).get(i).toString());
+        }
+
+        TableModel model = new DefaultTableModel(data, new String[]{"Title", "Hall", "Dato", "Free seats"});
         jTable1.setModel(model);
         jTable1.repaint();
-  }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,6 +73,7 @@ public class ShowingGUI extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +88,17 @@ public class ShowingGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTable1FocusGained(evt);
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Pick showing");
@@ -101,6 +115,8 @@ public class ShowingGUI extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,21 +127,25 @@ public class ShowingGUI extends javax.swing.JFrame {
                 .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(93, 93, 93)
-                .addComponent(jToggleButton1)
-                .addGap(159, 159, 159))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jToggleButton1))
+                .addGap(112, 112, 112))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jToggleButton1))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(jToggleButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -134,24 +154,41 @@ public class ShowingGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         System.out.println(showing);
-        
+
         SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing, showingCatalog);
         //showingCatalog.getShowingsByMovie(movie);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+
+        Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         DB_Statements stmt = new DB_Statements();
         try {
-        int index = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String date = model.getValueAt(index, 2).toString();
-        showingCatalog.editShowing(date, index);
-        //stmt.editShowing(date, index);
-          } catch (ArrayIndexOutOfBoundsException ex) {
+            int index = jTable1.getSelectedRow();
+            TableModel model = jTable1.getModel();
+            String date = jTextField1.getText();
+            showingCatalog.editShowing(date, showing.getShowing_id());
+        } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Please select a row to update.");
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTable1FocusGained
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+        Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String date = model.getValueAt(index, 2).toString();
+        jTextField1.setText(date);
+
+        System.out.println(showing.getShowing_id());
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -183,7 +220,7 @@ public class ShowingGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }
@@ -192,6 +229,7 @@ public class ShowingGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
