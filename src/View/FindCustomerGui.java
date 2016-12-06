@@ -18,6 +18,7 @@ import javax.swing.table.TableModel;
  * @author jibba_000
  */
 public class FindCustomerGui extends javax.swing.JFrame {
+
     CustomerController customerController;
     TicketCatalog ticketCatalog;
     OrderCatalog orderCatalog;
@@ -28,7 +29,7 @@ public class FindCustomerGui extends javax.swing.JFrame {
     public FindCustomerGui() {
         customerController = new CustomerController();
         ticketCatalog = new TicketCatalog();
-        
+
         initComponents();
         updateMovieTable();
         setVisible(true);
@@ -48,6 +49,7 @@ public class FindCustomerGui extends javax.swing.JFrame {
         searchButton = new javax.swing.JButton();
         phoneTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        returnButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +72,13 @@ public class FindCustomerGui extends javax.swing.JFrame {
 
         jLabel1.setText("PhoneNo");
 
+        returnButton.setText("return");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,6 +90,8 @@ public class FindCustomerGui extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(returnButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(31, 31, 31)
                         .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,18 +108,22 @@ public class FindCustomerGui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchButton)
                     .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(returnButton))
                 .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        dispose();
+        new NewJFrame().setVisible(true);
+    }//GEN-LAST:event_returnButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
-
-    
     public void updateMovieTable() {
 
         Object[][] data = new Object[customerController.getSize()][8];
@@ -125,6 +140,7 @@ public class FindCustomerGui extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField phoneTF;
+    private javax.swing.JButton returnButton;
     private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
 }

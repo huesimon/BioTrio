@@ -6,6 +6,7 @@
 package View;
 
 import Control.DB_Statements;
+import Control.MovieCatalog;
 import Control.ShowingCatalog;
 import Control.TicketCatalog;
 import Model.Movie;
@@ -181,7 +182,7 @@ public class ShowingGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         System.out.println(showing);
-
+        dispose();
         SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing, showingCatalog);
         //showingCatalog.getShowingsByMovie(movie);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -204,7 +205,7 @@ public class ShowingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        
+
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         try {
             String date = jTextField1.getText();
@@ -215,12 +216,12 @@ public class ShowingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        
+
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         showing.getHall().getHallId();
-        
+
         try {
-            
+
             String date = jTextField1.getText();
             //System.out.println(showing.getHall().getHallId());
             showingCatalog.removeShowing(date, showing.getHall().getHallId());
@@ -229,13 +230,13 @@ public class ShowingGUI extends javax.swing.JFrame {
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Please select a row to update.");
         }
-        
+
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-        new SelectMovieGUI().setVisible(true);
+        new SelectMovieGUI(biotrio).setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
 
     /**

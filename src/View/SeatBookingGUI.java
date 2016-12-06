@@ -431,7 +431,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
       
         dispose();
-        new ShowingGUI().setVisible(true);
+        new ShowingGUI(biotrio, showing.getMovie()).setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
 
     /**
