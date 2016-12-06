@@ -5,17 +5,33 @@
  */
 package View;
 
+import Control.CustomerController;
+import Control.OrderCatalog;
+import Control.TicketCatalog;
+import Model.Customer;
+import biotrio.Biotrio;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author jibba_000
  */
 public class FindCustomerGui extends javax.swing.JFrame {
+    CustomerController customerController;
+    TicketCatalog ticketCatalog;
+    OrderCatalog orderCatalog;
 
     /**
      * Creates new form FindCustomerGui
      */
     public FindCustomerGui() {
+        customerController = new CustomerController();
+        ticketCatalog = new TicketCatalog();
+        
         initComponents();
+        updateMovieTable();
+        setVisible(true);
     }
 
     /**
@@ -91,36 +107,17 @@ public class FindCustomerGui extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FindCustomerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FindCustomerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FindCustomerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FindCustomerGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FindCustomerGui().setVisible(true);
-            }
-        });
+    
+    public void updateMovieTable() {
+
+        Object[][] data = new Object[customerController.getSize()][8];
+        for (int i = 0; i < customerController.getCustomers().size(); i++) {
+            data[i] = new Object[]{customerController.getCustomers().get(i), customerController.getCustomers().get(i).getPhone(),};
+        }
+        TableModel model = new DefaultTableModel(data, new String[]{"Navn", "Phone", "rowNo", "seatNo", "movie title", "date", "order_number"});
+        jTable1.setModel(model);
+        jTable1.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

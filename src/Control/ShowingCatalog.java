@@ -77,9 +77,10 @@ public class ShowingCatalog {
             ex.printStackTrace();
         }
     }
-     public void editShowing(String date, int showing_id){
+
+    public void editShowing(String date, int showing_id) {
         String table = "showing";
-        String sql =  "update showing set date = '" + date + "' where showing_id = " + showing_id+ ";";
+        String sql = "update showing set date = '" + date + "' where showing_id = " + showing_id + ";";
         try {
             System.out.println(sql);
             DB_Connection.getCon();
@@ -92,7 +93,22 @@ public class ShowingCatalog {
         }
         //DB_Connection.closeConnection();
     }
-    
+
+    public void removeShowing(String date, int hall) {
+        String table = "showing";
+        String sql = "DELETE FROM SHOWING WHERE date = '" + date + "' AND hall = " +hall;
+        try {
+            System.out.println(sql);
+            DB_Connection.getCon();
+            DB_Connection.setStmt(DB_Connection.getCon().createStatement());
+            DB_Connection.getStmt().executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data updated in " + table + " table");
+            System.out.println("\n--Data updated in " + table + " table--");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        //DB_Connection.closeConnection();
+    }
 
     public ArrayList<Showing> getShowingsByMovie(Movie movie) {
         ArrayList<Showing> data = new ArrayList<>();
@@ -104,10 +120,10 @@ public class ShowingCatalog {
         System.out.println(data);
         return data;
 
-      
     }
-    public Showing getShowingById (int id) {
-           
+
+    public Showing getShowingById(int id) {
+
         Showing result = null;
         for (Showing showing : showings) {
             if (id == showing.getShowing_id()) {

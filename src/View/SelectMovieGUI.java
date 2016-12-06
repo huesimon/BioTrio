@@ -63,6 +63,7 @@ public class SelectMovieGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,14 +84,23 @@ public class SelectMovieGUI extends javax.swing.JFrame {
             }
         });
 
+        returnButton.setText("Return home");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addContainerGap()
+                .addComponent(returnButton)
+                .addGap(67, 67, 67)
                 .addComponent(jButton2)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -98,7 +108,9 @@ public class SelectMovieGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(returnButton)))
         );
 
         pack();
@@ -109,10 +121,16 @@ public class SelectMovieGUI extends javax.swing.JFrame {
 
         Movie movie = (Movie) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         System.out.println(movie);
-        
+        dispose();
         ShowingGUI showingGUI = new ShowingGUI(biotrio, movie);
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+       
+        dispose();
+        new NewJFrame().setVisible(true);
+    }//GEN-LAST:event_returnButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,5 +171,6 @@ public class SelectMovieGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton returnButton;
     // End of variables declaration//GEN-END:variables
 }

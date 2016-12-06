@@ -36,7 +36,7 @@ public class ShowingGUI extends javax.swing.JFrame {
         this.biotrio = biotrio;
         this.showingCatalog = biotrio.getShowingCatalog();
         initComponents();
-        updateShowingByMovieTable();
+        updateShowingByMovieTable(movie);
 //        getSelectedMovie();
         setVisible(true);
     }
@@ -46,7 +46,7 @@ public class ShowingGUI extends javax.swing.JFrame {
         setVisible(true);
     }
 
-    public void updateShowingByMovieTable() {
+    public void updateShowingByMovieTable(Movie movie) {
         Object[][] data = new Object[showingCatalog.getShowingsByMovie(movie).size()][4];
         //ArrayList<Showings> = 
         for (int i = 0; i < showingCatalog.getShowingsByMovie(movie).size(); i++) {
@@ -72,8 +72,10 @@ public class ShowingGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jTextField1 = new javax.swing.JTextField();
+        editButton = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,31 +110,53 @@ public class ShowingGUI extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("Edit");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
 
-        jTextField1.setText("jTextField1");
+        removeButton.setText("Remove");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
+
+        returnButton.setText("returbn'");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jToggleButton1))
-                .addGap(112, 112, 112))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeButton)
+                        .addGap(59, 59, 59))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(returnButton)))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,11 +165,14 @@ public class ShowingGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editButton)
+                    .addComponent(removeButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(returnButton)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,20 +185,6 @@ public class ShowingGUI extends javax.swing.JFrame {
         SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing, showingCatalog);
         //showingCatalog.getShowingsByMovie(movie);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-
-        Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-        DB_Statements stmt = new DB_Statements();
-        try {
-            int index = jTable1.getSelectedRow();
-            TableModel model = jTable1.getModel();
-            String date = jTextField1.getText();
-            showingCatalog.editShowing(date, showing.getShowing_id());
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Please select a row to update.");
-        }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
         // TODO add your handling code here:
@@ -189,6 +202,41 @@ public class ShowingGUI extends javax.swing.JFrame {
         System.out.println(showing.getShowing_id());
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        
+        Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        try {
+            String date = jTextField1.getText();
+            showingCatalog.editShowing(date, showing.getShowing_id());
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Please select a row to update.");
+        }
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        
+        Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        showing.getHall().getHallId();
+        
+        try {
+            
+            String date = jTextField1.getText();
+            //System.out.println(showing.getHall().getHallId());
+            showingCatalog.removeShowing(date, showing.getHall().getHallId());
+            biotrio.getShowingCatalog().queryShowings();
+            updateShowingByMovieTable(movie);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Please select a row to update.");
+        }
+        
+    }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new SelectMovieGUI().setVisible(true);
+    }//GEN-LAST:event_returnButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,10 +274,12 @@ public class ShowingGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton removeButton;
+    private javax.swing.JButton returnButton;
     // End of variables declaration//GEN-END:variables
 }

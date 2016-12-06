@@ -233,7 +233,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jens.setUser(user);
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
             JOptionPane.showMessageDialog(null, "User found");
-            
+            dispose();
             Biotrio bioTrio = new Biotrio();
         } else {
             JOptionPane.showMessageDialog(null, "User not found");
@@ -257,13 +257,14 @@ public class NewJFrame extends javax.swing.JFrame {
         jens.setUser(user);
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
             JOptionPane.showMessageDialog(null, "User found");
-            //Biotrio bioTrio = new Biotrio();
+            dispose();
+            FindCustomerGui findCustomerGui = new FindCustomerGui();
         } else {
             JOptionPane.showMessageDialog(null, "User not found");
         }
         
-        FindCustomerGui findCustomerGui = new FindCustomerGui();
-        findCustomerGui.setVisible(true);
+//        FindCustomerGui findCustomerGui = new FindCustomerGui();
+//        findCustomerGui.setVisible(true);
     }//GEN-LAST:event_findCustomerButtonActionPerformed
 
     /**

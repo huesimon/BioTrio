@@ -108,6 +108,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jNorth = new javax.swing.JPanel();
+        returnButton = new javax.swing.JButton();
         statusLable = new javax.swing.JLabel();
         jSouth = new javax.swing.JPanel();
         jEast = new javax.swing.JPanel();
@@ -148,6 +149,14 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(557, 666));
+
+        returnButton.setText("return");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
+        jNorth.add(returnButton);
 
         statusLable.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         statusLable.setForeground(new java.awt.Color(255, 0, 255));
@@ -419,6 +428,12 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         //ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+      
+        dispose();
+        new ShowingGUI().setVisible(true);
+    }//GEN-LAST:event_returnButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -484,6 +499,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jWest;
     private javax.swing.JTextField nameTF;
     private javax.swing.JTextField phoneTF;
+    private javax.swing.JButton returnButton;
     private javax.swing.JTextField rowNoTF;
     private javax.swing.JTextField rowNoTF2;
     private javax.swing.JTextField rowNoTF3;

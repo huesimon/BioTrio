@@ -55,6 +55,7 @@ public class Biotrio {
         // seatBookingGUI = new SeatBookingGUI(showingCatalog.getShowings().get(0));
     }
     //public static void main(String[] args) {
+  
 
     public ShowingCatalog getShowingCatalog() {
         return showingCatalog;

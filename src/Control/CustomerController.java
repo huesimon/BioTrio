@@ -66,6 +66,9 @@ public class CustomerController {
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
+    public int getSize() {
+        return customers.size();
+    }
     public  Customer returnLatestCustomer() {
         Customer customer = customers.get(customers.size() - 1);
         return customer;
@@ -85,5 +88,6 @@ public class CustomerController {
         }
         return result;
     }
+    
 
 }
