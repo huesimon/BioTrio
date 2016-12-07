@@ -46,6 +46,31 @@ public class TicketCatalog {
             ex.printStackTrace();
         }
     }
+    public void queryTicketsByOrderId(int id) {
+        String query = "SELECT * FROM ticket WHERE orders = " + id;
+        try {
+            DB_Connection.getCon();
+            DB_Connection.setStmt(DB_Connection.getCon().createStatement());
+            DB_Connection.setRs(DB_Connection.getStmt().executeQuery(query));
+
+            ArrayList<Ticket> dataList = new ArrayList<>();
+            while (DB_Connection.getRs().next()) {
+
+                int rowNo = DB_Connection.getRs().getInt("rowNo");
+                int seatNo = DB_Connection.getRs().getInt("seatNo");
+                int order_id = DB_Connection.getRs().getInt("orders");
+                int showing_id = DB_Connection.getRs().getInt("showing");
+
+                Ticket ticketItem = new Ticket(rowNo, seatNo, order_id, showing_id);
+                dataList.add(ticketItem);
+            }
+            tickets = dataList;
+            DB_Connection.getRs().close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
      public void createTicket(String rowNo, String seatNo, int orders, int showing) {
         String query = "insert into ticket(rowNo, seatNo, orders, showing) VALUES"
                 + "('" + rowNo + "','" + seatNo + "','" + orders + "','" + showing + "')";
@@ -67,6 +92,7 @@ public class TicketCatalog {
     public void setTickets(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
     }
+    
 
     public Ticket[] getTicketByOrderId(int id) {
         int count = 0;

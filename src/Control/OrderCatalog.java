@@ -21,6 +21,7 @@ public class OrderCatalog {
     private ArrayList<Order> orders;
     private CustomerController customerController;
     private TicketCatalog ticketCatalog;
+    private Customer customer;
 
     public OrderCatalog(CustomerController customerController, TicketCatalog ticketCatalog) {
         ArrayList<Order> orders = new ArrayList<>();
@@ -69,4 +70,16 @@ public  Order returnLatestOrder() {
             ex.printStackTrace();
         }
     }
+        public Order getOrderByCustomerId(int id){
+            
+            Order result = null;
+            for (Order order : orders) {
+                if (id == customer.getId()) {
+                    result = order;
+                }
+                
+            }
+            return result;
+        
+        }
 }

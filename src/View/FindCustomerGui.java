@@ -7,9 +7,15 @@ package View;
 
 import Control.CustomerController;
 import Control.OrderCatalog;
+import Control.ShowingCatalog;
 import Control.TicketCatalog;
 import Model.Customer;
+import Model.Order;
+import Model.Showing;
+import Model.Ticket;
 import biotrio.Biotrio;
+import com.sun.javafx.scene.control.skin.CustomColorDialog;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -22,6 +28,9 @@ public class FindCustomerGui extends javax.swing.JFrame {
     CustomerController customerController;
     TicketCatalog ticketCatalog;
     OrderCatalog orderCatalog;
+    Biotrio biotrio;
+    Ticket[] ticket;
+    Order order;
 
     /**
      * Creates new form FindCustomerGui
@@ -46,10 +55,11 @@ public class FindCustomerGui extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        searchButton = new javax.swing.JButton();
         phoneTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         returnButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,8 +76,6 @@ public class FindCustomerGui extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        searchButton.setText("Search");
-
         phoneTF.setPreferredSize(new java.awt.Dimension(55, 19));
 
         jLabel1.setText("PhoneNo");
@@ -79,6 +87,20 @@ public class FindCustomerGui extends javax.swing.JFrame {
             }
         });
 
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,18 +108,19 @@ public class FindCustomerGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(returnButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(31, 31, 31)
                         .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(searchButton)
-                        .addGap(32, 32, 32))))
+                        .addGap(18, 18, 18)
+                        .addComponent(searchButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(68, 68, 68)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,11 +129,13 @@ public class FindCustomerGui extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchButton)
                     .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(returnButton))
-                .addGap(43, 43, 43))
+                    .addComponent(returnButton)
+                    .addComponent(searchButton))
+                .addGap(7, 7, 7)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         pack();
@@ -120,6 +145,39 @@ public class FindCustomerGui extends javax.swing.JFrame {
         dispose();
         new NewJFrame().setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        String phone = phoneTF.getText();
+        Customer pCustomer = customerController.getCustomerByPhone(phone);
+        
+        System.out.println("CUSTomer CREATED"+ pCustomer + pCustomer.getId());
+        ticket = ticketCatalog.getTicketByOrderId(3);
+        updateTableByALL(pCustomer);
+        
+       
+        
+        
+//        System.out.println("p ORDER CREATED" + pOrder);
+//        Ticket[] pTicket = ticketCatalog.getTicketByOrderId(pOrder.getOrder_id());
+
+//        ticketCatalog.queryTicketsByOrderId(orderCatalog.getOrderByCustomerId(customerController.getCustomers().get(3).getId()).getOrder_id());
+//        orderCatalog.queryOrders();
+        // new table
+//        Object[][] data = new Object[customerController.getSize()][8];
+      
+        System.out.println(ticketCatalog.getTickets().size());
+
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String phone = phoneTF.getText();
+        customerController.queryCustomerByPhone(phone);
+        Customer customer = (Customer) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        customer.getId();
+
+        updateTableByCustomer(customer);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,7 +193,38 @@ public class FindCustomerGui extends javax.swing.JFrame {
         jTable1.repaint();
     }
 
+    public void updateTableByCustomer(Customer customer) {
+        Object[][] data = new Object[ticketCatalog.getTickets().size()][8];
+        for (int i = 0; i < customerController.getCustomers().size(); i++) {
+            data[i] = new Object[]{
+                customer.getName(),
+                customer.getId(),
+                customer.getPhone(),
+                "TEST",
+                "TEST"};
+//orderCatalog.getOrderByCustomerId(customer.getId())};
+
+       }
+    }   
+    public void updateTableByALL(Customer customer){
+          Object[][] data = new Object[ticketCatalog.getTickets().size()][8];
+       
+        for (int i = 0; i < 4; i++) {
+            data[i] = new Object[]{
+               customer.getName(),
+            customer.getPhone(),
+            
+
+        }
+        ;
+
+        TableModel model = new DefaultTableModel(data, new String[]{"Navn", "Phone", "rowNo", "seatNo", "movie title", "date", "order_number"});
+        jTable1.setModel(model);
+        jTable1.repaint();
+
+    }}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
