@@ -21,6 +21,7 @@ import Model.Ticket;
 import biotrio.Biotrio;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -70,23 +71,50 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
     }
 
+    public boolean checkSeat(int rowNo, int seatNo) {
+        boolean result = true;
+        if (seatNo >= showing.getHall().getCols() || rowNo >= showing.getHall().getRows()) {
+            JOptionPane.showMessageDialog(null, "Seat not in hall");
+            rowNoTF.setText("");
+            rowNoTF2.setText("");
+            rowNoTF3.setText("");
+            rowNoTF4.setText("");
+            seatNoTF.setText("");
+            seatNoTF2.setText("");
+            seatNoTF3.setText("");
+            seatNoTF4.setText("");
+            
+            
+            result = false;
+        } else if (Integer.parseInt((String) jTable1.getValueAt(rowNo, seatNo)) == 1) {
+            JOptionPane.showMessageDialog(null, "Seat " + seatNo + "is taken");
+            rowNoTF.setText("");
+            rowNoTF2.setText("");
+            rowNoTF3.setText("");
+            rowNoTF4.setText("");
+            seatNoTF.setText("");
+            seatNoTF2.setText("");
+            seatNoTF3.setText("");
+            seatNoTF4.setText("");
+            result = false;
+        }
+        System.out.println(result);
+//        System.out.println(Integer.parseInt((String) jTable1.getValueAt(rowNo, seatNo)));
+        return result;
+    }
+
     public void updateSeatTable(Showing showing) { // flyt til en controller 
-        String[] colNames = new String[showing.getHall().getRows()];
-        String[] rowNames = new String[showing.getHall().getCols()];
+        String[] colNames = new String[showing.getHall().getCols()];
         for (int i = 0; i < showing.getHall().getCols(); i++) {
 
-            rowNames[i] = "" + i;
-
-        }
-        for (int i = 0; i < showing.getHall().getRows(); i++) {
-
             colNames[i] = "" + i;
+
         }
 
-        TableModel model = new DefaultTableModel(new Object[showing.getHall().getCols()][showing.getHall().getRows()], colNames);
+        TableModel model = new DefaultTableModel(colNames, showing.getHall().getRows());
 
         for (int i = 0; i < colNames.length; i++) {
-            for (int j = 0; j < rowNames.length; j++) {
+            for (int j = 0; j < showing.getHall().getRows(); j++) {
                 model.setValueAt("0", j, i);
                 // http://stackoverflow.com/questions/7181699/changing-swing-jtable-cell-colors
 
@@ -94,7 +122,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         }
         for (Ticket ticket : showing.getTicketList()) {
-            model.setValueAt("1", ticket.getRowNo() - 1, ticket.getSeatNo()); // TAKEN SEATS
+            model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo()); // TAKEN SEATS
         }
 
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -328,6 +356,8 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             statusLable.setText("1 Ticket picked");
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
+            System.out.println(checkSeat(rowNo, seatNo));
+          
         } else if (ticketSelected == 1) { // Two tickets selected 
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
@@ -336,7 +366,9 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             rowNoTF2.setText(rowNoTF.getText());
             seatNoTF2.setText(strSeat2);
             statusLable.setText("2 Ticket picked");
-
+            System.out.println(checkSeat(rowNo, seatNo));
+            System.out.println(checkSeat(rowNo, seatNo2));
+  
         } else if (ticketSelected == 2) { // Three tickets selected 
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
@@ -349,9 +381,14 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             String strSeat3 = "" + seatNo3;
             rowNoTF3.setText(rowNoTF.getText());
             seatNoTF3.setText(strSeat3);
+            System.out.println(checkSeat(rowNo, seatNo));
+            System.out.println(checkSeat(rowNo, seatNo2));
+            System.out.println(checkSeat(rowNo, seatNo3));
             
+
             statusLable.setText("3 Ticket picked");
-        } else if (ticketSelected == 3) { // Four tickets selected 
+        } else if (ticketSelected == 3) { // Four tickets selected             
+
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
             seatNo2 = seatNo + 1;
@@ -368,7 +405,10 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             String strSeat4 = "" + seatNo4;
             rowNoTF4.setText(rowNoTF.getText());
             seatNoTF4.setText(strSeat4);
-
+            System.out.println(checkSeat(rowNo, seatNo));
+            System.out.println(checkSeat(rowNo, seatNo2));
+            System.out.println(checkSeat(rowNo, seatNo3));
+            System.out.println(checkSeat(rowNo, seatNo4));
             statusLable.setText("4 Ticket picked");
         }
         /*
@@ -420,16 +460,16 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         biotrio.getShowingCatalog().queryShowings();
         showing = biotrio.getShowingCatalog().getShowingById(showing.getShowing_id());
         showing.getTicketList();
-        
+
         updateSeatTable(showing);
-        
+
         System.out.println(customerController.returnLatestCustomer());
-        
+
         //ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-      
+
         dispose();
         new ShowingGUI(biotrio, showing.getMovie()).setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed

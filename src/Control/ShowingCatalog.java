@@ -53,7 +53,7 @@ public class ShowingCatalog {
     }
 
     public void queryShowings() {
-        String query = "SELECT * FROM showing";
+        String query = "select * from showing order by date asc";
         try {
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());

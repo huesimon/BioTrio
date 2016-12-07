@@ -210,6 +210,9 @@ public class ShowingGUI extends javax.swing.JFrame {
         try {
             String date = jTextField1.getText();
             showingCatalog.editShowing(date, showing.getShowing_id());
+            biotrio.getShowingCatalog().queryShowings();
+            updateShowingByMovieTable(movie);
+            
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Please select a row to update.");
         }
