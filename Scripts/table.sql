@@ -44,9 +44,9 @@ CREATE TABLE customer
 
   
  INSERT INTO hall(rowCount, rowLength, totalSeats, name) VALUES
- ('14','20','280','Sal 1'),
- ('8','12','96','Sal 2'),
- ('8','6','48','Sal 3'
+ ('20','14','280','Sal 1'),
+ ('12','8','96','Sal 2'),
+ ('6','8','48','Sal 3'
  );
 INSERT INTO movie(title, length) VALUES
 ('Bad Santa 2', '92 minutter'),
