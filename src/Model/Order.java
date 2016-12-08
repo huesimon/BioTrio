@@ -37,6 +37,19 @@ public class Order {
         this.customer = customer;
     }
 
+    public int getNumberOfTickets() {
+        int result = 0;
+        for (Ticket ticket : tickets) {
+            if (ticket != null) {
+                result++;
+            }
+
+        }
+        System.out.println(result);
+        return result;
+
+    }
+
     public int getOrder_id() {
         return order_id;
     }
@@ -44,5 +57,5 @@ public class Order {
     public void setOrder_id(int order_id) {
         this.order_id = order_id;
     }
-            
+
 }

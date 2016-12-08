@@ -49,14 +49,21 @@ public class Biotrio {
         showingCatalog = new ShowingCatalog(hallCatalog, movieCatalog, ticketCatalog);
         System.out.println(showingCatalog.getShowings());
         //dbGui = new NewJFrame();
-        SelectMovieGUI selectMovieGUI = new SelectMovieGUI(this);
+        
         //FindCustomerGui findCustomerGui = new FindCustomerGui();
         
         // seatBookingGUI = new SeatBookingGUI(showingCatalog.getShowings().get(0));
     }
     //public static void main(String[] args) {
   
+    public void movieGui(){
+        SelectMovieGUI selectMovieGUI = new SelectMovieGUI(this);
+    }
 
+    public void findCustomerGUI(){
+        FindCustomerGui findCustomerGUI = new FindCustomerGui(this);
+    }
+    
     public ShowingCatalog getShowingCatalog() {
         return showingCatalog;
     }

@@ -235,6 +235,7 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "User found");
             dispose();
             Biotrio bioTrio = new Biotrio();
+            bioTrio.movieGui();
         } else {
             JOptionPane.showMessageDialog(null, "User not found");
         }
@@ -258,7 +259,8 @@ public class NewJFrame extends javax.swing.JFrame {
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
             JOptionPane.showMessageDialog(null, "User found");
             dispose();
-            FindCustomerGui findCustomerGui = new FindCustomerGui();
+            Biotrio biotrio = new Biotrio();
+            biotrio.findCustomerGUI();
         } else {
             JOptionPane.showMessageDialog(null, "User not found");
         }

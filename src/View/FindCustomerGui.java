@@ -29,18 +29,17 @@ public class FindCustomerGui extends javax.swing.JFrame {
     TicketCatalog ticketCatalog;
     OrderCatalog orderCatalog;
     Biotrio biotrio;
-    Ticket[] ticket;
-    Order order;
+    
 
     /**
      * Creates new form FindCustomerGui
      */
-    public FindCustomerGui() {
-        customerController = new CustomerController();
-        ticketCatalog = new TicketCatalog();
-
+    public FindCustomerGui(Biotrio biotrio) {
+        customerController = biotrio.getCustomerController();
+        ticketCatalog = biotrio.getTicketCatalog();
+        orderCatalog = biotrio.getOrderCatalog();
         initComponents();
-        updateMovieTable();
+        fillTableWithCustomers();
         setVisible(true);
     }
 
@@ -151,9 +150,11 @@ public class FindCustomerGui extends javax.swing.JFrame {
         String phone = phoneTF.getText();
         Customer pCustomer = customerController.getCustomerByPhone(phone);
         
+        
         System.out.println("CUSTomer CREATED"+ pCustomer + pCustomer.getId());
-        ticket = ticketCatalog.getTicketByOrderId(3);
-        updateTableByALL(pCustomer);
+       
+        System.out.println(orderCatalog.getOrderByCustomer(pCustomer));
+        updateTableByALL(pCustomer, orderCatalog.getOrderByCustomer(pCustomer));
         
        
         
@@ -175,18 +176,18 @@ public class FindCustomerGui extends javax.swing.JFrame {
         customerController.queryCustomerByPhone(phone);
         Customer customer = (Customer) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         customer.getId();
-
+        
         updateTableByCustomer(customer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public void updateMovieTable() {
+    public void fillTableWithCustomers() {
 
         Object[][] data = new Object[customerController.getSize()][8];
         for (int i = 0; i < customerController.getCustomers().size(); i++) {
-            data[i] = new Object[]{customerController.getCustomers().get(i), customerController.getCustomers().get(i).getPhone(),};
+            data[i] = new Object[]{customerController.getCustomers().get(i), customerController.getCustomers().get(i).getPhone()};
         }
         TableModel model = new DefaultTableModel(data, new String[]{"Navn", "Phone", "rowNo", "seatNo", "movie title", "date", "order_number"});
         jTable1.setModel(model);
@@ -206,14 +207,20 @@ public class FindCustomerGui extends javax.swing.JFrame {
 
        }
     }   
-    public void updateTableByALL(Customer customer){
-          Object[][] data = new Object[ticketCatalog.getTickets().size()][8];
+    public void updateTableByALL(Customer customer, Order order){
        
-        for (int i = 0; i < 4; i++) {
+          Object[][] data = new Object[order.getNumberOfTickets()][8];
+          System.out.println("");
+         
+        for (int i = 0; i < order.getNumberOfTickets(); i++) {
             data[i] = new Object[]{
                customer.getName(),
             customer.getPhone(),
-            
+            order.getTickets()[i].getRowNo(),
+            order.getTickets()[i].getSeatNo(),
+            order.getOrder_id(),
+            order.getTickets()[i].getShowing_id(),
+            "test",
 
         }
         ;

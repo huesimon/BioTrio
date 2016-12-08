@@ -11,7 +11,6 @@ import Model.Ticket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author Simon_
@@ -25,13 +24,14 @@ public class OrderCatalog {
 
     public OrderCatalog(CustomerController customerController, TicketCatalog ticketCatalog) {
         ArrayList<Order> orders = new ArrayList<>();
-       
+
         this.ticketCatalog = ticketCatalog;
         this.customerController = customerController;
         queryOrders();
     }
-public  Order returnLatestOrder() {
-        Order order = orders.get(orders.size() -1);
+
+    public Order returnLatestOrder() {
+        Order order = orders.get(orders.size() - 1);
         return order;
     }
 
@@ -49,37 +49,49 @@ public  Order returnLatestOrder() {
                 int customer_id = DB_Connection.getRs().getInt("customer");
 
                 Order orderItem = new Order(customerController.getCustomerById(customer_id), ticketCatalog.getTicketByOrderId(order_id), order_id);
-                        dataList.add(orderItem);
+                dataList.add(orderItem);
             }
             orders = dataList;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+
     public void insertOrder(int customer_id) {
-        
+
         String query = "insert into orders(customer) VALUES"
-                + "('" +customer_id + "')";
+                + "('" + customer_id + "')";
         try {
             DB_Connection.getCon();
             DB_Connection.getCon().createStatement();
             DB_Connection.getStmt().executeUpdate(query);
-            
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-        public Order getOrderByCustomerId(int id){
-            
-            Order result = null;
-            for (Order order : orders) {
-                if (id == customer.getId()) {
-                    result = order;
-                }
-                
+
+    public Order getOrderByCustomer(Customer customer) {
+        Order result = null;
+        for (Order order : orders) {
+            if (order.getCustomer().equals(customer)) {
+                result = order;
             }
-            return result;
-        
+
         }
+        return result;
+    }
+
+    public Order getOrderByCustomerId(int id) {
+
+        Order result = null;
+        for (Order order : orders) {
+            if (id == customer.getId()) {
+                result = order;
+            }
+
+        }
+        return result;
+
+    }
 }

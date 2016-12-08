@@ -143,6 +143,8 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         jWest = new javax.swing.JPanel();
         jCenter = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -200,6 +202,14 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         jCenter.setMinimumSize(new java.awt.Dimension(557, 666));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        jPanel7.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel7.setPreferredSize(new java.awt.Dimension(450, 30));
+
+        jLabel11.setText("SCREEN");
+        jPanel7.add(jLabel11);
+
+        jPanel1.add(jPanel7);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -518,6 +528,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jEast;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -533,6 +544,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jSouth;
     private javax.swing.JTable jTable1;
