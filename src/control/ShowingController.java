@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package control;
 
-import Model.Hall;
-import Model.Movie;
-import Model.Showing;
+import model.Hall;
+import model.Movie;
+import model.Showing;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
  *
  * @author Simon_
  */
-public class ShowingCatalog {
+public class ShowingController {
 
-    private HallCatalog hallCatalog;
-    private MovieCatalog movieCatalog;
-    private TicketCatalog ticketCatalog;
+    private HallController hallCatalog;
+    private MovieController movieCatalog;
+    private TicketController ticketCatalog;
     private ArrayList<Showing> showings;
 
-    public ShowingCatalog(HallCatalog hallCatalog, MovieCatalog movieCatalog, TicketCatalog ticketCatalog) {
+    public ShowingController(HallController hallCatalog, MovieController movieCatalog, TicketController ticketCatalog) {
         showings = new ArrayList<>();
         this.hallCatalog = hallCatalog;
         this.movieCatalog = movieCatalog;

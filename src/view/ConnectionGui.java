@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package view;
 
-import Control.DB_Connection;
-import Control.DB_Statements;
-import Control.MovieCatalog;
-import Control.ShowingCatalog;
+import control.DB_Connection;
+import control.DB_Statements;
+import control.MovieController;
+import control.ShowingController;
 import biotrio.Biotrio;
 //import Control.SeatHandler;
 //import Model.Seats;
@@ -20,17 +20,17 @@ import javax.swing.JOptionPane;
  *
  * @author Simon_
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class ConnectionGui extends javax.swing.JFrame {
 
     DB_Connection jens = DB_Connection.getInstance();
-    //MovieCatalog movieCatalog = MovieCatalog.getInstance();
-    //MovieCatalog movieCatalog = new MovieCatalog();
+    //MovieCatalog movieCatalog = MovieController.getInstance();
+    //MovieCatalog movieCatalog = new MovieController();
 //Seats seat = new Seats();
 
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public ConnectionGui() {
         initComponents();
         setVisible(true);
     }
@@ -79,7 +79,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         pnlN.setPreferredSize(new java.awt.Dimension(400, 75));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Filmrulle.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Filmrulle.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
 
         javax.swing.GroupLayout pnlNLayout = new javax.swing.GroupLayout(pnlN);
@@ -286,20 +286,21 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConnectionGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConnectionGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConnectionGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConnectionGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new ConnectionGui().setVisible(true);
             }
         });
     }

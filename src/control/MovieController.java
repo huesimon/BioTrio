@@ -4,11 +4,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package control;
 
-import Model.Movie;
+import model.Movie;
 import java.util.ArrayList;
-import Control.DB_Connection;
+import control.DB_Connection;
 import java.awt.AWTEventMulticaster;
 import java.sql.*;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ import jdk.nashorn.internal.codegen.CompilerConstants;
  *
  * @author Simon_
  */
-public class MovieCatalog {
+public class MovieController {
 
     private ArrayList<Movie> movies;
     //private ArrayList movies =  new ArrayList();
@@ -29,7 +29,7 @@ public class MovieCatalog {
     private static String length;
     //private Movie movie = new Movie(title, length);
 
-    public MovieCatalog() {
+    public MovieController() {
         movies = new ArrayList<>();
         queryMovie();
         //init();

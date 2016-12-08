@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package control;
 
-import Model.Hall;
-import Model.Ticket;
+import model.Hall;
+import model.Ticket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,11 +14,11 @@ import java.util.ArrayList;
  *
  * @author Simon_
  */
-public class TicketCatalog {
+public class TicketController {
 
     private ArrayList<Ticket> tickets;
 
-    public TicketCatalog() {
+    public TicketController() {
         queryTickets();
     }
 

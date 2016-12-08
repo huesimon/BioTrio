@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package control;
 
-import Model.Customer;
-import Model.Order;
-import Model.Ticket;
+import model.Customer;
+import model.Order;
+import model.Ticket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,14 +15,14 @@ import java.util.ArrayList;
  *
  * @author Simon_
  */
-public class OrderCatalog {
+public class OrderController {
 
     private ArrayList<Order> orders;
     private CustomerController customerController;
-    private TicketCatalog ticketCatalog;
+    private TicketController ticketCatalog;
     private Customer customer;
 
-    public OrderCatalog(CustomerController customerController, TicketCatalog ticketCatalog) {
+    public OrderController(CustomerController customerController, TicketController ticketCatalog) {
         ArrayList<Order> orders = new ArrayList<>();
 
         this.ticketCatalog = ticketCatalog;
