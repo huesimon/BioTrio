@@ -161,20 +161,28 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         seatNoTF = new javax.swing.JTextField();
         createTicketBtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         rowNoTF2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         seatNoTF2 = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         rowNoTF3 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         seatNoTF3 = new javax.swing.JTextField();
+        jPanel14 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         rowNoTF4 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         seatNoTF4 = new javax.swing.JTextField();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -199,9 +207,9 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         jCenter.setMaximumSize(new java.awt.Dimension(557, 666));
         jCenter.setMinimumSize(new java.awt.Dimension(557, 666));
-        jCenter.setPreferredSize(new java.awt.Dimension(500, 800));
+        jCenter.setPreferredSize(new java.awt.Dimension(700, 800));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 400));
 
         jPanel7.setBackground(new java.awt.Color(0, 0, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(450, 30));
@@ -236,13 +244,13 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         jLabel1.setText("Navn");
         jPanel2.add(jLabel1);
 
-        nameTF.setPreferredSize(new java.awt.Dimension(55, 20));
+        nameTF.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel2.add(nameTF);
 
         jLabel2.setText("telefon");
         jPanel2.add(jLabel2);
 
-        phoneTF.setPreferredSize(new java.awt.Dimension(55, 20));
+        phoneTF.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel2.add(phoneTF);
 
         bookButton.setText("Create Customer");
@@ -269,14 +277,14 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         jLabel3.setText("RowNo");
         jPanel3.add(jLabel3);
 
-        rowNoTF.setPreferredSize(new java.awt.Dimension(55, 20));
+        rowNoTF.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel3.add(rowNoTF);
 
         jLabel4.setText("SeatNo");
         jLabel4.setPreferredSize(new java.awt.Dimension(45, 15));
         jPanel3.add(jLabel4);
 
-        seatNoTF.setPreferredSize(new java.awt.Dimension(55, 20));
+        seatNoTF.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel3.add(seatNoTF);
 
         createTicketBtn.setText("Create Ticket");
@@ -291,51 +299,81 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         jPanel4.setPreferredSize(new java.awt.Dimension(383, 40));
 
+        jPanel10.setPreferredSize(new java.awt.Dimension(37, 26));
+        jPanel4.add(jPanel10);
+
         jLabel5.setText("RowNo");
         jPanel4.add(jLabel5);
 
-        rowNoTF2.setPreferredSize(new java.awt.Dimension(55, 20));
+        rowNoTF2.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel4.add(rowNoTF2);
 
         jLabel6.setText("SeatNo");
         jPanel4.add(jLabel6);
 
-        seatNoTF2.setPreferredSize(new java.awt.Dimension(55, 20));
+        seatNoTF2.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel4.add(seatNoTF2);
+
+        jPanel9.setPreferredSize(new java.awt.Dimension(106, 32));
+        jPanel4.add(jPanel9);
 
         jCenter.add(jPanel4);
 
         jPanel5.setPreferredSize(new java.awt.Dimension(383, 40));
 
+        jPanel11.setPreferredSize(new java.awt.Dimension(37, 26));
+
+        jPanel13.setPreferredSize(new java.awt.Dimension(37, 26));
+        jPanel11.add(jPanel13);
+
+        jPanel5.add(jPanel11);
+
         jLabel7.setText("RowNo");
         jPanel5.add(jLabel7);
 
-        rowNoTF3.setPreferredSize(new java.awt.Dimension(55, 20));
+        rowNoTF3.setPreferredSize(new java.awt.Dimension(55, 25));
+        rowNoTF3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rowNoTF3ActionPerformed(evt);
+            }
+        });
         jPanel5.add(rowNoTF3);
 
         jLabel8.setText("SeatNo");
         jPanel5.add(jLabel8);
 
-        seatNoTF3.setPreferredSize(new java.awt.Dimension(55, 20));
+        seatNoTF3.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel5.add(seatNoTF3);
+
+        jPanel14.setPreferredSize(new java.awt.Dimension(106, 32));
+        jPanel5.add(jPanel14);
 
         jCenter.add(jPanel5);
 
         jPanel6.setPreferredSize(new java.awt.Dimension(383, 40));
 
+        jPanel12.setPreferredSize(new java.awt.Dimension(37, 26));
+        jPanel6.add(jPanel12);
+
         jLabel9.setText("RowNo");
         jPanel6.add(jLabel9);
 
-        rowNoTF4.setPreferredSize(new java.awt.Dimension(55, 20));
+        rowNoTF4.setName(""); // NOI18N
+        rowNoTF4.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel6.add(rowNoTF4);
 
         jLabel10.setText("SeatNo");
         jPanel6.add(jLabel10);
 
-        seatNoTF4.setPreferredSize(new java.awt.Dimension(55, 20));
+        seatNoTF4.setPreferredSize(new java.awt.Dimension(55, 25));
         jPanel6.add(seatNoTF4);
 
+        jPanel15.setPreferredSize(new java.awt.Dimension(106, 32));
+        jPanel6.add(jPanel15);
+
         jCenter.add(jPanel6);
+
+        jPanel8.setPreferredSize(new java.awt.Dimension(383, 40));
 
         jButton1.setText("Book Ticket");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -343,7 +381,9 @@ public class SeatBookingGUI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jCenter.add(jButton1);
+        jPanel8.add(jButton1);
+
+        jCenter.add(jPanel8);
 
         getContentPane().add(jCenter, java.awt.BorderLayout.CENTER);
 
@@ -485,6 +525,10 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         new ShowingGUI(biotrio, showing.getMovie()).setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
 
+    private void rowNoTF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rowNoTF3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rowNoTF3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -540,12 +584,20 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jNorth;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jSouth;
     private javax.swing.JTable jTable1;
