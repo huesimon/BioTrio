@@ -5,9 +5,8 @@
  */
 package view;
 
-import control.CustomerController;
-import control.DB_Statements;
-import control.MovieController;
+
+
 import control.OrderController;
 import control.ShowingController;
 import control.TicketController;
@@ -19,6 +18,7 @@ import model.Hall;
 import model.Movie;
 import model.Ticket;
 import biotrio.Biotrio;
+import control.CustomerController;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -112,8 +112,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         }
 
         TableModel model = new DefaultTableModel(colNames, showing.getHall().getRows());
-
-        for (int i = 0; i < colNames.length; i++) {
+                for (int i = 0; i < colNames.length; i++) {
             for (int j = 0; j < showing.getHall().getRows(); j++) {
                 model.setValueAt("0", j, i);
                 // http://stackoverflow.com/questions/7181699/changing-swing-jtable-cell-colors
@@ -123,6 +122,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         }
         for (Ticket ticket : showing.getTicketList()) {
             model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo()); // TAKEN SEATS
+            
         }
 
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -199,6 +199,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         jCenter.setMaximumSize(new java.awt.Dimension(557, 666));
         jCenter.setMinimumSize(new java.awt.Dimension(557, 666));
+        jCenter.setPreferredSize(new java.awt.Dimension(500, 800));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -210,6 +211,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 
         jPanel1.add(jPanel7);
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
