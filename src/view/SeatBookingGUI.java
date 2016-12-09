@@ -99,15 +99,15 @@ public class SeatBookingGUI extends javax.swing.JFrame {
                 model.setValueAt("0", j, i);
             }
         }
-        
+
         for (Ticket ticket : showing.getTicketList()) {
-            model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo()); 
+            model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo());
         }
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setModel(model);
         jTable1.repaint();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -380,7 +380,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             statusLabel.setText("1 Ticket picked");
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
-
+            System.out.println(checkSeat(rowNo, seatNo));
         } else if (ticketSelected == 1) { // Two tickets selected 
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
@@ -389,6 +389,8 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             rowNoTF2.setText(rowNoTF.getText());
             seatNoTF2.setText(strSeat2);
             statusLabel.setText("2 Tickets picked");
+            System.out.println(checkSeat(rowNo, seatNo));
+            System.out.println(checkSeat(rowNo, seatNo2));
 
         } else if (ticketSelected == 2) { // Three tickets selected 
             rowNo = Integer.parseInt(rowNoTF.getText());
@@ -403,7 +405,10 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             rowNoTF3.setText(rowNoTF.getText());
             seatNoTF3.setText(strSeat3);
             statusLabel.setText("3 Tickets picked");
-            
+            System.out.println(checkSeat(rowNo, seatNo));
+            System.out.println(checkSeat(rowNo, seatNo2));
+            System.out.println(checkSeat(rowNo, seatNo3));
+
         } else if (ticketSelected == 3) { // Four tickets selected             
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
@@ -421,6 +426,10 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             String strSeat4 = "" + seatNo4;
             rowNoTF4.setText(rowNoTF.getText());
             seatNoTF4.setText(strSeat4);
+            System.out.println(checkSeat(rowNo, seatNo));
+            System.out.println(checkSeat(rowNo, seatNo2));
+            System.out.println(checkSeat(rowNo, seatNo3));
+            System.out.println(checkSeat(rowNo, seatNo4));
 
             statusLabel.setText("4 Tickets picked");
         }
@@ -442,12 +451,12 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         } else if (ticketSelected == 1) {
             ticketController.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
             ticketController.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
-            statusLabel.setText("2 tickets booked!!");
+            statusLabel.setText("2 tickets booked!");
         } else if (ticketSelected == 2) {
             ticketController.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
             ticketController.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
             ticketController.createTicket("" + rowNo, "" + seatNo3, id2, showing.getShowing_id());
-            statusLabel.setText("3 tickets bookedw!!");
+            statusLabel.setText("3 tickets booked!");
         } else if (ticketSelected == 3) {
             ticketController.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
             ticketController.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());

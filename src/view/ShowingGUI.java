@@ -118,7 +118,7 @@ public class ShowingGUI extends javax.swing.JFrame {
             }
         });
 
-        returnButton.setText("returbn'");
+        returnButton.setText("return");
         returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnButtonActionPerformed(evt);
