@@ -5,24 +5,16 @@
  */
 package view;
 
-
-
 import control.OrderController;
 import control.ShowingController;
 import control.TicketController;
-import model.Customer;
 import model.Showing;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import model.Hall;
-import model.Movie;
 import model.Ticket;
 import biotrio.Biotrio;
 import control.CustomerController;
-
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  *
@@ -36,39 +28,34 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     Biotrio biotrio;
     Showing showing;
     CustomerController customerController;
-    TicketController ticketCatalog;
-    ShowingController showingCatalog;
-    OrderController orderCatalog;
+    TicketController ticketController;
+    ShowingController showingController;
+    OrderController orderController;
     private int seatNo;
     private int rowNo;
     private int seatNo2;
     private int seatNo3;
     private int seatNo4;
 
-    public SeatBookingGUI(Biotrio biotrio, Showing showing, ShowingController showingCatalog) {
+    public SeatBookingGUI(Biotrio biotrio, Showing showing, ShowingController showingController) {
         this.biotrio = biotrio;
         this.showing = showing;
-        this.showingCatalog = showingCatalog;
+        this.showingController = showingController;
         customerController = new CustomerController();
-        ticketCatalog = new TicketController();
-        orderCatalog = new OrderController(customerController, ticketCatalog);
+        ticketController = new TicketController();
+        orderController = new OrderController(customerController, ticketController);
 
-        System.out.println(showing.getTicketList());
         showing.getTicketList();
-        ticketCatalog.queryTickets();
+        ticketController.queryTickets();
         initComponents();
         updateSeatTable(showing);
 
         setVisible(true);
-
     }
 
     public SeatBookingGUI() {
-
         initComponents();
-
         setVisible(true);
-
     }
 
     public boolean checkSeat(int rowNo, int seatNo) {
@@ -83,8 +70,7 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             seatNoTF2.setText("");
             seatNoTF3.setText("");
             seatNoTF4.setText("");
-            
-            
+
             result = false;
         } else if (Integer.parseInt((String) jTable1.getValueAt(rowNo, seatNo)) == 1) {
             JOptionPane.showMessageDialog(null, "Seat " + seatNo + "is taken");
@@ -98,46 +84,37 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             seatNoTF4.setText("");
             result = false;
         }
-        System.out.println(result);
-//        System.out.println(Integer.parseInt((String) jTable1.getValueAt(rowNo, seatNo)));
         return result;
     }
 
     public void updateSeatTable(Showing showing) { // flyt til en controller 
         String[] colNames = new String[showing.getHall().getCols()];
         for (int i = 0; i < showing.getHall().getCols(); i++) {
-
             colNames[i] = "" + i;
-
         }
 
         TableModel model = new DefaultTableModel(colNames, showing.getHall().getRows());
-                for (int i = 0; i < colNames.length; i++) {
+        for (int i = 0; i < colNames.length; i++) {
             for (int j = 0; j < showing.getHall().getRows(); j++) {
                 model.setValueAt("0", j, i);
-                // http://stackoverflow.com/questions/7181699/changing-swing-jtable-cell-colors
-
             }
-
         }
+        
         for (Ticket ticket : showing.getTicketList()) {
-            model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo()); // TAKEN SEATS
-            
+            model.setValueAt("1", ticket.getRowNo(), ticket.getSeatNo()); 
         }
-
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setModel(model);
         jTable1.repaint();
-
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jNorth = new javax.swing.JPanel();
         returnButton = new javax.swing.JButton();
-        statusLable = new javax.swing.JLabel();
+        statusLabel = new javax.swing.JLabel();
         jSouth = new javax.swing.JPanel();
         jEast = new javax.swing.JPanel();
         jWest = new javax.swing.JPanel();
@@ -195,10 +172,10 @@ public class SeatBookingGUI extends javax.swing.JFrame {
         });
         jNorth.add(returnButton);
 
-        statusLable.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        statusLable.setForeground(new java.awt.Color(255, 0, 255));
-        statusLable.setText("STATUS LABLE");
-        jNorth.add(statusLable);
+        statusLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        statusLabel.setForeground(new java.awt.Color(255, 0, 255));
+        statusLabel.setText("STATUS LABLE");
+        jNorth.add(statusLabel);
 
         getContentPane().add(jNorth, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(jSouth, java.awt.BorderLayout.PAGE_END);
@@ -391,24 +368,19 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookButtonActionPerformed
-
         String name = nameTF.getText();
         String phone = phoneTF.getText();
         customerController.insertCustomer(name, phone);
         customerController.queryCustomers();
-
-
     }//GEN-LAST:event_bookButtonActionPerformed
 
     private void createTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTicketBtnActionPerformed
-        // TODO add your handling code here:
         int ticketSelected = jComboBox1.getSelectedIndex();
         if (ticketSelected == 0) {
-            statusLable.setText("1 Ticket picked");
+            statusLabel.setText("1 Ticket picked");
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
-            System.out.println(checkSeat(rowNo, seatNo));
-          
+
         } else if (ticketSelected == 1) { // Two tickets selected 
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
@@ -416,10 +388,8 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             String strSeat2 = "" + seatNo2;
             rowNoTF2.setText(rowNoTF.getText());
             seatNoTF2.setText(strSeat2);
-            statusLable.setText("2 Ticket picked");
-            System.out.println(checkSeat(rowNo, seatNo));
-            System.out.println(checkSeat(rowNo, seatNo2));
-  
+            statusLabel.setText("2 Tickets picked");
+
         } else if (ticketSelected == 2) { // Three tickets selected 
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
@@ -432,14 +402,9 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             String strSeat3 = "" + seatNo3;
             rowNoTF3.setText(rowNoTF.getText());
             seatNoTF3.setText(strSeat3);
-            System.out.println(checkSeat(rowNo, seatNo));
-            System.out.println(checkSeat(rowNo, seatNo2));
-            System.out.println(checkSeat(rowNo, seatNo3));
+            statusLabel.setText("3 Tickets picked");
             
-
-            statusLable.setText("3 Ticket picked");
         } else if (ticketSelected == 3) { // Four tickets selected             
-
             rowNo = Integer.parseInt(rowNoTF.getText());
             seatNo = Integer.parseInt(seatNoTF.getText());
             seatNo2 = seatNo + 1;
@@ -456,84 +421,56 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             String strSeat4 = "" + seatNo4;
             rowNoTF4.setText(rowNoTF.getText());
             seatNoTF4.setText(strSeat4);
-            System.out.println(checkSeat(rowNo, seatNo));
-            System.out.println(checkSeat(rowNo, seatNo2));
-            System.out.println(checkSeat(rowNo, seatNo3));
-            System.out.println(checkSeat(rowNo, seatNo4));
-            statusLable.setText("4 Ticket picked");
-        }
-        /*
-        String rowNo = rowNoTF.getText();
-        String seatNo = seatNoTF.getText();
-        int latestId = customerController.returnLatestCustomer().getId();
-        orderCatalog.insertOrder(latestId);
-        orderCatalog.queryOrders();
-        int id2 = orderCatalog.returnLatestOrder().getOrder_id();
-        System.out.println(customerController.returnLatestCustomer());
-        ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
-        System.out.println(id2);
-         */
 
+            statusLabel.setText("4 Tickets picked");
+        }
     }//GEN-LAST:event_createTicketBtnActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
         int latestId = customerController.returnLatestCustomer().getId();
-        orderCatalog.insertOrder(latestId);
-        orderCatalog.queryOrders();
-        int id2 = orderCatalog.returnLatestOrder().getOrder_id();
+        orderController.insertOrder(latestId);
+        orderController.queryOrders();
+        int id2 = orderController.returnLatestOrder().getOrder_id();
         int ticketSelected = jComboBox1.getSelectedIndex();
         if (ticketSelected == 0) {
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
-            statusLable.setText("1 ticket booked!");
+            ticketController.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
+            statusLabel.setText("1 ticket booked!");
         } else if (ticketSelected == 1) {
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
-            statusLable.setText("2 tickets booked!!");
+            ticketController.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
+            ticketController.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
+            statusLabel.setText("2 tickets booked!!");
         } else if (ticketSelected == 2) {
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo3, id2, showing.getShowing_id());
-            statusLable.setText("3 tickets bookedw!!");
+            ticketController.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
+            ticketController.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
+            ticketController.createTicket("" + rowNo, "" + seatNo3, id2, showing.getShowing_id());
+            statusLabel.setText("3 tickets bookedw!!");
         } else if (ticketSelected == 3) {
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo3, id2, showing.getShowing_id());
-            ticketCatalog.createTicket("" + rowNo, "" + seatNo4, id2, showing.getShowing_id());
-            statusLable.setText("4 tickets booked!!");
+            ticketController.createTicket("" + rowNo, "" + seatNo, id2, showing.getShowing_id());
+            ticketController.createTicket("" + rowNo, "" + seatNo2, id2, showing.getShowing_id());
+            ticketController.createTicket("" + rowNo, "" + seatNo3, id2, showing.getShowing_id());
+            ticketController.createTicket("" + rowNo, "" + seatNo4, id2, showing.getShowing_id());
+            statusLabel.setText("4 tickets booked!!");
         }
-        biotrio.getTicketCatalog().queryTickets();
-        biotrio.getShowingCatalog().queryShowings();
-        showing = biotrio.getShowingCatalog().getShowingById(showing.getShowing_id());
+        biotrio.getTicketController().queryTickets();
+        biotrio.getShowingController().queryShowings();
+        showing = biotrio.getShowingController().getShowingById(showing.getShowing_id());
         showing.getTicketList();
-
         updateSeatTable(showing);
-
-        System.out.println(customerController.returnLatestCustomer());
-
-        //ticketCatalog.createTicket(rowNo, seatNo, id2, showing.getShowing_id());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-
         dispose();
         new ShowingGUI(biotrio, showing.getMovie()).setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void rowNoTF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rowNoTF3ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_rowNoTF3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -555,14 +492,6 @@ public class SeatBookingGUI extends javax.swing.JFrame {
 //            java.util.logging.Logger.getLogger(SeatBookingGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new SeatBookingGUI().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookButton;
@@ -613,6 +542,6 @@ public class SeatBookingGUI extends javax.swing.JFrame {
     private javax.swing.JTextField seatNoTF2;
     private javax.swing.JTextField seatNoTF3;
     private javax.swing.JTextField seatNoTF4;
-    private javax.swing.JLabel statusLable;
+    private javax.swing.JLabel statusLabel;
     // End of variables declaration//GEN-END:variables
 }

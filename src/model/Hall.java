@@ -10,13 +10,13 @@ package model;
  * @author Simon_
  */
 public class Hall {
+
     private String hallName;
     private int hall_id;
     private int rows;
     private int cols;
     private int totalSeats;
-    
-    
+
     public String getHallName() {
         return hallName;
     }
@@ -49,14 +49,11 @@ public class Hall {
         this.cols = cols;
     }
 
- 
-
     public int getTotalSeats() {
         return totalSeats;
     }
-    public int[][] getSeatingArray(){
-        //int rowsi = Integer.parseInt(rows);   
-        //int colsi = Integer.parseInt(cols);
+
+    public int[][] getSeatingArray() {
         return new int[rows][cols];
     }
 
@@ -76,5 +73,4 @@ public class Hall {
     public String toString() {
         return hallName;
     }
-    
-    }
+}

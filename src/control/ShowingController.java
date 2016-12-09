@@ -5,12 +5,10 @@
  */
 package control;
 
-import model.Hall;
 import model.Movie;
 import model.Showing;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,18 +17,17 @@ import javax.swing.JOptionPane;
  */
 public class ShowingController {
 
-    private HallController hallCatalog;
-    private MovieController movieCatalog;
-    private TicketController ticketCatalog;
+    private HallController hallController;
+    private MovieController movieController;
+    private TicketController ticketController;
     private ArrayList<Showing> showings;
 
-    public ShowingController(HallController hallCatalog, MovieController movieCatalog, TicketController ticketCatalog) {
+    public ShowingController(HallController hallController, MovieController movieController, TicketController ticketController) {
         showings = new ArrayList<>();
-        this.hallCatalog = hallCatalog;
-        this.movieCatalog = movieCatalog;
-        this.ticketCatalog = ticketCatalog;
+        this.hallController = hallController;
+        this.movieController = movieController;
+        this.ticketController = ticketController;
         queryShowings();
-
     }
 
     public void addShowing(Showing showing) {
@@ -43,13 +40,6 @@ public class ShowingController {
 
     public ArrayList<Showing> getShowings() {
         return showings;
-    }
-
-    public void init() {
-        //Hall hall1 = new Hall("hal 1", 1, 14, 20);
-        //Movie movie1 = new Movie("Film 11", "1:45");
-        //Date date = new Date(System.currentTimeMillis());
-        //showings.add(new Showing(hall1, movie1, date));
     }
 
     public void queryShowings() {
@@ -66,11 +56,9 @@ public class ShowingController {
                 int movie = DB_Connection.getRs().getInt("movie");
                 int showing_id = DB_Connection.getRs().getInt("showing_id");
                 String date = DB_Connection.getRs().getString("date");
-//                String date = "1/1/16";
 
-                Showing showing = new Showing(hallCatalog.getHallById(hallNum), movieCatalog.getMovieById(movie), ticketCatalog.getTicketByShowingId(showing_id), date, showing_id);
+                Showing showing = new Showing(hallController.getHallById(hallNum), movieController.getMovieById(movie), ticketController.getTicketByShowingId(showing_id), date, showing_id);
                 dataList.add(showing);
-                System.out.println(showing);
             }
             showings = dataList;
         } catch (SQLException ex) {
@@ -82,32 +70,26 @@ public class ShowingController {
         String table = "showing";
         String sql = "update showing set date = '" + date + "' where showing_id = " + showing_id + ";";
         try {
-            System.out.println(sql);
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());
             DB_Connection.getStmt().executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data updated in " + table + " table");
-            System.out.println("\n--Data updated in " + table + " table--");
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
-        //DB_Connection.closeConnection();
     }
 
     public void removeShowing(String date, int hall) {
         String table = "showing";
-        String sql = "DELETE FROM SHOWING WHERE date = '" + date + "' AND hall = " +hall;
+        String sql = "DELETE FROM SHOWING WHERE date = '" + date + "' AND hall = " + hall;
         try {
-            System.out.println(sql);
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());
             DB_Connection.getStmt().executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data updated in " + table + " table");
-            System.out.println("\n--Data updated in " + table + " table--");
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
-        //DB_Connection.closeConnection();
     }
 
     public ArrayList<Showing> getShowingsByMovie(Movie movie) {
@@ -117,9 +99,7 @@ public class ShowingController {
                 data.add(showing);
             }
         }
-        System.out.println(data);
         return data;
-
     }
 
     public Showing getShowingById(int id) {

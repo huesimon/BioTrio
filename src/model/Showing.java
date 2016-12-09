@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +18,7 @@ public class Showing {
     private ArrayList<Ticket> ticketList;
     private String date;
     private int showing_id;
-    
+
     public Showing(Hall hall, Movie movie, String date) {
         this.hall = hall;
         this.movie = movie;
@@ -33,7 +32,6 @@ public class Showing {
         this.ticketList = ticketList;
         this.date = date;
         this.showing_id = showing_id;
-
     }
 
     public Hall getHall() {
@@ -67,6 +65,7 @@ public class Showing {
     public void setDate(String date) {
         this.date = date;
     }
+
     @Override
     public String toString() {
         return movie.getTitel();
@@ -79,9 +78,8 @@ public class Showing {
     public void setShowing_id(int showing_id) {
         this.showing_id = showing_id;
     }
-    public String getRemainingSeats(){
+
+    public String getRemainingSeats() {
         return "" + (hall.getTotalSeats() - getTicketList().size());
     }
-
 }
-

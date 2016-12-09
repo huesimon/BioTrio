@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.*;
 
 /**
  *
@@ -31,21 +30,11 @@ public class DB_Connection {
 //    declare the result
     private static ResultSet rs = null;
 //    The url
-    //private static final String url = "jdbc:postgresql://localhost:5432/SQL_1";
     private static final String url = "jdbc:postgresql://";
-//    The username
-//    private static final String user = "postgres";
-//    driver
+
     private static final String DRIVER = "org.postgresql.Driver";
     private static DB_Connection instance = null;
-//    The password
-//    private static final String psswrd = "root";
-/*
-//    declaring the Statement
-    Statement stmt = null;
-//    declaring the ResultSet
-    ResultSet rs = null;
-     */
+
     public DB_Connection() {
     }
 
@@ -97,27 +86,18 @@ public class DB_Connection {
     }
 
     public static Connection connect(String user, String password, String host, String port, String DBname) {
-        System.out.println("--PostgreSQÆ connection test--");
-
         try {
 //            Locate postgres JDBC driver
             Class.forName(DRIVER);
         } catch (ClassNotFoundException ex) {
 //            Catch exception 
             ex.printStackTrace();
-            System.out.println("JDBC is missing");
         }
-        System.out.println("PostgreSQL JDBC driver is registerd");
 
         try {
             con = DriverManager.getConnection(url + host + ":" + port + "/" + DBname, user, password);
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-        if (con != null) {
-            System.out.println("connection successful");
-        } else {
-            System.out.println("connection un-succesful");
         }
         return con;
     }
@@ -129,31 +109,22 @@ public class DB_Connection {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println("The connection is now closed");
         }
-    }public void queryPerson() {
+    }
 
+    public void queryPerson() {
         String query = "SELECT * FROM customer, ticket WHERE customer_id = ticket.orders";
         try {
             con = DriverManager.getConnection(url + hostName + ":" + port + "/" + DBname, user, password);
             stmt = con.createStatement();
             rs = stmt.executeQuery(query);
 
-            System.out.println("\nRow\tSeat Number\n__________________");
             while (rs.next()) {
                 String rowNo = rs.getString("rowNo");
                 String seatNo = rs.getString("seatNo");
-
-                System.out.print(rowNo + "\t");
-                System.out.println(seatNo);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-        if (con != null) {
-            System.out.println("connection successful");
-        } else {
-            System.out.println("connection un-succesful");
         }
     }
 
@@ -181,5 +152,4 @@ public class DB_Connection {
         DB_Connection.rs = rs;
     }
 
-    
 }

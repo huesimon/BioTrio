@@ -7,15 +7,10 @@ package view;
 
 import control.CustomerController;
 import control.OrderController;
-import control.ShowingController;
 import control.TicketController;
 import model.Customer;
 import model.Order;
-import model.Showing;
-import model.Ticket;
 import biotrio.Biotrio;
-import com.sun.javafx.scene.control.skin.CustomColorDialog;
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -26,18 +21,17 @@ import javax.swing.table.TableModel;
 public class FindCustomerGui extends javax.swing.JFrame {
 
     CustomerController customerController;
-    TicketController ticketCatalog;
-    OrderController orderCatalog;
+    TicketController ticketController;
+    OrderController orderController;
     Biotrio biotrio;
-    
 
     /**
      * Creates new form FindCustomerGui
      */
     public FindCustomerGui(Biotrio biotrio) {
         customerController = biotrio.getCustomerController();
-        ticketCatalog = biotrio.getTicketCatalog();
-        orderCatalog = biotrio.getOrderCatalog();
+        ticketController = biotrio.getTicketController();
+        orderController = biotrio.getOrderController();
         initComponents();
         fillTableWithCustomers();
         setVisible(true);
@@ -146,29 +140,9 @@ public class FindCustomerGui extends javax.swing.JFrame {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
         String phone = phoneTF.getText();
         Customer pCustomer = customerController.getCustomerByPhone(phone);
-        
-        
-        System.out.println("CUSTomer CREATED"+ pCustomer + pCustomer.getId());
-       
-        System.out.println(orderCatalog.getOrderByCustomer(pCustomer));
-        updateTableByALL(pCustomer, orderCatalog.getOrderByCustomer(pCustomer));
-        
-       
-        
-        
-//        System.out.println("p ORDER CREATED" + pOrder);
-//        Ticket[] pTicket = ticketCatalog.getTicketByOrderId(pOrder.getOrder_id());
-
-//        ticketCatalog.queryTicketsByOrderId(orderCatalog.getOrderByCustomerId(customerController.getCustomers().get(3).getId()).getOrder_id());
-//        orderCatalog.queryOrders();
-        // new table
-//        Object[][] data = new Object[customerController.getSize()][8];
-      
-        System.out.println(ticketCatalog.getTickets().size());
-
+        updateTableByALL(pCustomer, orderController.getOrderByCustomer(pCustomer));
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -176,7 +150,6 @@ public class FindCustomerGui extends javax.swing.JFrame {
         customerController.queryCustomerByPhone(phone);
         Customer customer = (Customer) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         customer.getId();
-        
         updateTableByCustomer(customer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -195,7 +168,7 @@ public class FindCustomerGui extends javax.swing.JFrame {
     }
 
     public void updateTableByCustomer(Customer customer) {
-        Object[][] data = new Object[ticketCatalog.getTickets().size()][8];
+        Object[][] data = new Object[ticketController.getTickets().size()][8];
         for (int i = 0; i < customerController.getCustomers().size(); i++) {
             data[i] = new Object[]{
                 customer.getName(),
@@ -203,33 +176,27 @@ public class FindCustomerGui extends javax.swing.JFrame {
                 customer.getPhone(),
                 "TEST",
                 "TEST"};
-//orderCatalog.getOrderByCustomerId(customer.getId())};
+        }
+    }
 
-       }
-    }   
-    public void updateTableByALL(Customer customer, Order order){
-       
-          Object[][] data = new Object[order.getNumberOfTickets()][8];
-          System.out.println("");
-         
+    public void updateTableByALL(Customer customer, Order order) {
+        Object[][] data = new Object[order.getNumberOfTickets()][8];
+
         for (int i = 0; i < order.getNumberOfTickets(); i++) {
             data[i] = new Object[]{
-               customer.getName(),
-            customer.getPhone(),
-            order.getTickets()[i].getRowNo(),
-            order.getTickets()[i].getSeatNo(),
-            order.getOrder_id(),
-            order.getTickets()[i].getShowing_id(),
-            "test",
+                customer.getName(),
+                customer.getPhone(),
+                order.getTickets()[i].getRowNo(),
+                order.getTickets()[i].getSeatNo(),
+                order.getOrder_id(),
+                order.getTickets()[i].getShowing_id(),
+                "test",};
 
+            TableModel model = new DefaultTableModel(data, new String[]{"Navn", "Phone", "rowNo", "seatNo", "movie title", "date", "order_number"});
+            jTable1.setModel(model);
+            jTable1.repaint();
         }
-        ;
-
-        TableModel model = new DefaultTableModel(data, new String[]{"Navn", "Phone", "rowNo", "seatNo", "movie title", "date", "order_number"});
-        jTable1.setModel(model);
-        jTable1.repaint();
-
-    }}
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

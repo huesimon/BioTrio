@@ -5,15 +5,9 @@
  */
 package view;
 
-import control.DB_Connection;
-import control.DB_Statements;
 import control.MovieController;
-import control.ShowingController;
 import model.Movie;
 import biotrio.Biotrio;
-import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -23,16 +17,15 @@ import javax.swing.table.TableModel;
  */
 public class SelectMovieGUI extends javax.swing.JFrame {
 
-    MovieController movieCatalog;
+    MovieController movieController;
     Biotrio biotrio;
-//private MovieController movieCatalog = new MovieController();
 
     /**
      * Creates new form SelectMovieGUI
      */
     public SelectMovieGUI(Biotrio biotrio) {
         initComponents();
-        this.movieCatalog = biotrio.getMovieCatalog();
+        this.movieController = biotrio.getMovieController();
         this.biotrio = biotrio;
         updateMovieTable();
         setVisible(true);
@@ -46,9 +39,9 @@ public class SelectMovieGUI extends javax.swing.JFrame {
 
     public void updateMovieTable() {
 
-        Object[][] data = new Object[movieCatalog.getSize()][2];
-        for (int i = 0; i < movieCatalog.getMovies().size(); i++) {
-            data[i] = new Object[]{movieCatalog.getMovies().get(i), movieCatalog.getMovies().get(i).getTime()};
+        Object[][] data = new Object[movieController.getSize()][2];
+        for (int i = 0; i < movieController.getMovies().size(); i++) {
+            data[i] = new Object[]{movieController.getMovies().get(i), movieController.getMovies().get(i).getTime()};
         }
         TableModel model = new DefaultTableModel(data, new String[]{"Title", "length"});
         jTable1.setModel(model);
@@ -117,17 +110,13 @@ public class SelectMovieGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-
         Movie movie = (Movie) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-        System.out.println(movie);
         dispose();
         ShowingGUI showingGUI = new ShowingGUI(biotrio, movie);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-       
         dispose();
         new ConnectionGui().setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed

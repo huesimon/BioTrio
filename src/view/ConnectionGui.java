@@ -6,14 +6,7 @@
 package view;
 
 import control.DB_Connection;
-import control.DB_Statements;
-import control.MovieController;
-import control.ShowingController;
 import biotrio.Biotrio;
-//import Control.SeatHandler;
-//import Model.Seats;
-
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,10 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class ConnectionGui extends javax.swing.JFrame {
 
-    DB_Connection jens = DB_Connection.getInstance();
-    //MovieCatalog movieCatalog = MovieController.getInstance();
-    //MovieCatalog movieCatalog = new MovieController();
-//Seats seat = new Seats();
+    DB_Connection con = DB_Connection.getInstance();
 
     /**
      * Creates new form NewJFrame
@@ -219,18 +209,16 @@ public class ConnectionGui extends javax.swing.JFrame {
     }//GEN-LAST:event_usrTxtActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
-        System.out.println();
         String user = usrTxt.getText();
         String password = new String(passwordField.getText());
         String hostName = hostTF.getText();
         String port = portTF.getText();
         String DBname = dbNameTF.getText();
-        jens.setDBname(DBname);
-        jens.setHostName(hostName);
-        jens.setPassword(password);
-        jens.setPort(port);
-        jens.setUser(user);
+        con.setDBname(DBname);
+        con.setHostName(hostName);
+        con.setPassword(password);
+        con.setPort(port);
+        con.setUser(user);
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
             JOptionPane.showMessageDialog(null, "User found");
             dispose();
@@ -251,11 +239,11 @@ public class ConnectionGui extends javax.swing.JFrame {
         String hostName = hostTF.getText();
         String port = portTF.getText();
         String DBname = dbNameTF.getText();
-        jens.setDBname(DBname);
-        jens.setHostName(hostName);
-        jens.setPassword(password);
-        jens.setPort(port);
-        jens.setUser(user);
+        con.setDBname(DBname);
+        con.setHostName(hostName);
+        con.setPassword(password);
+        con.setPort(port);
+        con.setUser(user);
         if (DB_Connection.connect(user, password, hostName, port, DBname) != null) {
             JOptionPane.showMessageDialog(null, "User found");
             dispose();
@@ -264,9 +252,6 @@ public class ConnectionGui extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "User not found");
         }
-        
-//        FindCustomerGui findCustomerGui = new FindCustomerGui();
-//        findCustomerGui.setVisible(true);
     }//GEN-LAST:event_findCustomerButtonActionPerformed
 
     /**

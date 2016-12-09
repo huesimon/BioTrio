@@ -14,13 +14,11 @@ public class Customer {
     private String name;
     private String phone;
     private int id;
-    
-    
-    public Customer(String name, String phone, int id){
+
+    public Customer(String name, String phone, int id) {
         this.name = name;
         this.phone = phone;
         this.id = id;
-       
     }
 
     public String getName() {
@@ -51,5 +49,4 @@ public class Customer {
     public String toString() {
         return "Customer{" + "name=" + name + ", phone=" + phone + ", id=" + id + '}';
     }
-    
 }

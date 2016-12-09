@@ -43,11 +43,8 @@ public class Order {
             if (ticket != null) {
                 result++;
             }
-
         }
-        System.out.println(result);
         return result;
-
     }
 
     public int getOrder_id() {
@@ -57,5 +54,4 @@ public class Order {
     public void setOrder_id(int order_id) {
         this.order_id = order_id;
     }
-
 }

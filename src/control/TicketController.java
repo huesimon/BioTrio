@@ -5,7 +5,6 @@
  */
 package control;
 
-import model.Hall;
 import model.Ticket;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,6 +45,7 @@ public class TicketController {
             ex.printStackTrace();
         }
     }
+
     public void queryTicketsByOrderId(int id) {
         String query = "SELECT * FROM ticket WHERE orders = " + id;
         try {
@@ -70,8 +70,8 @@ public class TicketController {
             ex.printStackTrace();
         }
     }
-    
-     public void createTicket(String rowNo, String seatNo, int orders, int showing) {
+
+    public void createTicket(String rowNo, String seatNo, int orders, int showing) {
         String query = "insert into ticket(rowNo, seatNo, orders, showing) VALUES"
                 + "('" + rowNo + "','" + seatNo + "','" + orders + "','" + showing + "')";
         try {
@@ -79,7 +79,6 @@ public class TicketController {
             DB_Connection.getCon().createStatement();
             DB_Connection.getStmt().executeUpdate(query);
             
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -92,30 +91,25 @@ public class TicketController {
     public void setTickets(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
     }
-    
 
     public Ticket[] getTicketByOrderId(int id) {
         int count = 0;
-        Ticket[] result = new  Ticket[4];
+        Ticket[] result = new Ticket[4];
         for (Ticket ticket : tickets) {
             if (id == ticket.getOrder_id()) {
                 result[count++] = ticket;
-                
             }
         }
         return result;
-
     }
-        public ArrayList<Ticket> getTicketByShowingId(int id) {
-        ArrayList<Ticket> result = new  ArrayList<>();
+
+    public ArrayList<Ticket> getTicketByShowingId(int id) {
+        ArrayList<Ticket> result = new ArrayList<>();
         for (Ticket ticket : tickets) {
             if (id == ticket.getShowing_id()) {
                 result.add(ticket);
-                
             }
         }
         return result;
-
     }
 }
-

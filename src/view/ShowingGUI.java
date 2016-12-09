@@ -5,14 +5,11 @@
  */
 package view;
 
-import control.DB_Statements;
-import control.MovieController;
 import control.ShowingController;
 import control.TicketController;
 import model.Movie;
 import model.Showing;
 import biotrio.Biotrio;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -24,21 +21,18 @@ import javax.swing.table.TableModel;
 public class ShowingGUI extends javax.swing.JFrame {
 
     Movie movie;
-    ShowingController showingCatalog;
-    TicketController ticketCatalog;
+    ShowingController showingController;
+    TicketController ticketController;
     Biotrio biotrio;
     Showing showing;
 
-    /**
-     * Creates new form ShowingGUI
-     */
+    //Creates new form ShowingGUI
     public ShowingGUI(Biotrio biotrio, Movie movie) {
         this.movie = movie;
         this.biotrio = biotrio;
-        this.showingCatalog = biotrio.getShowingCatalog();
+        this.showingController = biotrio.getShowingController();
         initComponents();
         updateShowingByMovieTable(movie);
-//        getSelectedMovie();
         setVisible(true);
     }
 
@@ -48,12 +42,11 @@ public class ShowingGUI extends javax.swing.JFrame {
     }
 
     public void updateShowingByMovieTable(Movie movie) {
-        Object[][] data = new Object[showingCatalog.getShowingsByMovie(movie).size()][4];
-        //ArrayList<Showings> = 
-        for (int i = 0; i < showingCatalog.getShowingsByMovie(movie).size(); i++) {
+        Object[][] data = new Object[showingController.getShowingsByMovie(movie).size()][4];
+        for (int i = 0; i < showingController.getShowingsByMovie(movie).size(); i++) {
 
-            data[i] = new Object[]{showingCatalog.getShowingsByMovie(movie).get(i), showingCatalog.getShowingsByMovie(movie).get(i).getHall(), showingCatalog.getShowingsByMovie(movie).get(i).getDate(), showingCatalog.getShowingsByMovie(movie).get(i).getRemainingSeats()};
-            System.out.println(showingCatalog.getShowingsByMovie(movie).get(i).toString());
+            data[i] = new Object[]{showingController.getShowingsByMovie(movie).get(i), showingController.getShowingsByMovie(movie).get(i).getHall(),
+                showingController.getShowingsByMovie(movie).get(i).getDate(), showingController.getShowingsByMovie(movie).get(i).getRemainingSeats()};
         }
 
         TableModel model = new DefaultTableModel(data, new String[]{"Title", "Hall", "Dato", "Free seats"});
@@ -181,54 +174,43 @@ public class ShowingGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-        System.out.println(showing);
         dispose();
-        SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing, showingCatalog);
-        //showingCatalog.getShowingsByMovie(movie);
+        SeatBookingGUI seatBookingGui = new SeatBookingGUI(biotrio, showing, showingController);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_jTable1FocusGained
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         int index = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
         String date = model.getValueAt(index, 2).toString();
         jTextField1.setText(date);
-
-        System.out.println(showing.getShowing_id());
-
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         try {
             String date = jTextField1.getText();
-            showingCatalog.editShowing(date, showing.getShowing_id());
-            biotrio.getShowingCatalog().queryShowings();
+            showingController.editShowing(date, showing.getShowing_id());
+            biotrio.getShowingController().queryShowings();
             updateShowingByMovieTable(movie);
-            
+
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Please select a row to update.");
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-
         Showing showing = (Showing) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         showing.getHall().getHallId();
 
         try {
-
             String date = jTextField1.getText();
-            //System.out.println(showing.getHall().getHallId());
-            showingCatalog.removeShowing(date, showing.getHall().getHallId());
-            biotrio.getShowingCatalog().queryShowings();
+            showingController.removeShowing(date, showing.getHall().getHallId());
+            biotrio.getShowingController().queryShowings();
             updateShowingByMovieTable(movie);
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Please select a row to update.");
@@ -237,7 +219,6 @@ public class ShowingGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        // TODO add your handling code here:
         dispose();
         new SelectMovieGUI(biotrio).setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed

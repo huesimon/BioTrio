@@ -6,10 +6,8 @@
 package control;
 
 import model.Customer;
-import model.Ticket;
-    import java.sql.SQLException;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 
 /**
  *
@@ -45,8 +43,9 @@ public class CustomerController {
             ex.printStackTrace();
         }
     }
-    public void queryCustomerByPhone(String phone){
-        String query = "SELECT * FROM customer where phonenr = '" + phone + "'" ;
+
+    public void queryCustomerByPhone(String phone) {
+        String query = "SELECT * FROM customer where phonenr = '" + phone + "'";
         try {
             DB_Connection.getCon();
             DB_Connection.setStmt(DB_Connection.getCon().createStatement());
@@ -66,7 +65,6 @@ public class CustomerController {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    
     }
 
     public void insertCustomer(String name, String phone) {
@@ -76,7 +74,6 @@ public class CustomerController {
             DB_Connection.getCon();
             DB_Connection.getCon().createStatement();
             DB_Connection.getStmt().executeUpdate(query);
-            
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -84,25 +81,25 @@ public class CustomerController {
 
     }
 
-    
-
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
+
     public int getSize() {
         return customers.size();
     }
-    public  Customer returnLatestCustomer() {
+
+    public Customer returnLatestCustomer() {
         Customer customer = customers.get(customers.size() - 1);
         return customer;
     }
-    public Customer getCustomerByPhone(String phone){
+
+    public Customer getCustomerByPhone(String phone) {
         Customer result = null;
         for (Customer customer : customers) {
-            if(phone .equals(customer.getPhone())){
+            if (phone.equals(customer.getPhone())) {
                 result = customer;
             }
-            
         }
         return result;
     }
@@ -117,10 +114,8 @@ public class CustomerController {
             if (id == customer.getId()) {
                 result = customer;
             }
-
         }
         return result;
     }
-    
 
 }

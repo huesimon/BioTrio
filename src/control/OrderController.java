@@ -7,7 +7,6 @@ package control;
 
 import model.Customer;
 import model.Order;
-import model.Ticket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -19,13 +18,13 @@ public class OrderController {
 
     private ArrayList<Order> orders;
     private CustomerController customerController;
-    private TicketController ticketCatalog;
+    private TicketController ticketController;
     private Customer customer;
 
-    public OrderController(CustomerController customerController, TicketController ticketCatalog) {
+    public OrderController(CustomerController customerController, TicketController ticketController) {
         ArrayList<Order> orders = new ArrayList<>();
 
-        this.ticketCatalog = ticketCatalog;
+        this.ticketController = ticketController;
         this.customerController = customerController;
         queryOrders();
     }
@@ -48,7 +47,7 @@ public class OrderController {
                 int order_id = DB_Connection.getRs().getInt("order_id");
                 int customer_id = DB_Connection.getRs().getInt("customer");
 
-                Order orderItem = new Order(customerController.getCustomerById(customer_id), ticketCatalog.getTicketByOrderId(order_id), order_id);
+                Order orderItem = new Order(customerController.getCustomerById(customer_id), ticketController.getTicketByOrderId(order_id), order_id);
                 dataList.add(orderItem);
             }
             orders = dataList;
@@ -77,7 +76,6 @@ public class OrderController {
             if (order.getCustomer().equals(customer)) {
                 result = order;
             }
-
         }
         return result;
     }
@@ -89,9 +87,7 @@ public class OrderController {
             if (id == customer.getId()) {
                 result = order;
             }
-
         }
         return result;
-
     }
 }

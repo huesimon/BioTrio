@@ -11,16 +11,8 @@ import control.MovieController;
 import control.OrderController;
 import control.ShowingController;
 import control.TicketController;
-import model.Customer;
-import model.Movie;
-import model.Order;
 import view.FindCustomerGui;
-import view.ConnectionGui;
-import view.SeatBookingGUI;
 import view.SelectMovieGUI;
-import view.ShowingGUI;
-import com.sun.javafx.animation.TickCalculation;
-import com.sun.javafx.scene.control.skin.CustomColorDialog;
 
 /**
  *
@@ -28,33 +20,24 @@ import com.sun.javafx.scene.control.skin.CustomColorDialog;
  */
 public class Biotrio {
 
-    private ShowingController showingCatalog;
-    private MovieController movieCatalog;
+    private ShowingController showingController;
+    private MovieController movieController;
     private CustomerController customerController;
-    private HallController hallCatalog;
-    private OrderController orderCatalog;
-    private TicketController ticketCatalog;
+    private HallController hallController;
+    private OrderController orderController;
+    private TicketController ticketController;
     
     
     
             
     public Biotrio() {
-        //selectMovieGUI = new SelectMovieGUI();
-        movieCatalog = new MovieController();
-        System.out.println(movieCatalog.getMovies().size());
+        movieController = new MovieController();
         customerController = new CustomerController();
-        hallCatalog = new HallController();
-        ticketCatalog = new TicketController();
-        orderCatalog = new OrderController(customerController, ticketCatalog);
-        showingCatalog = new ShowingController(hallCatalog, movieCatalog, ticketCatalog);
-        System.out.println(showingCatalog.getShowings());
-        //dbGui = new ConnectionGui();
-        
-        //FindCustomerGui findCustomerGui = new FindCustomerGui();
-        
-        // seatBookingGUI = new SeatBookingGUI(showingCatalog.getShowings().get(0));
+        hallController = new HallController();
+        ticketController = new TicketController();
+        orderController = new OrderController(customerController, ticketController);
+        showingController = new ShowingController(hallController, movieController, ticketController);
     }
-    //public static void main(String[] args) {
   
     public void movieGui(){
         SelectMovieGUI selectMovieGUI = new SelectMovieGUI(this);
@@ -64,28 +47,28 @@ public class Biotrio {
         FindCustomerGui findCustomerGUI = new FindCustomerGui(this);
     }
     
-    public ShowingController getShowingCatalog() {
-        return showingCatalog;
+    public ShowingController getShowingController() {
+        return showingController;
     }
 
-    public MovieController getMovieCatalog() {
-        return movieCatalog;
+    public MovieController getMovieController() {
+        return movieController;
     }
 
     public CustomerController getCustomerController() {
         return customerController;
     }
 
-    public HallController getHallCatalog() {
-        return hallCatalog;
+    public HallController getHallController() {
+        return hallController;
     }
 
-    public OrderController getOrderCatalog() {
-        return orderCatalog;
+    public OrderController getOrderController() {
+        return orderController;
     }
 
-    public TicketController getTicketCatalog() {
-        return ticketCatalog;
+    public TicketController getTicketController() {
+        return ticketController;
     }
 
 }
