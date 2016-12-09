@@ -209,7 +209,9 @@ public class SeatBookingGUI extends javax.swing.JFrame {
             }
         ));
         jTable1.setAutoscrolls(false);
+        jTable1.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
         }
