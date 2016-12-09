@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="BioTrio">
+  <ClassDiagramComponents>
+    <Class name="Biotrio" package="biotrio" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="showingCatalog" type="ShowingController" visibility="private"/>
+        <Field name="movieCatalog" type="MovieController" visibility="private"/>
+        <Field name="customerController" type="CustomerController" visibility="private"/>
+        <Field name="hallCatalog" type="HallController" visibility="private"/>
+        <Field name="orderCatalog" type="OrderController" visibility="private"/>
+        <Field name="ticketCatalog" type="TicketController" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="movieGui" returnType="void" visibility="public"/>
+        <Method name="findCustomerGUI" returnType="void" visibility="public"/>
+        <Method name="getShowingCatalog" returnType="ShowingController" visibility="public"/>
+        <Method name="getMovieCatalog" returnType="MovieController" visibility="public"/>
+        <Method name="getCustomerController" returnType="CustomerController" visibility="public"/>
+        <Method name="getHallCatalog" returnType="HallController" visibility="public"/>
+        <Method name="getOrderCatalog" returnType="OrderController" visibility="public"/>
+        <Method name="getTicketCatalog" returnType="TicketController" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="CustomerController" package="control" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="customers" type="ArrayList&lt;Customer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="queryCustomers" returnType="void" visibility="public"/>
+        <Method name="queryCustomerByPhone" returnType="void" visibility="public">
+          <Argument type="String" name="phone"/>
+        </Method>
+        <Method name="insertCustomer" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="phone"/>
+        </Method>
+        <Method name="getCustomers" returnType="ArrayList&lt;Customer&gt;" visibility="public"/>
+        <Method name="getSize" returnType="int" visibility="public"/>
+        <Method name="returnLatestCustomer" returnType="Customer" visibility="public"/>
+        <Method name="getCustomerByPhone" returnType="Customer" visibility="public">
+          <Argument type="String" name="phone"/>
+        </Method>
+        <Method name="setCustomers" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Customer&gt;" name="customers"/>
+        </Method>
+        <Method name="getCustomerById" returnType="Customer" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DB_Connection" package="control" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="user" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="hostName" type="String" visibility="private"/>
+        <Field name="port" type="String" visibility="private"/>
+        <Field name="DBname" type="String" visibility="private"/>
+        <Field name="con" type="Connection" visibility="private" isStatic="true"/>
+        <Field name="stmt" type="Statement" visibility="private" isStatic="true"/>
+        <Field name="rs" type="ResultSet" visibility="private" isStatic="true"/>
+        <Field name="url" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="DRIVER" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="instance" type="DB_Connection" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getUser" returnType="String" visibility="public"/>
+        <Method name="setUser" returnType="void" visibility="public">
+          <Argument type="String" name="user"/>
+        </Method>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getHostName" returnType="String" visibility="public"/>
+        <Method name="setHostName" returnType="void" visibility="public">
+          <Argument type="String" name="hostName"/>
+        </Method>
+        <Method name="getPort" returnType="String" visibility="public"/>
+        <Method name="setPort" returnType="void" visibility="public">
+          <Argument type="String" name="port"/>
+        </Method>
+        <Method name="getDBname" returnType="String" visibility="public"/>
+        <Method name="setDBname" returnType="void" visibility="public">
+          <Argument type="String" name="DBname"/>
+        </Method>
+        <Method name="getInstance" returnType="DB_Connection" visibility="public" isStatic="true"/>
+        <Method name="connect" returnType="Connection" visibility="public" isStatic="true">
+          <Argument type="String" name="user"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="host"/>
+          <Argument type="String" name="port"/>
+          <Argument type="String" name="DBname"/>
+        </Method>
+        <Method name="closeConnection" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="queryPerson" returnType="void" visibility="public"/>
+        <Method name="getCon" returnType="Connection" visibility="public" isStatic="true"/>
+        <Method name="setCon" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Connection" name="con"/>
+        </Method>
+        <Method name="getStmt" returnType="Statement" visibility="public" isStatic="true"/>
+        <Method name="setStmt" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Statement" name="stmt"/>
+        </Method>
+        <Method name="getRs" returnType="ResultSet" visibility="public" isStatic="true"/>
+        <Method name="setRs" returnType="void" visibility="public" isStatic="true">
+          <Argument type="ResultSet" name="rs"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DB_Statements" package="control" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="con" type="Connection" visibility="private" isStatic="true"/>
+        <Field name="stmt" type="Statement" visibility="private" isStatic="true"/>
+        <Field name="rs" type="ResultSet" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="queryPerson" returnType="void" visibility="public"/>
+        <Method name="editShowing" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+          <Argument type="int" name="showing_id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HallController" package="control" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="halls" type="ArrayList&lt;Hall&gt;" visibility="private"/>
+        <Field name="hallItem" type="Hall" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="queryHall" returnType="void" visibility="public"/>
+        <Method name="getHalls" returnType="ArrayList&lt;Hall&gt;" visibility="public"/>
+        <Method name="setHalls" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Hall&gt;" name="halls"/>
+        </Method>
+        <Method name="getHallByShowing" returnType="ArrayList&lt;Hall&gt;" visibility="public">
+          <Argument type="Showing" name="showing"/>
+        </Method>
+        <Method name="getHallById" returnType="Hall" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MovieController" package="control" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="movies" type="ArrayList&lt;Movie&gt;" visibility="private"/>
+        <Field name="title" type="String" visibility="private" isStatic="true"/>
+        <Field name="length" type="String" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="addMovie" returnType="void" visibility="public">
+          <Argument type="Movie" name="movie"/>
+        </Method>
+        <Method name="removeMovieAt" returnType="Movie" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="getSize" returnType="int" visibility="public"/>
+        <Method name="getMovies" returnType="ArrayList&lt;Movie&gt;" visibility="public"/>
+        <Method name="init" returnType="void" visibility="private"/>
+        <Method name="queryMovie" returnType="void" visibility="public"/>
+        <Method name="queryShowing" returnType="void" visibility="public"/>
+        <Method name="getTitle" returnType="String" visibility="public"/>
+        <Method name="getMovieById" returnType="Movie" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="OrderController" package="control" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="orders" type="ArrayList&lt;Order&gt;" visibility="private"/>
+        <Field name="customerController" type="CustomerController" visibility="private"/>
+        <Field name="ticketCatalog" type="TicketController" visibility="private"/>
+        <Field name="customer" type="Customer" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="CustomerController" name="customerController"/>
+          <Argument type="TicketController" name="ticketCatalog"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="returnLatestOrder" returnType="Order" visibility="public"/>
+        <Method name="queryOrders" returnType="void" visibility="public"/>
+        <Method name="insertOrder" returnType="void" visibility="public">
+          <Argument type="int" name="customer_id"/>
+        </Method>
+        <Method name="getOrderByCustomer" returnType="Order" visibility="public">
+          <Argument type="Customer" name="customer"/>
+        </Method>
+        <Method name="getOrderByCustomerId" returnType="Order" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ShowingController" package="control" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="hallCatalog" type="HallController" visibility="private"/>
+        <Field name="movieCatalog" type="MovieController" visibility="private"/>
+        <Field name="ticketCatalog" type="TicketController" visibility="private"/>
+        <Field name="showings" type="ArrayList&lt;Showing&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="HallController" name="hallCatalog"/>
+          <Argument type="MovieController" name="movieCatalog"/>
+          <Argument type="TicketController" name="ticketCatalog"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addShowing" returnType="void" visibility="public">
+          <Argument type="Showing" name="showing"/>
+        </Method>
+        <Method name="removeShowingAt" returnType="Showing" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="getShowings" returnType="ArrayList&lt;Showing&gt;" visibility="public"/>
+        <Method name="init" returnType="void" visibility="public"/>
+        <Method name="queryShowings" returnType="void" visibility="public"/>
+        <Method name="editShowing" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+          <Argument type="int" name="showing_id"/>
+        </Method>
+        <Method name="removeShowing" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+          <Argument type="int" name="hall"/>
+        </Method>
+        <Method name="getShowingsByMovie" returnType="ArrayList&lt;Showing&gt;" visibility="public">
+          <Argument type="Movie" name="movie"/>
+        </Method>
+        <Method name="getShowingById" returnType="Showing" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TicketController" package="control" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="tickets" type="ArrayList&lt;Ticket&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="queryTickets" returnType="void" visibility="public"/>
+        <Method name="queryTicketsByOrderId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="createTicket" returnType="void" visibility="public">
+          <Argument type="String" name="rowNo"/>
+          <Argument type="String" name="seatNo"/>
+          <Argument type="int" name="orders"/>
+          <Argument type="int" name="showing"/>
+        </Method>
+        <Method name="getTickets" returnType="ArrayList&lt;Ticket&gt;" visibility="public"/>
+        <Method name="setTickets" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Ticket&gt;" name="tickets"/>
+        </Method>
+        <Method name="getTicketByOrderId" returnType="Ticket[]" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getTicketByShowingId" returnType="ArrayList&lt;Ticket&gt;" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Customer" package="model" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="phone" type="String" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="phone"/>
+          <Argument type="int" name="id"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getPhone" returnType="String" visibility="public"/>
+        <Method name="setPhone" returnType="void" visibility="public">
+          <Argument type="String" name="phone"/>
+        </Method>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Hall" package="model" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="hallName" type="String" visibility="private"/>
+        <Field name="hall_id" type="int" visibility="private"/>
+        <Field name="rows" type="int" visibility="private"/>
+        <Field name="cols" type="int" visibility="private"/>
+        <Field name="totalSeats" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="hallName"/>
+          <Argument type="int" name="rows"/>
+          <Argument type="int" name="cols"/>
+          <Argument type="int" name="hall_id"/>
+          <Argument type="int" name="totalSeats"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getHallName" returnType="String" visibility="public"/>
+        <Method name="setHallName" returnType="void" visibility="public">
+          <Argument type="String" name="hallName"/>
+        </Method>
+        <Method name="getHallId" returnType="int" visibility="public"/>
+        <Method name="setHallNumber" returnType="void" visibility="public">
+          <Argument type="int" name="hall_id"/>
+        </Method>
+        <Method name="getRows" returnType="int" visibility="public"/>
+        <Method name="setRows" returnType="void" visibility="public">
+          <Argument type="int" name="rows"/>
+        </Method>
+        <Method name="getCols" returnType="int" visibility="public"/>
+        <Method name="setCols" returnType="void" visibility="public">
+          <Argument type="int" name="cols"/>
+        </Method>
+        <Method name="getTotalSeats" returnType="int" visibility="public"/>
+        <Method name="getSeatingArray" returnType="int[][]" visibility="public"/>
+        <Method name="setTotalSeats" returnType="void" visibility="public">
+          <Argument type="int" name="totalSeats"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Movie" package="model" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="titel" type="String" visibility="private"/>
+        <Field name="time" type="String" visibility="private"/>
+        <Field name="movie_id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="time"/>
+          <Argument type="int" name="movie_id"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTitel" returnType="String" visibility="public"/>
+        <Method name="setTitel" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getTime" returnType="String" visibility="public"/>
+        <Method name="setTime" returnType="void" visibility="public">
+          <Argument type="String" name="time"/>
+        </Method>
+        <Method name="getMovie_id" returnType="int" visibility="public"/>
+        <Method name="setMovie_id" returnType="void" visibility="public">
+          <Argument type="int" name="movie_id"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Order" package="model" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="tickets" type="Ticket[]" visibility="private"/>
+        <Field name="customer" type="Customer" visibility="private"/>
+        <Field name="order_id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Customer" name="customer"/>
+          <Argument type="Ticket[]" name="tickets"/>
+          <Argument type="int" name="order_id"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTickets" returnType="Ticket[]" visibility="public"/>
+        <Method name="setTickets" returnType="void" visibility="public">
+          <Argument type="Ticket[]" name="tickets"/>
+        </Method>
+        <Method name="getCustomer" returnType="Customer" visibility="public"/>
+        <Method name="setCustomer" returnType="void" visibility="public">
+          <Argument type="Customer" name="customer"/>
+        </Method>
+        <Method name="getNumberOfTickets" returnType="int" visibility="public"/>
+        <Method name="getOrder_id" returnType="int" visibility="public"/>
+        <Method name="setOrder_id" returnType="void" visibility="public">
+          <Argument type="int" name="order_id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Showing" package="model" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="hall" type="Hall" visibility="private"/>
+        <Field name="movie" type="Movie" visibility="private"/>
+        <Field name="ticketList" type="ArrayList&lt;Ticket&gt;" visibility="private"/>
+        <Field name="date" type="String" visibility="private"/>
+        <Field name="showing_id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Hall" name="hall"/>
+          <Argument type="Movie" name="movie"/>
+          <Argument type="String" name="date"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Hall" name="hall"/>
+          <Argument type="Movie" name="movie"/>
+          <Argument type="ArrayList&lt;Ticket&gt;" name="ticketList"/>
+          <Argument type="String" name="date"/>
+          <Argument type="int" name="showing_id"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getHall" returnType="Hall" visibility="public"/>
+        <Method name="setHall" returnType="void" visibility="public">
+          <Argument type="Hall" name="hall"/>
+        </Method>
+        <Method name="getMovie" returnType="Movie" visibility="public"/>
+        <Method name="setMovie" returnType="void" visibility="public">
+          <Argument type="Movie" name="movie"/>
+        </Method>
+        <Method name="getTicketList" returnType="ArrayList&lt;Ticket&gt;" visibility="public"/>
+        <Method name="setTicketList" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Ticket&gt;" name="ticketList"/>
+        </Method>
+        <Method name="getDate" returnType="String" visibility="public"/>
+        <Method name="setDate" returnType="void" visibility="public">
+          <Argument type="String" name="date"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="getShowing_id" returnType="int" visibility="public"/>
+        <Method name="setShowing_id" returnType="void" visibility="public">
+          <Argument type="int" name="showing_id"/>
+        </Method>
+        <Method name="getRemainingSeats" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Ticket" package="model" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="rowNo" type="int" visibility="private"/>
+        <Field name="seatNo" type="int" visibility="private"/>
+        <Field name="order_id" type="int" visibility="private"/>
+        <Field name="showing_id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="rowNo"/>
+          <Argument type="int" name="seatNo"/>
+          <Argument type="int" name="order_id"/>
+          <Argument type="int" name="showing_id"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRowNo" returnType="int" visibility="public"/>
+        <Method name="setRowNo" returnType="void" visibility="public">
+          <Argument type="int" name="rowNo"/>
+        </Method>
+        <Method name="getSeatNo" returnType="int" visibility="public"/>
+        <Method name="setSeatNo" returnType="void" visibility="public">
+          <Argument type="int" name="seatNo"/>
+        </Method>
+        <Method name="getOrder_id" returnType="int" visibility="public"/>
+        <Method name="setOrder_id" returnType="void" visibility="public">
+          <Argument type="int" name="order_id"/>
+        </Method>
+        <Method name="getShowing_id" returnType="int" visibility="public"/>
+        <Method name="setShowing_id" returnType="void" visibility="public">
+          <Argument type="int" name="showing_id"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ConnectionGui" package="view" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="jens" type="DB_Connection" visibility="package"/>
+        <Field name="btnPnl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="cnclBtn" type="javax.swing.JButton" visibility="private"/>
+        <Field name="dbNameTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="findCustomerButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="hostLbl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="hostTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="hostTxtPnl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="okBtn" type="javax.swing.JButton" visibility="private"/>
+        <Field name="passwordField" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="pnlC" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="pnlE" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="pnlN" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="pnlW" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="portPnl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="portTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="psswrLblPnl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="psswrdLbl" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="psswrdTxtPnl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="userTxtPnl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="usrLbl" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="usrLblPnl" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="usrTxt" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="usrTxtActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="okBtnActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="dbNameTFActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="findCustomerButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FindCustomerGui" package="view" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="customerController" type="CustomerController" visibility="package"/>
+        <Field name="ticketCatalog" type="TicketController" visibility="package"/>
+        <Field name="orderCatalog" type="OrderController" visibility="package"/>
+        <Field name="biotrio" type="Biotrio" visibility="package"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
+        <Field name="phoneTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="returnButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="searchButton" type="javax.swing.JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Biotrio" name="biotrio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="returnButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="searchButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="fillTableWithCustomers" returnType="void" visibility="public"/>
+        <Method name="updateTableByCustomer" returnType="void" visibility="public">
+          <Argument type="Customer" name="customer"/>
+        </Method>
+        <Method name="updateTableByALL" returnType="void" visibility="public">
+          <Argument type="Customer" name="customer"/>
+          <Argument type="Order" name="order"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SeatBookingGUI" package="view" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="biotrio" type="Biotrio" visibility="package"/>
+        <Field name="showing" type="Showing" visibility="package"/>
+        <Field name="customerController" type="CustomerController" visibility="package"/>
+        <Field name="ticketCatalog" type="TicketController" visibility="package"/>
+        <Field name="showingCatalog" type="ShowingController" visibility="package"/>
+        <Field name="orderCatalog" type="OrderController" visibility="package"/>
+        <Field name="seatNo" type="int" visibility="private"/>
+        <Field name="rowNo" type="int" visibility="private"/>
+        <Field name="seatNo2" type="int" visibility="private"/>
+        <Field name="seatNo3" type="int" visibility="private"/>
+        <Field name="seatNo4" type="int" visibility="private"/>
+        <Field name="bookButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="createTicketBtn" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jCenter" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jComboBox1" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="jEast" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel10" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel11" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jNorth" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel7" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSouth" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
+        <Field name="jWest" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="nameTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="phoneTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="returnButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="rowNoTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="rowNoTF2" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="rowNoTF3" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="rowNoTF4" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="seatNoTF" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="seatNoTF2" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="seatNoTF3" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="seatNoTF4" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="statusLable" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Biotrio" name="biotrio"/>
+          <Argument type="Showing" name="showing"/>
+          <Argument type="ShowingController" name="showingCatalog"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="checkSeat" returnType="boolean" visibility="public">
+          <Argument type="int" name="rowNo"/>
+          <Argument type="int" name="seatNo"/>
+        </Method>
+        <Method name="updateSeatTable" returnType="void" visibility="public">
+          <Argument type="Showing" name="showing"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="bookButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="createTicketBtnActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jComboBox1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="returnButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SelectMovieGUI" package="view" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="movieCatalog" type="MovieController" visibility="package"/>
+        <Field name="biotrio" type="Biotrio" visibility="package"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
+        <Field name="returnButton" type="javax.swing.JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Biotrio" name="biotrio"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="updateMovieTable" returnType="void" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="returnButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ShowingGUI" package="view" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="movie" type="Movie" visibility="package"/>
+        <Field name="showingCatalog" type="ShowingController" visibility="package"/>
+        <Field name="ticketCatalog" type="TicketController" visibility="package"/>
+        <Field name="biotrio" type="Biotrio" visibility="package"/>
+        <Field name="showing" type="Showing" visibility="package"/>
+        <Field name="editButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
+        <Field name="jTextField1" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="removeButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="returnButton" type="javax.swing.JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Biotrio" name="biotrio"/>
+          <Argument type="Movie" name="movie"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="updateShowingByMovieTable" returnType="void" visibility="public">
+          <Argument type="Movie" name="movie"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jTable1FocusGained" returnType="void" visibility="private">
+          <Argument type="java.awt.event.FocusEvent" name="evt"/>
+        </Method>
+        <Method name="jTable1MouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="editButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="removeButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="returnButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="model.Showing" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.HallController" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketCatalog" source="view.SeatBookingGUI" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="halls" source="control.HallController" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Hall&gt;"/>
+    <HasRelation name="ticketCatalog" source="biotrio.Biotrio" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showing" source="view.SeatBookingGUI" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tickets" source="control.TicketController" target="model.Ticket" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ticket&gt;"/>
+    <UseRelation source="control.TicketController" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showingCatalog" source="view.SeatBookingGUI" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movieCatalog" source="control.ShowingController" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.FindCustomerGui" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orderCatalog" source="view.FindCustomerGui" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movieCatalog" source="view.SelectMovieGUI" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="control.DB_Connection" target="control.DB_Connection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hallCatalog" source="biotrio.Biotrio" target="control.HallController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orders" source="control.OrderController" target="model.Order" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Order&gt;"/>
+    <UseRelation source="model.Showing" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showingCatalog" source="biotrio.Biotrio" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customers" source="control.CustomerController" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Customer&gt;"/>
+    <HasRelation name="ticketCatalog" source="view.FindCustomerGui" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="biotrio" source="view.ShowingGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.ShowingController" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showingCatalog" source="view.ShowingGUI" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.DB_Connection" target="control.DB_Connection" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customer" source="control.OrderController" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="biotrio" source="view.SelectMovieGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.ShowingGUI" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.HallController" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="jens" source="view.ConnectionGui" target="control.DB_Connection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.CustomerController" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customerController" source="control.OrderController" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movieCatalog" source="biotrio.Biotrio" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showings" source="control.ShowingController" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Showing&gt;"/>
+    <HasRelation name="hall" source="model.Showing" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movie" source="model.Showing" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movie" source="view.ShowingGUI" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.OrderController" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customerController" source="view.FindCustomerGui" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.MovieController" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketCatalog" source="control.OrderController" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customerController" source="view.SeatBookingGUI" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hallItem" source="control.HallController" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movies" source="control.MovieController" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Movie&gt;"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Order" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketList" source="model.Showing" target="model.Ticket" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ticket&gt;"/>
+    <HasRelation name="ticketCatalog" source="view.ShowingGUI" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketCatalog" source="control.ShowingController" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.SeatBookingGUI" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Showing" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="biotrio" source="view.SeatBookingGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Order" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customerController" source="biotrio.Biotrio" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="biotrio" source="view.FindCustomerGui" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orderCatalog" source="view.SeatBookingGUI" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orderCatalog" source="biotrio.Biotrio" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hallCatalog" source="control.ShowingController" target="control.HallController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customer" source="model.Order" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.FindCustomerGui" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showing" source="view.ShowingGUI" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
