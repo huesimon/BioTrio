@@ -4,12 +4,12 @@
   <ClassDiagramComponents>
     <Class name="Biotrio" package="biotrio" visibility="public" xPosition="20.0" yPosition="20.0">
       <Fields>
-        <Field name="showingCatalog" type="ShowingController" visibility="private"/>
-        <Field name="movieCatalog" type="MovieController" visibility="private"/>
+        <Field name="showingController" type="ShowingController" visibility="private"/>
+        <Field name="movieController" type="MovieController" visibility="private"/>
         <Field name="customerController" type="CustomerController" visibility="private"/>
-        <Field name="hallCatalog" type="HallController" visibility="private"/>
-        <Field name="orderCatalog" type="OrderController" visibility="private"/>
-        <Field name="ticketCatalog" type="TicketController" visibility="private"/>
+        <Field name="hallController" type="HallController" visibility="private"/>
+        <Field name="orderController" type="OrderController" visibility="private"/>
+        <Field name="ticketController" type="TicketController" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public"/>
@@ -17,12 +17,12 @@
       <Methods>
         <Method name="movieGui" returnType="void" visibility="public"/>
         <Method name="findCustomerGUI" returnType="void" visibility="public"/>
-        <Method name="getShowingCatalog" returnType="ShowingController" visibility="public"/>
-        <Method name="getMovieCatalog" returnType="MovieController" visibility="public"/>
+        <Method name="getShowingController" returnType="ShowingController" visibility="public"/>
+        <Method name="getMovieController" returnType="MovieController" visibility="public"/>
         <Method name="getCustomerController" returnType="CustomerController" visibility="public"/>
-        <Method name="getHallCatalog" returnType="HallController" visibility="public"/>
-        <Method name="getOrderCatalog" returnType="OrderController" visibility="public"/>
-        <Method name="getTicketCatalog" returnType="TicketController" visibility="public"/>
+        <Method name="getHallController" returnType="HallController" visibility="public"/>
+        <Method name="getOrderController" returnType="OrderController" visibility="public"/>
+        <Method name="getTicketController" returnType="TicketController" visibility="public"/>
       </Methods>
     </Class>
     <Class name="CustomerController" package="control" visibility="public" xPosition="320.0" yPosition="20.0">
@@ -173,7 +173,6 @@
         </Method>
         <Method name="getSize" returnType="int" visibility="public"/>
         <Method name="getMovies" returnType="ArrayList&lt;Movie&gt;" visibility="public"/>
-        <Method name="init" returnType="void" visibility="private"/>
         <Method name="queryMovie" returnType="void" visibility="public"/>
         <Method name="queryShowing" returnType="void" visibility="public"/>
         <Method name="getTitle" returnType="String" visibility="public"/>
@@ -186,13 +185,13 @@
       <Fields>
         <Field name="orders" type="ArrayList&lt;Order&gt;" visibility="private"/>
         <Field name="customerController" type="CustomerController" visibility="private"/>
-        <Field name="ticketCatalog" type="TicketController" visibility="private"/>
+        <Field name="ticketController" type="TicketController" visibility="private"/>
         <Field name="customer" type="Customer" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public">
           <Argument type="CustomerController" name="customerController"/>
-          <Argument type="TicketController" name="ticketCatalog"/>
+          <Argument type="TicketController" name="ticketController"/>
         </Constructor>
       </Constructors>
       <Methods>
@@ -211,16 +210,16 @@
     </Class>
     <Class name="ShowingController" package="control" visibility="public" xPosition="2120.0" yPosition="20.0">
       <Fields>
-        <Field name="hallCatalog" type="HallController" visibility="private"/>
-        <Field name="movieCatalog" type="MovieController" visibility="private"/>
-        <Field name="ticketCatalog" type="TicketController" visibility="private"/>
+        <Field name="hallController" type="HallController" visibility="private"/>
+        <Field name="movieController" type="MovieController" visibility="private"/>
+        <Field name="ticketController" type="TicketController" visibility="private"/>
         <Field name="showings" type="ArrayList&lt;Showing&gt;" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public">
-          <Argument type="HallController" name="hallCatalog"/>
-          <Argument type="MovieController" name="movieCatalog"/>
-          <Argument type="TicketController" name="ticketCatalog"/>
+          <Argument type="HallController" name="hallController"/>
+          <Argument type="MovieController" name="movieController"/>
+          <Argument type="TicketController" name="ticketController"/>
         </Constructor>
       </Constructors>
       <Methods>
@@ -231,7 +230,6 @@
           <Argument type="int" name="index"/>
         </Method>
         <Method name="getShowings" returnType="ArrayList&lt;Showing&gt;" visibility="public"/>
-        <Method name="init" returnType="void" visibility="public"/>
         <Method name="queryShowings" returnType="void" visibility="public"/>
         <Method name="editShowing" returnType="void" visibility="public">
           <Argument type="String" name="date"/>
@@ -492,7 +490,7 @@
     </Class>
     <Class name="ConnectionGui" package="view" visibility="public" xPosition="2120.0" yPosition="420.0">
       <Fields>
-        <Field name="jens" type="DB_Connection" visibility="package"/>
+        <Field name="con" type="DB_Connection" visibility="package"/>
         <Field name="btnPnl" type="javax.swing.JPanel" visibility="private"/>
         <Field name="cnclBtn" type="javax.swing.JButton" visibility="private"/>
         <Field name="dbNameTF" type="javax.swing.JTextField" visibility="private"/>
@@ -549,8 +547,8 @@ void" visibility="private"/>
     <Class name="FindCustomerGui" package="view" visibility="public" xPosition="20.0" yPosition="820.0">
       <Fields>
         <Field name="customerController" type="CustomerController" visibility="package"/>
-        <Field name="ticketCatalog" type="TicketController" visibility="package"/>
-        <Field name="orderCatalog" type="OrderController" visibility="package"/>
+        <Field name="ticketController" type="TicketController" visibility="package"/>
+        <Field name="orderController" type="OrderController" visibility="package"/>
         <Field name="biotrio" type="Biotrio" visibility="package"/>
         <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
         <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
@@ -592,9 +590,9 @@ void" visibility="private"/>
         <Field name="biotrio" type="Biotrio" visibility="package"/>
         <Field name="showing" type="Showing" visibility="package"/>
         <Field name="customerController" type="CustomerController" visibility="package"/>
-        <Field name="ticketCatalog" type="TicketController" visibility="package"/>
-        <Field name="showingCatalog" type="ShowingController" visibility="package"/>
-        <Field name="orderCatalog" type="OrderController" visibility="package"/>
+        <Field name="ticketController" type="TicketController" visibility="package"/>
+        <Field name="showingController" type="ShowingController" visibility="package"/>
+        <Field name="orderController" type="OrderController" visibility="package"/>
         <Field name="seatNo" type="int" visibility="private"/>
         <Field name="rowNo" type="int" visibility="private"/>
         <Field name="seatNo2" type="int" visibility="private"/>
@@ -619,12 +617,20 @@ void" visibility="private"/>
         <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
         <Field name="jNorth" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel10" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel11" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel12" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel13" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel14" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel15" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel5" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel6" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel7" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel8" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel9" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
         <Field name="jSouth" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jTable1" type="javax.swing.JTable" visibility="private"/>
@@ -640,13 +646,13 @@ void" visibility="private"/>
         <Field name="seatNoTF2" type="javax.swing.JTextField" visibility="private"/>
         <Field name="seatNoTF3" type="javax.swing.JTextField" visibility="private"/>
         <Field name="seatNoTF4" type="javax.swing.JTextField" visibility="private"/>
-        <Field name="statusLable" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="statusLabel" type="javax.swing.JLabel" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public">
           <Argument type="Biotrio" name="biotrio"/>
           <Argument type="Showing" name="showing"/>
-          <Argument type="ShowingController" name="showingCatalog"/>
+          <Argument type="ShowingController" name="showingController"/>
         </Constructor>
         <Constructor visibility="public"/>
       </Constructors>
@@ -675,11 +681,14 @@ void" visibility="private"/>
         <Method name="returnButtonActionPerformed" returnType="void" visibility="private">
           <Argument type="java.awt.event.ActionEvent" name="evt"/>
         </Method>
+        <Method name="rowNoTF3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
       </Methods>
     </Class>
     <Class name="SelectMovieGUI" package="view" visibility="public" xPosition="620.0" yPosition="820.0">
       <Fields>
-        <Field name="movieCatalog" type="MovieController" visibility="package"/>
+        <Field name="movieController" type="MovieController" visibility="package"/>
         <Field name="biotrio" type="Biotrio" visibility="package"/>
         <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
         <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
@@ -710,8 +719,8 @@ void" visibility="private"/>
     <Class name="ShowingGUI" package="view" visibility="public" xPosition="920.0" yPosition="820.0">
       <Fields>
         <Field name="movie" type="Movie" visibility="package"/>
-        <Field name="showingCatalog" type="ShowingController" visibility="package"/>
-        <Field name="ticketCatalog" type="TicketController" visibility="package"/>
+        <Field name="showingController" type="ShowingController" visibility="package"/>
+        <Field name="ticketController" type="TicketController" visibility="package"/>
         <Field name="biotrio" type="Biotrio" visibility="package"/>
         <Field name="showing" type="Showing" visibility="package"/>
         <Field name="editButton" type="javax.swing.JButton" visibility="private"/>
@@ -760,70 +769,70 @@ void" visibility="private"/>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <UseRelation source="model.Showing" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="control.HallController" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="ticketCatalog" source="view.SeatBookingGUI" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="halls" source="control.HallController" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Hall&gt;"/>
-    <HasRelation name="ticketCatalog" source="biotrio.Biotrio" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="showing" source="view.SeatBookingGUI" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="tickets" source="control.TicketController" target="model.Ticket" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ticket&gt;"/>
-    <UseRelation source="control.TicketController" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="showingCatalog" source="view.SeatBookingGUI" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="movieCatalog" source="control.ShowingController" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="view.FindCustomerGui" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="orderCatalog" source="view.FindCustomerGui" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="movieCatalog" source="view.SelectMovieGUI" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="instance" source="control.DB_Connection" target="control.DB_Connection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="hallCatalog" source="biotrio.Biotrio" target="control.HallController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="orders" source="control.OrderController" target="model.Order" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Order&gt;"/>
-    <UseRelation source="model.Showing" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="showingCatalog" source="biotrio.Biotrio" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="biotrio.Biotrio" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="biotrio.Biotrio" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="customers" source="control.CustomerController" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Customer&gt;"/>
-    <HasRelation name="ticketCatalog" source="view.FindCustomerGui" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="biotrio" source="view.ShowingGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="biotrio.Biotrio" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="control.ShowingController" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="showingCatalog" source="view.ShowingGUI" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="control.DB_Connection" target="control.DB_Connection" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="customer" source="control.OrderController" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="biotrio" source="view.SelectMovieGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="view.ShowingGUI" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="control.HallController" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="jens" source="view.ConnectionGui" target="control.DB_Connection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="control.CustomerController" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="customerController" source="control.OrderController" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="movieCatalog" source="biotrio.Biotrio" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="biotrio.Biotrio" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="showings" source="control.ShowingController" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Showing&gt;"/>
-    <HasRelation name="hall" source="model.Showing" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="movie" source="model.Showing" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="movie" source="view.ShowingGUI" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="control.OrderController" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="customerController" source="view.FindCustomerGui" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="biotrio.Biotrio" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="control.MovieController" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="ticketCatalog" source="control.OrderController" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="customerController" source="view.SeatBookingGUI" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="hallItem" source="control.HallController" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="movies" source="control.MovieController" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Movie&gt;"/>
-    <UseRelation source="biotrio.Biotrio" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="model.Order" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="ticketList" source="model.Showing" target="model.Ticket" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ticket&gt;"/>
-    <HasRelation name="ticketCatalog" source="view.ShowingGUI" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="ticketCatalog" source="control.ShowingController" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="view.SeatBookingGUI" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customers" source="control.CustomerController" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Customer&gt;"/>
+    <HasRelation name="hall" source="model.Showing" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showings" source="control.ShowingController" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Showing&gt;"/>
+    <HasRelation name="customerController" source="view.FindCustomerGui" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="model.Showing" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="biotrio" source="view.SeatBookingGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="model.Order" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="customerController" source="biotrio.Biotrio" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="biotrio" source="view.FindCustomerGui" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="orderCatalog" source="view.SeatBookingGUI" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="orderCatalog" source="biotrio.Biotrio" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="hallCatalog" source="control.ShowingController" target="control.HallController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hallController" source="control.ShowingController" target="control.HallController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.ShowingController" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.TicketController" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="customer" source="model.Order" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="view.FindCustomerGui" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="biotrio" source="view.FindCustomerGui" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketController" source="view.ShowingGUI" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orderController" source="view.SeatBookingGUI" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movies" source="control.MovieController" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Movie&gt;"/>
+    <HasRelation name="hallController" source="biotrio.Biotrio" target="control.HallController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="hallItem" source="control.HallController" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="biotrio" source="view.ShowingGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketController" source="control.OrderController" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.OrderController" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showingController" source="biotrio.Biotrio" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketController" source="biotrio.Biotrio" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customer" source="control.OrderController" target="model.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movie" source="view.ShowingGUI" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orderController" source="biotrio.Biotrio" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="showing" source="view.ShowingGUI" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketController" source="control.ShowingController" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.DB_Connection" target="control.DB_Connection" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.ShowingGUI" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Showing" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="halls" source="control.HallController" target="model.Hall" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Hall&gt;"/>
+    <UseRelation source="model.Showing" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customerController" source="view.SeatBookingGUI" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Order" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.SeatBookingGUI" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movieController" source="view.SelectMovieGUI" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orders" source="control.OrderController" target="model.Order" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Order&gt;"/>
+    <HasRelation name="biotrio" source="view.SeatBookingGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketList" source="model.Showing" target="model.Ticket" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ticket&gt;"/>
+    <HasRelation name="showingController" source="view.ShowingGUI" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="control.DB_Connection" target="control.DB_Connection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.CustomerController" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orderController" source="view.FindCustomerGui" target="control.OrderController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movie" source="model.Showing" target="model.Movie" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tickets" source="control.TicketController" target="model.Ticket" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ticket&gt;"/>
+    <HasRelation name="movieController" source="control.ShowingController" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="con" source="view.ConnectionGui" target="control.DB_Connection" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="biotrio" source="view.SelectMovieGUI" target="biotrio.Biotrio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customerController" source="biotrio.Biotrio" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.MovieController" target="model.Movie" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.FindCustomerGui" target="model.Order" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.HallController" target="model.Showing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="biotrio.Biotrio" target="model.Ticket" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showing" source="view.SeatBookingGUI" target="model.Showing" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.FindCustomerGui" target="model.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="control.HallController" target="model.Hall" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customerController" source="control.OrderController" target="control.CustomerController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketController" source="view.FindCustomerGui" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="movieController" source="biotrio.Biotrio" target="control.MovieController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="showingController" source="view.SeatBookingGUI" target="control.ShowingController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ticketController" source="view.SeatBookingGUI" target="control.TicketController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>

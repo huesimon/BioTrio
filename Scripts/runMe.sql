@@ -61,7 +61,7 @@ INSERT INTO movie(title, length) VALUES
 ('Pedersen og Findus: Den Bedste Jul Nogensinde - ', '80 minutter');
 INSERT INTO customer(name, phoneNr) VALUES
 ('Jensen','12342678'),
-('Jens','12345678');
+('Jens','8888');
 INSERT INTO orders(customer) VALUES
 ('1'),
 ('2');
@@ -188,6 +188,3 @@ INSERT INTO ticket(rowNo, seatNo, orders, showing) VALUES
 ('3', '4','1','1'),
 ('3', '5','1','1'),
 ('3','6','2','1');
-
-
-SELECT * FROM showing
